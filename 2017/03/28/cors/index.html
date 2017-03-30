@@ -295,53 +295,53 @@
 </ul>
 </li>
 </ul>
-<h2 id="HTTP请求头"><a href="#HTTP请求头" class="headerlink" title="HTTP请求头"></a>HTTP请求头</h2><blockquote>
-<p>Origin: <origin></origin></p>
-</blockquote>
-<ul>
+<h2 id="HTTP请求头"><a href="#HTTP请求头" class="headerlink" title="HTTP请求头"></a>HTTP请求头</h2><ul>
 <li><p>发送请求的域</p>
 <blockquote>
-<p>Access-Control-Request-Method: <method></method></p>
+<p>Origin: <origin></origin></p>
 </blockquote>
 </li>
 <li><p>请求自身使用的方法</p>
 <blockquote>
-<p>Access-Control-Request-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+<p>Access-Control-Request-Method: <method></method></p>
 </blockquote>
 </li>
 <li><p>(可选)自定义的头部信息，多个头部逗号分隔</p>
+<blockquote>
+<p>Access-Control-Request-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+</blockquote>
 </li>
 </ul>
-<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><blockquote>
-<p>Access-Control-Allow-Origin: <origin> | *</origin></p>
-</blockquote>
-<ul>
+<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><ul>
 <li><p>与简单请求的相同</p>
 <blockquote>
-<p>Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</p>
+<p>Access-Control-Allow-Origin: <origin> | *</origin></p>
 </blockquote>
 </li>
 <li><p>设置浏览器允许访问的服务器的头信息的白名单</p>
 <blockquote>
-<p>Access-Control-Max-Age: <delta-seconds></delta-seconds></p>
+<p>Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</p>
 </blockquote>
 </li>
 <li><p>应该将这个预请求缓存多长时间（以秒表示）</p>
 <blockquote>
-<p>Access-Control-Allow-Credentials: true | false</p>
+<p>Access-Control-Max-Age: <delta-seconds></delta-seconds></p>
 </blockquote>
 </li>
 <li><p>是否为带凭证的请求</p>
 <blockquote>
-<p>Access-Control-Allow-Methods: <method>[, <method>]*</method></method></p>
+<p>Access-Control-Allow-Credentials: true | false</p>
 </blockquote>
 </li>
 <li><p>允许的方法，多个方法以逗号分隔</p>
 <blockquote>
-<p>Access-Control-Allow-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+<p>Access-Control-Allow-Methods: <method>[, <method>]*</method></method></p>
 </blockquote>
 </li>
 <li><p>允许的头部，多个头部以逗号分隔</p>
+<blockquote>
+<p>Access-Control-Allow-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+</blockquote>
 </li>
 </ul>
 <h2 id="IE对CORS的实现"><a href="#IE对CORS的实现" class="headerlink" title="IE对CORS的实现"></a>IE对CORS的实现</h2><ul>
