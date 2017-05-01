@@ -2,7 +2,7 @@
 layout:     post
 title:      "Promise ES6"
 subtitle:   "Promise，ES6"
-date:       2017-03-28 22:41:37
+date:       2017-01-17 14:34:52
 author:     "AlenQi"
 catalog:    true
 header-img: "post-bg-js-promise-es6.jpg"

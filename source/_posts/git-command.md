@@ -3,7 +3,7 @@ layout:     keynote
 title:      "Git Command Summary"
 subtitle:   "Keynote: git command"
 iframe:     "//naotu.baidu.com/file/4b56bf4c0ba7e275fc7b3ea48722ac4e?token=10f6af797055374f"
-date:       2015-07-09
+date:       2016-6-12 17:21:05
 author:     "AlenQi"
 header-img: "post-bg-js-version.jpg"
 tags:
