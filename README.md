@@ -1,5 +1,3 @@
-#Hexo-my-blog
-
 
 ## Usage
 
