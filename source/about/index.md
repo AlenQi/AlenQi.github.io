@@ -16,6 +16,11 @@ comments: true
 
 我参加过的会议：https://segmentfault.com/sfdc-2016/hz
 
+我的翻译：
+
+- [HTTP Headers](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
+- [HTTP cookies](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
+
 很高兴你看到了这里
 
 <p style="text-align:right;">
