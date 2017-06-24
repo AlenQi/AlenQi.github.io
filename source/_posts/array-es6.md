@@ -5,7 +5,7 @@ subtitle:   "Array, ES6"
 date:       2017-02-21 21:33:31
 author:     "AlenQi"
 catalog:    true
-header-img: "array.jpg"
+header-img: "array.png"
 tags:
     - ES6
     - JavaScript
