@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Destructuring"
-subtitle:   "Destructuring ES6"
+title:      "Destructuring ES6"
+subtitle:   "Destructuring, ES6"
 date:       2017-02-21 21:33:31
 author:     "AlenQi"
 catalog:    true
