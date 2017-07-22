@@ -14,16 +14,7 @@
                         </a>
                     </li>
                 <% } %>
-                <!-- <% if (config.twitter_username) { %>
-                    <li>
-                        <a target="_blank" href="https://twitter.com/<%= config.twitter_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %> -->
+
                 <% if (config.zhihu_username) { %>
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/<%= config.zhihu_username %>">
@@ -46,7 +37,7 @@
                     </li>
                 <% } %>
 
-                <% if (config.facebook_username) { %>
+                <!-- <% if (config.facebook_username) { %>
                     <li>
                         <a target="_blank" href="https://www.facebook.com/<%= config.facebook_username %>">
                             <span class="fa-stack fa-lg">
@@ -55,7 +46,7 @@
                             </span>
                         </a>
                     </li>
-                <% } %>
+                <% } %> -->
 
                 <% if (config.github_username) { %>
                     <li>
@@ -83,7 +74,7 @@
                 <p class="copyright text-muted">
                     Copyright &copy; <%= config.title %> <%= new Date().getFullYear() %>
                     <br>
-                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> -->
+                    <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span>
@@ -137,7 +128,7 @@
      Because of the native support for backtick-style fenced code blocks
      right within the Markdown is landed in Github Pages,
      From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
+     so alenqiblog drops it officially.
 
      - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
      - https://help.github.com/articles/creating-and-highlighting-code-blocks/
@@ -179,7 +170,7 @@
 
 <% if (config.ga_track_id) { %>
 <script>
-    // dynamic User by Hux
+    // dynamic User by alenqi
     var _gaId = '<%= config.ga_track_id %>';
     var _gaDomain = '<%= config.ga_domain %>';
 
@@ -199,7 +190,7 @@
 <!-- Baidu Tongji -->
 <% if (config.ba_track_id) { %>
 <script>
-    // dynamic User by Hux
+    // dynamic User by alenqi
     var _baId = '<%= config.ba_track_id %>';
 
     // Originial
@@ -240,7 +231,6 @@
 
     /*
      * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
      */
     async("<%= config.root%>js/jquery.nav.js", function () {
         $('.catalog-body').onePageNav({

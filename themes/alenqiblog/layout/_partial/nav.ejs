@@ -13,12 +13,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <div id="huxblog_navbar">
+        <div id="alenqiblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -33,7 +28,13 @@
                         </li>
                         <% } %>
                     <% }); %>
-                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/<%= config.github_username %>">
+                          github
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -47,7 +48,7 @@
     // in high-perf jank-free CSS3 implementation
     var $body   = document.body;
     var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
 
     $toggle.addEventListener('click', handleMagic)

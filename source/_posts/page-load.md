@@ -5,7 +5,7 @@ subtitle:   "url 加载 渲染 优化"
 date:       2017-05-24 21:08:02
 author:     "AlenQi"
 catalog:    true
-header-img: "cors-blog-main.jpg"
+header-img: "bg.gif"
 tags:
     - 前端开发
     - JavaScript

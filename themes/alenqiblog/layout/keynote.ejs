@@ -9,29 +9,40 @@ layout: layout
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('<%= page["header-img"] || config.root + config["header-img"] %>')
+        /*background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')*/
+        height: 500px;
+        overflow: hidden;
+    }
+    header iframe{
+        width: 100%;
+        height: 100%;
+        border: 0;
     }
 </style>
 <header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        <% page.tags.forEach(function(tag){ %>
-                          <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
-                        <% }) %>
+    <iframe src="<%= page.iframe %>"/>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <div class="tags">
+                            <% page.tags.forEach(function(tag){ %>
+                              <a class="tag" href="<%= config.root %><%= tag.path %>" title="<%= tag.name %>"><%= tag.name %></a>
+                            <% }) %>
+                        </div>
+
+                        <h1><%= page.title %></h1>
+                        <h2 class="subheading"><%= page.subtitle %></h2>
+                        <span class="meta">
+                            Posted by <%- page.author || config.author %> on
+                            <%= page.date.format(config.date_format) %>
+                        </span>
+                        
                     </div>
-                    <h1><%= page.title %></h1>
-                    <h2 class="subheading"><%= page.subtitle || "" %></h2>
-                    <span class="meta">
-                        Posted by <%- page.author || config.author %> on
-                        <%= page.date.format(config.date_format) %>
-                    </span>
                 </div>
             </div>
         </div>
-    </div>
+    </iframe>
 </header>
 
 <!-- Post Content -->
@@ -57,7 +68,7 @@ layout: layout
                     data-thread-key="<%= page.path %>"
                     data-title="<%= page.title %>"
                     data-url="<%= page.permalink %>"
-                    data-images="<%= page["header-img"] ? page.permalink + page["header-img"] : '' %>"
+                    data-images="<%= config.url %><%= config.root %><%= page["header-img"] || config["header-img"] %>"
                     data-content="<%- truncate(strip_html(page.content), {length: 50, omission: '...'}) %> | <%= config.SEOTitle %> " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -77,12 +88,12 @@ layout: layout
                 <ul class="pager">
                     <% if (page.prev){ %>
                         <li class="previous">
-                            <a href="<%- config.root %><%- page.prev.path %>" data-toggle="tooltip" data-placement="top" title="<%- page.prev.title %>">&larr; Previous Post</a>
+                            <a href="<%- config.root %><%- page.prev_link %>" data-toggle="tooltip" data-placement="top" title="<%- page.prev.title %>">&larr; Previous Post</a>
                         </li>
                     <% } %>
                     <% if (page.next){ %>
                         <li class="next">
-                            <a href="<%- config.root %><%- page.next.path %>" data-toggle="tooltip" data-placement="top" title="<%- page.next.title %>">Next Post &rarr;</a>
+                            <a href="<%- config.root %><%- page.next_link %>" data-toggle="tooltip" data-placement="top" title="<%- page.next.title %>">Next Post &rarr;</a>
                         </li>
                     <% } %>
                 </ul>
@@ -108,22 +119,6 @@ layout: layout
                 <% } %>
 
             </div>
-    <!-- Side Catalog Container -->
-        <% if (page.catalog) { %>
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
-        <% } %>
 
     <!-- Sidebar Container -->
 
@@ -138,9 +133,7 @@ layout: layout
                     <!-- no hr -->
                     <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                       <% page.tags.forEach(function(tag){ %>
-                          <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
-                        <% }) %>
+                        <%- list_tags({style: '', class: '', show_count: false, separator: ''}) %>
                     </div>
                 </section>
                 <% }%>
@@ -152,7 +145,7 @@ layout: layout
                 <ul class="list-inline">
 
                     <% config.friends.forEach(function(friend){ %>
-                        <li><a href="<%= friend.href %>" target="_blank"><%= friend.title %></a></li>
+                        <li><a href="<%= friend.href %>"><%= friend.title %></a></li>
                     <% }); %>
                 </ul>
                 <% }%>
@@ -165,7 +158,7 @@ layout: layout
 <% if(config['duoshuo_username']) { %>
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
-    // dynamic User by Hux
+    // dynamic User by alenqi
     var _user = '<%= config['duoshuo_username'] %>';
 
     // duoshuo comment query.
