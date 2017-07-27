@@ -16,28 +16,26 @@ tags:
 
 ## 开始问题
 
-- 我使用的是（[gulp-rev](https://github.com/sindresorhus/gulp-rev) + [gulp-rev-collector](https://github.com/shonny-ua/gulp-rev-collector)），但是每次自动化构建都是依赖rev生成的json文件：
 
-``` json
-"style.css": "style-f048bfa0ab.css",
- "script.js": "scrip-5c69cf6d54.js",
-```
+- 我使用的是（[gulp-rev](https://github.com/sindresorhus/gulp-rev) + [gulp-rev-collector](https://github.com/shonny-ua/gulp-rev-collector)），但是每次自动化构建都是依赖rev生成的json文件：
+  ``` json
+  "style.css": "style-f048bfa0ab.css",
+  "script.js": "scrip-5c69cf6d54.js",
+  ```
 
 - 利用上面的json去修改html里面的静态路径，第二次如果不想去删除html，只想修改静态资源的路径，文件名被修改无法依赖。
 
 - 最直接的方法就是修改插件，使rev生成的json文件变为下面的依赖关系：
-
-``` json
-"style.css": "style.css?v=f048bfa0ab",
- "script.js": "scrip.js?v=5c69cf6d54",
-```
+  ``` json
+  "style.css": "style.css?v=f048bfa0ab",
+  "script.js": "scrip.js?v=5c69cf6d54",
+  ```
 
 - 这样不会修改文件的名称，依赖关系依然成立。每次输出都能按照最新的依赖关系替换我们html文件的静态资源路径。
 
 ## 如何做
 
-1. 分别安装
-   gulp-rev、gulp-rev-collerctor
+1. 分别安装`gulp-rev`、`gulp-rev-collerctor`
    npm install --save-dev gulp-rev
    npm install --save-dev gulp-rev-collector
 
