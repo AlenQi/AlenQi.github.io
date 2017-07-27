@@ -112,6 +112,10 @@ tags:
 
   树形文件视图中显示Git存储库状态。
 
+25. <big>[prettier-atom](https://atom.io/packages/prettier-atom)</big>
+
+  An atom package for the prettier formatter.
+
 
 ### Tips:
 
