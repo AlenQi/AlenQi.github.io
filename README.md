@@ -2,6 +2,7 @@
 
 ## Catalogue
 
+- [preference](http://www.alenqi.site/2017/07/11/preference/)
 - [输入了url然后呢？](http://www.alenqi.site/2017/05/25/page-load/)
 - [CORS 跨域资源共享](http://www.alenqi.site/2017/03/29/cors/)
 - [Atom使用插件精选(FE)](http://www.alenqi.site/2017/03/11/atom-edit/)
