@@ -10,7 +10,7 @@
 - [Array ES6](http://www.alenqi.site/2017/02/22/array-es6/)
 - [Promise ES6](http://www.alenqi.site/2017/01/17/promise-es6/)
 - [Git Command Summary](http://www.alenqi.site/2016/06/13/git-command/)
-- [gulp自动化构建html静态资源路径版本号添加和替换](gulp自动化构建html静态资源路径版本号添加和替换)
+- [gulp自动化构建html静态资源路径版本号添加和替换](http://www.alenqi.site/2016/03/11/gulp-versions/)
 - [IT 2048](http://www.alenqi.site/2016/02/04/IT2048/)
 
 ## About
