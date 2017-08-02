@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "preference"
+title: "Preference"
 date: 2017-07-10 16:56:35
 author: "AlenQi"
 catalog: true
@@ -90,7 +90,7 @@ tags:
   https://github.com/daneden/animate.css
 
 - `three.js`
-  The aim of the project is to create an easy to use, lightweight, 3D library. The library provides <canvas>, <svg>, CSS3D and WebGL renderers.
+  The aim of the project is to create an easy to use, lightweight, 3D library. The library provides canvas, svg, CSS3D and WebGL renderers.
   https://github.com/mrdoob/three.js/
 
 - `tween.js`
