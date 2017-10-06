@@ -6,6 +6,8 @@ author: "AlenQi"
 catalog: true
 header-img: "bg.jpg"
 tags:
+    - 前端开发
+    - JavaScript
 ---
 
 ## 我们遇到了什么？
