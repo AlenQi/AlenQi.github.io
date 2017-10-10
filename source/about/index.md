@@ -21,6 +21,7 @@ comments: true
 - [HTTP Headers](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
 - [HTTP cookies](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
 - [webpack hot-module-replacement](https://doc.webpack-china.org/api/hot-module-replacement)
+- [webpack babel-minify-webpack-plugin](https://doc.webpack-china.org/plugins/babel-minify-webpack-plugin/)
 
 很高兴你看到了这里
 
