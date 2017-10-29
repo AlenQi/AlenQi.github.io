@@ -2,6 +2,8 @@
 
 ## Catalogue
 
+- [函数截流和去抖之间的区别](http://www.alenqi.site/2017/10/06/throttling-debouncing/)
+- [那些被阻止的页面](http://www.alenqi.site/2017/10/05/the-blocked-page/)
 - [Preference](http://www.alenqi.site/2017/07/11/preference/)
 - [输入了url然后呢？](http://www.alenqi.site/2017/05/25/page-load/)
 - [CORS 跨域资源共享](http://www.alenqi.site/2017/03/29/cors/)
