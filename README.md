@@ -2,6 +2,8 @@
 
 ## Catalogue
 
+- [优雅的JS](http://www.alenqi.site/2017/10/30/graceful-js/)
+- [花式垂直居中](http://www.alenqi.site/2017/10/29/vertical-center/)
 - [函数截流和去抖之间的区别](http://www.alenqi.site/2017/10/06/throttling-debouncing/)
 - [那些被阻止的页面](http://www.alenqi.site/2017/10/05/the-blocked-page/)
 - [Preference](http://www.alenqi.site/2017/07/11/preference/)
