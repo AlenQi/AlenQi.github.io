@@ -19,13 +19,11 @@
 
 ## About
 
-- [about](http://www.alenqi.site/about/)
+- [About](http://www.alenqi.site/about/)
 
 ## Usage
 
 I didn't publish it as a single theme folder because a few of the pages are added and modified manually, so you should manually create some extra folders in `source` for the new pages and modify the `_config.yml` if you only have the single theme folder.
-
-So i just pushed the whole hexo project for your convenience, all pre settings and boilerplates are included, have a look and go ahead customizing your own blog!
 
 #### 1.Init
 
@@ -52,5 +50,5 @@ Replace with your own repo!
 ```
 hexo new post IMAPOST
 hexo serve // run hexo in local environment
-hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(gh-pages) of your repo!
+hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(master) of your repo!
 ```

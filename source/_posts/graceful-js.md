@@ -5,12 +5,12 @@ subtitle:   "graceful, js"
 date:       2017-10-29 18:14:06
 author:     "AlenQi"
 catalog:    true
-header-img: "bg.png"
+header-img: "bg.jpg"
 tags:
     - JavaScript
 ---
 
-> 一些华而实的JS优雅写法,随手补充
+> 有很多有趣的JS的写法,比如：`[[]] == 0`,这里只总结一些华而实的JS优雅写法,随手补充
 
 - `首先致敬stackoverflow` JavaScript 如何优雅的处理错误
 
