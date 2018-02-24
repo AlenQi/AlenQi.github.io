@@ -25,6 +25,10 @@
 
 I didn't publish it as a single theme folder because a few of the pages are added and modified manually, so you should manually create some extra folders in `source` for the new pages and modify the `_config.yml` if you only have the single theme folder.
 
+```
+npm run build
+```
+
 #### 1.Init
 
 ```
