@@ -22,6 +22,7 @@ comments: true
 - [HTTP cookies](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
 - [webpack hot-module-replacement](https://doc.webpack-china.org/api/hot-module-replacement)
 - [webpack babel-minify-webpack-plugin](https://doc.webpack-china.org/plugins/babel-minify-webpack-plugin/)
+- [Making SVG icon libraries for React apps](https://juejin.im/post/5a9e40fe518825558a061cfd)
 
 很高兴你看到了这里
 
