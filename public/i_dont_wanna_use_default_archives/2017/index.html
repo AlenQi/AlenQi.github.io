@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alenqi的个人博客，一些拙见和总结。">
+    <meta name="keyword"  content="alenqi,blog,前端,程序员,http,javascript">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          AlenQi的博客 | AlenQi&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://alenqi.site/i_dont_wanna_use_default_archives/2017/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/alenqi.min.css">
+
+    <!-- Extend CSS -->
+    <!-- <link rel="stylesheet" href="/css/extend.css"> -->
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AlenQi&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="alenqiblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                          github
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>AlenQi&#39;s Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">Keep Passion , Sustained Strive</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2017/10/30/graceful-js/">
+        <h2 class="post-title">
+            优雅的JS
+        </h2>
+        <h3 class="post-subtitle">
+            graceful, js
+        </h3>
+        <div class="post-content-preview">
+            
+有很多有趣的JS的写法,比如：[[]] == 0,这里只总结一些华而实的JS优雅写法,随手补充
+
+
+首先致敬stackoverflow JavaScript 如何优雅的处理错误
+12345try &#123;  // something&#125; catch (e) &#123;  window.location.href ="http://stackoverflow.com/searc......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-10-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/10/29/vertical-center/">
+        <h2 class="post-title">
+            花式垂直居中
+        </h2>
+        <h3 class="post-subtitle">
+            vertical-center, css
+        </h3>
+        <div class="post-content-preview">
+            方法一：原理：在元素属性为table使用里使用vertical-align属性
+12345678910111213141516171819202122232425262728293031&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;  &lt;meta charset="UTF-8"&gt;  &lt;meta name="vi......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-10-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/10/06/throttling-debouncing/">
+        <h2 class="post-title">
+            函数节流和去抖之间的区别
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+函数节流和去抖都是限制基于DOM事件执行的javascript数量的方法，都是为了提高JS性能，但是两者是有区别的。
+
+函数节流调节强制执行一段时间内可以调用函数的最大次数，如“每100毫秒最多执行一次”。在正常情况下，我们可以在10秒钟内调用此函数1000次。如果您每100毫秒将其限制为仅一次，则最多只能执行该功能100次。
+函数去抖强制一个函数在一段时间内只被调用一次。如“一个函数10......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-10-06
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/10/05/the-blocked-page/">
+        <h2 class="post-title">
+            那些被阻止的页面
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            我们遇到了什么？
+
+有时候需要我们跳到新的窗口，比如跳出到支付，比如跳出到详情页面。你说这简单，我们有window.open()有target=&quot;_blank&quot;，但是有时这些方法会是失效，被浏览器拦截掉，不能直接跳出到新的页面，需要用户手动放行。有种说法是：打开新窗口到操作必须是用户主动触发到，这样的描述有些模糊。下面到3种方法都是用户主动触发的
+123456789101......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-10-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/07/11/preference/">
+        <h2 class="post-title">
+            Preference
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PreferenceForeword
+personal preference
+
+Preprocessors
+postcssTransforming styles with JS pluginshttps://github.com/postcss/postcss#plugins
+
+less.jsLess. The dynamic stylesheet language.https://gith......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-07-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/05/25/page-load/">
+        <h2 class="post-title">
+            输入了url然后呢？
+        </h2>
+        <h3 class="post-subtitle">
+            url 加载 渲染 优化
+        </h3>
+        <div class="post-content-preview">
+            Catagory
+Foreword
+输入地址
+浏览器查找IP地址
+浏览器向Web服务器发送HTTP请求
+浏览器解析渲染页面
+优化
+
+Foreword
+What really happens when you navigate to a URL
+
+输入地址输入url
+当我们在浏览器输入url时，浏览器已经开始只能匹配了，它会从我们的历史记录里，书签等地方找到可能匹配的字符串，给出补全的url，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-05-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/03/29/cors/">
+        <h2 class="post-title">
+            CORS 跨域资源共享
+        </h2>
+        <h3 class="post-subtitle">
+            Cross-origin resource sharing
+        </h3>
+        <div class="post-content-preview">
+            Catagory
+Foreword
+CORS Principle
+三个访问控制场景
+简单请求
+预请求
+带凭据的请求
+
+
+HTTP请求头
+HTTP响应头
+IE对CORS的实现
+浏览器的支持
+
+Foreword
+由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在web开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS」允许跨院访问。
+
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-03-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/03/11/atom-edit/">
+        <h2 class="post-title">
+            Atom使用插件精选(FE)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Foreword
+Atom琳琅满目的插件中，很多插件良莠不齐，根据我的实践情况，为前端coder推荐一些实用的插件。
+
+
+sync-settings
+
+首先，这是一个配置备份插件，方便以后的迁移，配合gist实用快捷。
+
+atom-beautify
+
+使你的代码一键格式化，支持多种语言，相对较全。
+
+autoclose-html
+
+html代码自动化闭合，更加便捷的写div.
+
+autoco......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-03-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/02/22/array-es6/">
+        <h2 class="post-title">
+            Array ES6
+        </h2>
+        <h3 class="post-subtitle">
+            Array, ES6
+        </h3>
+        <div class="post-content-preview">
+            Catagory
+Foreword
+Array.from()
+Array.of()
+数组实例的copyWithin()
+数组实例的fill()
+数组实例的entries()，keys()，values()
+数组实例的 includes()
+数组的空位
+
+Foreword
+数组的扩展,及其模拟实现.
+
+
+Array.from()Array.from(arrayLike[, mapFn[, th......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-02-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/02/22/destructuring-es6/">
+        <h2 class="post-title">
+            Destructuring ES6
+        </h2>
+        <h3 class="post-subtitle">
+            Destructuring, ES6
+        </h3>
+        <div class="post-content-preview">
+            Catagory
+Foreword
+交换变量的值
+从函数返回多个值
+函数参数的定义
+提取JSON数据
+函数参数的默认值
+遍历Map结构
+输入模块的指定方法
+
+Foreword
+ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为结构（Destructuring）.
+
+交换变量的值1[x,y] = [y,x]
+上面代码交换变量x和y的值，这样的写法不仅简介，而且易读，语义非常......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2017-02-22
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+        <li class="next">
+            <a href="/i_dont_wanna_use_default_archives/2017/page/2/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                            <a href="/tags/#前端开发" title="前端开发" rel="11">前端开发</a>
+                            
+                        
+                            
+                            <a href="/tags/#JavaScript" title="JavaScript" rel="9">JavaScript</a>
+                            
+                        
+                            
+                            <a href="/tags/#ES6" title="ES6" rel="4">ES6</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#优化" title="优化" rel="2">优化</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/./img/avatar.jpg" />
+                        
+
+                        
+                            <p>Debug Developer</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            <!--  -->
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                                <li>
+                                    <a target="_blank" href="http://weibo.com/3255406154">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/AlenQi">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+
+                            <!--  -->
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://posrix.me/" target="_blank">posrix</a></li>
+                    
+                        <li><a href="" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                </ul>
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3255406154">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; AlenQi&#39;s Blog 2018
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="https://alenqi.github.io">AlenQi</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=alenqi&repo=AlenQi.github.io&type=star&count=true" >
+                    </iframe>
+                    <!-- Place this tag where you want the button to render. -->
+                    <!-- <a class="github-button" href="https://github.com/alenqi/AlenQi.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star alenqi/AlenQi.github.io on GitHub">Star</a> -->
+                    <br>
+                    <span>I love football , and you?</span>
+                    <br>
+                    <span id="busuanzi_container_site_pv">
+                      本站总访问量
+                      <span id="busuanzi_value_site_pv"></span>次
+                    </span>
+                    <br>
+                    <span>鲁ICP备 17018806号</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/alenqi.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so alenqiblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://alenqi.site/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by alenqi
+    var _gaId = 'UA-97910534-1';
+    var _gaDomain = 'alenqi.site';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by alenqi
+    var _baId = 'd2d1c8212f769b00df2e8fff4ff8c876';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

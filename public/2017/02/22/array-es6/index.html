@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alenqi的个人博客，一些拙见和总结。">
+    <meta name="keyword"  content="alenqi,blog,前端,程序员,http,javascript">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Array ES6 - AlenQi的博客 | AlenQi&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://alenqi.site/2017/02/22/array-es6/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/alenqi.min.css">
+
+    <!-- Extend CSS -->
+    <!-- <link rel="stylesheet" href="/css/extend.css"> -->
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AlenQi&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="alenqiblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                          github
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('array.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                        
+                    </div>
+                    <h1>Array ES6</h1>
+                    <h2 class="subheading">Array, ES6</h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2017-02-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ol>
+<li><a href="#Foreword">Foreword</a></li>
+<li><a href="#Array.from">Array.from()</a></li>
+<li><a href="#Array.of">Array.of()</a></li>
+<li><a href="#copyWithin">数组实例的copyWithin()</a></li>
+<li><a href="#fill">数组实例的fill()</a></li>
+<li><a href="#entries&amp;keys&amp;values">数组实例的entries()，keys()，values()</a></li>
+<li><a href="#includes">数组实例的 includes()</a></li>
+<li><a href="#数组的空位">数组的空位</a></li>
+</ol>
+<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
+<p>数组的扩展,及其模拟实现.</p>
+</blockquote>
+<p><a id="Array.from"></a></p>
+<h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h2><p><code>Array.from(arrayLike[, mapFn[, thisArg]])</code></p>
+<p>Parameters</p>
+<ul>
+<li><p>arrayLike<br>An array-like or iterable object to convert to an array.</p>
+</li>
+<li><p>mapFn Optional<br>Map function to call on every element of the array.  </p>
+</li>
+<li><p>thisArg Optional<br>Value to use as this when executing mapFn.  </p>
+</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>A new Array instance.</li>
+</ul>
+<p><code>Array.from</code>方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</p>
+<p>下面是一个类似数组的对象，<code>Array.from</code>将它转为真正的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arrayLike = &#123;</div><div class="line">    <span class="string">'0'</span>: <span class="string">'a'</span>,</div><div class="line">    <span class="string">'1'</span>: <span class="string">'b'</span>,</div><div class="line">    <span class="string">'2'</span>: <span class="string">'c'</span>,</div><div class="line">    <span class="attr">length</span>: <span class="number">3</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// ES5的写法</span></div><div class="line"><span class="keyword">var</span> arr1 = [].slice.call(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></div><div class="line"></div><div class="line"><span class="comment">// ES6的写法</span></div><div class="line"><span class="keyword">let</span> arr2 = <span class="built_in">Array</span>.from(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></div></pre></td></tr></table></figure>
+<p>对于还没有部署该方法的浏览器，可以用<code>Array.prototype.slice</code>方法替代。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> toArray = <span class="function">(<span class="params">(</span>) =&gt;</span></div><div class="line">  <span class="built_in">Array</span>.from ? <span class="built_in">Array</span>.from : <span class="function"><span class="params">obj</span> =&gt;</span> [].slice.call(obj)</div><div class="line">)();</div></pre></td></tr></table></figure>
+<p>只要是部署了Iterator接口的数据结构，<code>Array.from</code>都能将其转为数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from(<span class="string">'hello'</span>)</div><div class="line"><span class="comment">// ['h', 'e', 'l', 'l', 'o']</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> namesSet = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'a'</span>, <span class="string">'b'</span>])</div><div class="line"><span class="built_in">Array</span>.from(namesSet) <span class="comment">// ['a', 'b']</span></div></pre></td></tr></table></figure>
+<p>上面代码中，字符串和Set结构都具有Iterator接口，因此可以被<code>Array.from</code>转为真正的数组。</p>
+<p>如果参数是一个真正的数组，<code>Array.from</code>会返回一个一模一样的新数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"><span class="comment">// [1, 2, 3]</span></div></pre></td></tr></table></figure>
+<p>扩展运算符背后调用的是遍历器接口（<code>Symbol.iterator</code>），如果一个对象没有部署这个接口，就无法转换。<code>Array.from</code>方法还支持类似数组的对象。所谓类似数组的对象，本质特征只有一点，即必须有<code>length</code>属性。因此，任何有<code>length</code>属性的对象，都可以通过<code>Array.from</code>方法转为数组，而此时扩展运算符就无法转换。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;);</div><div class="line"><span class="comment">// [ undefined, undefined, undefined ]</span></div></pre></td></tr></table></figure>
+<p>上面代码中，<code>Array.from</code>返回了一个具有三个成员的数组，每个位置的值都是<code>undefined</code>。扩展运算符转换不了这个对象。</p>
+<p><code>Array.from</code>还可以接受第二个参数，作用类似于数组的<code>map</code>方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from(arrayLike, x =&gt; x * x);</div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="built_in">Array</span>.from(arrayLike).map(<span class="function"><span class="params">x</span> =&gt;</span> x * x);</div><div class="line"></div><div class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], (x) =&gt; x * x)</div><div class="line"><span class="comment">// [1, 4, 9]</span></div></pre></td></tr></table></figure>
+<p>下面的例子将数组中布尔值为<code>false</code>的成员转为<code>0</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, , <span class="number">2</span>, , <span class="number">3</span>], (n) =&gt; n || <span class="number">0</span>)</div><div class="line"><span class="comment">// [1, 0, 2, 0, 3]</span></div></pre></td></tr></table></figure>
+<p>另一个例子是返回各种数据的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typesOf</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, value =&gt; <span class="keyword">typeof</span> value)</div><div class="line">&#125;</div><div class="line">typesOf(<span class="literal">null</span>, [], <span class="literal">NaN</span>)</div><div class="line"><span class="comment">// ['object', 'object', 'number']</span></div></pre></td></tr></table></figure>
+<p>如果<code>map</code>函数里面用到了<code>this</code>关键字，还可以传入<code>Array.from</code>的第三个参数，用来绑定<code>this</code>。</p>
+<p><code>Array.from()</code>可以将各种值转为真正的数组，并且还提供<code>map</code>功能。这实际上意味着，只要有一个原始的数据结构，你就可以先对它的值进行处理，然后转成规范的数组结构，进而就可以使用数量众多的数组方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">2</span> &#125;, () =&gt; <span class="string">'jack'</span>)</div><div class="line"><span class="comment">// ['jack', 'jack']</span></div></pre></td></tr></table></figure>
+<p>上面代码中，<code>Array.from</code>的第一个参数指定了第二个参数运行的次数。这种特性可以让该方法的用法变得非常灵活。</p>
+<p><code>Array.from()</code>的另一个应用是，将字符串转为数组，然后返回字符串的长度。因为它能正确处理各种Unicode字符，可以避免JavaScript将大于<code>\uFFFF</code>的Unicode字符，算作两个字符的bug。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">countSymbols</span>(<span class="params">string</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(string).length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a id="Array.of"></a></p>
+<h2 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h2><p><code>Array.of(element0[, element1[, ...[, elementN]]])</code></p>
+<p>Parameters</p>
+<ul>
+<li>elementN<br>Elements of which to create the array.</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>A new Array instance.</li>
+</ul>
+<p><code>Array.of</code>方法用于将一组值，转换为数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//`Array`方法没有参数、一个参数、三个参数时，返回结果都不一样。只有当参数个数不少于2个时，`Array()`才会返回由参数组成的新数组。参数个数只有一个时，实际上是指定数组的长度。</span></div><div class="line"><span class="built_in">Array</span>() <span class="comment">// []</span></div><div class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></div><div class="line"><span class="built_in">Array</span>(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>) <span class="comment">// [3, 11, 8]</span></div><div class="line"></div><div class="line"><span class="comment">//`Array.of`基本上可以用来替代`Array()`或`new Array()`，并且不存在由于参数不同而导致的重载。它的行为非常统一。</span></div><div class="line"><span class="built_in">Array</span>.of() <span class="comment">// []</span></div><div class="line"><span class="built_in">Array</span>.of(<span class="literal">undefined</span>) <span class="comment">// [undefined]</span></div><div class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>) <span class="comment">// [1]</span></div><div class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// [1, 2]</span></div></pre></td></tr></table></figure>
+<p><code>Array.of</code>总是返回参数值组成的数组。如果没有参数，就返回一个空数组。</p>
+<p><code>Array.of</code>方法可以用下面的代码模拟实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayOf</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> [].slice.call(<span class="built_in">arguments</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a id="copyWithin"></a></p>
+<h2 id="数组实例的copyWithin"><a href="#数组实例的copyWithin" class="headerlink" title="数组实例的copyWithin()"></a>数组实例的copyWithin()</h2><p><code>arr.copyWithin(target)</code><br><code>arr.copyWithin(target, start)</code><br><code>arr.copyWithin(target, start, end)</code></p>
+<p>Parameters</p>
+<ul>
+<li>target<br>Zero based index at which to copy the sequence to. If negative, target will be counted from the end.<br>If target is at or greater than arr.length, nothing will be copied. If target is positioned after start, the copied sequence will be trimmed to fit arr.length.</li>
+<li>start Optional<br>Zero based index at which to start copying elements from. If negative, start will be counted from the end.<br>If start is omitted, copyWithin will copy from the start (defaults to 0).</li>
+<li>end Optional<br>Zero based index at which to end copying elements from. copyWithin copies up to but not including end. If negative, end will be counted from the end.<br>If end is omitted, copyWithin will copy until the end (default to arr.length).</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>The modified array.</li>
+</ul>
+<p>数组实例的<code>copyWithin</code>方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.copyWithin(target, start = <span class="number">0</span>, end = <span class="keyword">this</span>.length)</div><div class="line"></div><div class="line"><span class="comment">// 将3号位复制到0号位</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].copyWithin(<span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line"><span class="comment">// [4, 2, 3, 4, 5]</span></div><div class="line"></div><div class="line"><span class="comment">// -2相当于3号位，-1相当于4号位</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].copyWithin(<span class="number">0</span>, <span class="number">-2</span>, <span class="number">-1</span>)</div><div class="line"><span class="comment">// [4, 2, 3, 4, 5]</span></div><div class="line"></div><div class="line"><span class="comment">// 将3号位复制到0号位</span></div><div class="line">[].copyWithin.call(&#123;<span class="attr">length</span>: <span class="number">5</span>, <span class="number">3</span>: <span class="number">1</span>&#125;, <span class="number">0</span>, <span class="number">3</span>)</div><div class="line"><span class="comment">// &#123;0: 1, 3: 1, length: 5&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 将2号位到数组结束，复制到0号位</span></div><div class="line"><span class="keyword">var</span> i32a = <span class="keyword">new</span> <span class="built_in">Int32Array</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);</div><div class="line">i32a.copyWithin(<span class="number">0</span>, <span class="number">2</span>);</div><div class="line"><span class="comment">// Int32Array [3, 4, 5, 4, 5]</span></div><div class="line"></div><div class="line"><span class="comment">// 对于没有部署TypedArray的copyWithin方法的平台</span></div><div class="line"><span class="comment">// 需要采用下面的写法</span></div><div class="line">[].copyWithin.call(<span class="keyword">new</span> <span class="built_in">Int32Array</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]), <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>);</div><div class="line"><span class="comment">// Int32Array [4, 2, 3, 4, 5]</span></div></pre></td></tr></table></figure>
+<p><a id="find&findIndex"></a></p>
+<h2 id="数组实例的find-amp-amp-findIndex"><a href="#数组实例的find-amp-amp-findIndex" class="headerlink" title="数组实例的find()&amp;&amp;findIndex()"></a>数组实例的find()&amp;&amp;findIndex()</h2><p><code>arr.find(callback[, thisArg])</code></p>
+<p>Parameters</p>
+<ul>
+<li><p>callback</p>
+<p>Function to execute on each value in the array, taking three arguments:</p>
+<p>element<br>The current element being processed in the array.</p>
+<p>index<br>The index of the current element being processed in the array.</p>
+<p>array<br>The array find was called upon.</p>
+<p>thisArg Optional<br>Object to use as this when executing callback.</p>
+</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>A value in the array if an element passes the test; otherwise, undefined.</li>
+</ul>
+<p>数组实例的<code>find</code>方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为<code>true</code>的成员，然后返回该成员。如果没有符合条件的成员，则返回<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">-5</span>, <span class="number">10</span>].find(<span class="function">(<span class="params">n</span>) =&gt;</span> n &lt; <span class="number">0</span>)</div><div class="line"><span class="comment">// -5</span></div></pre></td></tr></table></figure>
+<p>上面代码找出数组中第一个小于0的成员。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>].find(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value &gt; <span class="number">9</span>;</div><div class="line">&#125;) <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<p>上面代码中，<code>find</code>方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。</p>
+<p><code>arr.findIndex(callback[, thisArg])</code></p>
+<p>Parameters</p>
+<ul>
+<li><p>callback<br>Function to execute on each value in the array, taking three arguments:</p>
+<p>element<br>The current element being processed in the array.</p>
+<p>index<br>The index of the current element being processed in the array.</p>
+<p>array<br>The array findIndex was called upon.</p>
+<p>thisArg<br>Optional. Object to use as this when executing callback.</p>
+</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>An index in the array if an element passes the test; otherwise, -1.</li>
+</ul>
+<p>数组实例的<code>findIndex</code>方法的用法与<code>find</code>方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回<code>-1</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>].findIndex(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value &gt; <span class="number">9</span>;</div><div class="line">&#125;) <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>这两个方法都可以接受第二个参数，用来绑定回调函数的<code>this</code>对象。</p>
+<p>另外，这两个方法都可以发现<code>NaN</code>，弥补了数组的<code>IndexOf</code>方法的不足。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[<span class="literal">NaN</span>].indexOf(<span class="literal">NaN</span>)</div><div class="line"><span class="comment">// -1</span></div><div class="line"></div><div class="line">[<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y))</div><div class="line"><span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<p>上面代码中，<code>indexOf</code>方法无法识别数组的<code>NaN</code>成员，但是<code>findIndex</code>方法可以借助<code>Object.is</code>方法做到。</p>
+<p><a id="fill"></a></p>
+<h2 id="数组实例的fill"><a href="#数组实例的fill" class="headerlink" title="数组实例的fill()"></a>数组实例的fill()</h2><p><code>arr.fill(value)</code><br><code>arr.fill(value, start)</code><br><code>arr.fill(value, start, end)</code></p>
+<p>Parameters</p>
+<ul>
+<li><p>value<br>Value to fill an array.</p>
+<p>start Optional<br>Start index, defaults to 0.</p>
+<p>end Optional<br>End index, defaults to this.length.</p>
+</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>The modified array.</li>
+</ul>
+<p><code>fill</code>方法使用给定值，填充一个数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>].fill(<span class="number">7</span>)</div><div class="line"><span class="comment">// [7, 7, 7]</span></div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="number">7</span>)</div><div class="line"><span class="comment">// [7, 7, 7]</span></div></pre></td></tr></table></figure>
+<p>上面代码表明，<code>fill</code>方法用于空数组的初始化非常方便。数组中已有的元素，会被全部抹去。</p>
+<p><code>fill</code>方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>].fill(<span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>)</div><div class="line"><span class="comment">// ['a', 7, 'c']</span></div></pre></td></tr></table></figure>
+<p>上面代码表示，<code>fill</code>方法从1号位开始，向原数组填充7，到2号位之前结束。</p>
+<p><a id="entries&keys&values"></a></p>
+<h2 id="数组实例的entries-，keys-，values"><a href="#数组实例的entries-，keys-，values" class="headerlink" title="数组实例的entries()，keys()，values()"></a>数组实例的entries()，keys()，values()</h2><p><code>a.entries()</code><br><code>arr.keys()</code><br><code>a.entries()</code></p>
+<p>Return value</p>
+<ul>
+<li>A new Array iterator object.</li>
+</ul>
+<p>ES6提供三个新的方法——<code>entries()</code>，<code>keys()</code>和<code>values()</code>——用于遍历数组。它们都返回一个遍历器对象，可以用<code>for...of</code>循环进行遍历，唯一的区别是<code>keys()</code>是对键名的遍历、<code>values()</code>是对键值的遍历，<code>entries()</code>是对键值对的遍历。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].keys()) &#123;</div><div class="line">  <span class="built_in">console</span>.log(index);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 0</span></div><div class="line"><span class="comment">// 1</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elem <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].values()) &#123;</div><div class="line">  <span class="built_in">console</span>.log(elem);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 'a'</span></div><div class="line"><span class="comment">// 'b'</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [index, elem] <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].entries()) &#123;</div><div class="line">  <span class="built_in">console</span>.log(index, elem);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 0 "a"</span></div><div class="line"><span class="comment">// 1 "b"</span></div></pre></td></tr></table></figure>
+<p><a id="includes"></a></p>
+<h2 id="数组实例的-includes"><a href="#数组实例的-includes" class="headerlink" title="数组实例的 includes()"></a>数组实例的 includes()</h2><p><code>arr.includes(searchElement)</code><br><code>arr.includes(searchElement, fromIndex)</code></p>
+<p>Parameters</p>
+<ul>
+<li><p>searchElement<br>The element to search for.</p>
+<p>fromIndex Optional<br>The position in this array at which to begin searching for searchElement. A negative value searches from the index of array.length + fromIndex by asc. Defaults to 0.</p>
+</li>
+</ul>
+<p>Return value</p>
+<ul>
+<li>A Boolean.</li>
+</ul>
+<p><code>Array.prototype.includes</code>方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的<code>includes</code>方法类似。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">2</span>)     <span class="comment">// true</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">4</span>)     <span class="comment">// false</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="literal">NaN</span>].includes(<span class="literal">NaN</span>) <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>该方法的第二个参数表示搜索的起始位置，默认为<code>0</code>。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度（比如第二个参数为<code>-4</code>，但数组长度为<code>3</code>），则会重置为从<code>0</code>开始。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">3</span>, <span class="number">3</span>);  <span class="comment">// false</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">3</span>, <span class="number">-1</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>没有该方法之前，我们通常使用数组的<code>indexOf</code>方法，检查是否包含某个值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (arr.indexOf(el) !== <span class="number">-1</span>) &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>indexOf</code>方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于<code>-1</code>，表达起来不够直观。二是，它内部使用严格相等运算符（<code>===</code>）进行判断，这会导致对<code>NaN</code>的误判。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="literal">NaN</span>].indexOf(<span class="literal">NaN</span>)</div><div class="line"><span class="comment">// -1</span></div></pre></td></tr></table></figure>
+<p><code>includes</code>使用的是不一样的判断算法，就没有这个问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="literal">NaN</span>].includes(<span class="literal">NaN</span>)</div><div class="line"><span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>下面代码用来检查当前环境是否支持该方法，如果不支持，部署一个简易的替代版本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> contains = <span class="function">(<span class="params">(</span>) =&gt;</span></div><div class="line">  <span class="built_in">Array</span>.prototype.includes</div><div class="line">    ? <span class="function">(<span class="params">arr, value</span>) =&gt;</span> arr.includes(value)</div><div class="line">    : <span class="function">(<span class="params">arr, value</span>) =&gt;</span> arr.some(<span class="function"><span class="params">el</span> =&gt;</span> el === value)</div><div class="line">)();</div><div class="line">contains([<span class="string">'foo'</span>, <span class="string">'bar'</span>], <span class="string">'baz'</span>); <span class="comment">// =&gt; false</span></div></pre></td></tr></table></figure>
+<h2 id="数组的空位"><a href="#数组的空位" class="headerlink" title="数组的空位"></a>数组的空位</h2><p>数组的空位指，数组的某一个位置没有任何值。比如，<code>Array</code>构造函数返回的数组都是空位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></div></pre></td></tr></table></figure>
+<p>上面代码中，<code>Array(3)</code>返回一个具有3个空位的数组。</p>
+<p>注意，空位不是<code>undefined</code>，一个位置的值等于<code>undefined</code>，依然是有值的。空位是没有任何值，<code>in</code>运算符可以说明这一点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span> <span class="keyword">in</span> [<span class="literal">undefined</span>, <span class="literal">undefined</span>, <span class="literal">undefined</span>] <span class="comment">// true</span></div><div class="line"><span class="number">0</span> <span class="keyword">in</span> [, , ,] <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>上面代码说明，第一个数组的0号位置是有值的，第二个数组的0号位置没有值。</p>
+<p>ES5 对空位的处理，已经很不一致了，大多数情况下会忽略空位。</p>
+<ul>
+<li><code>forEach()</code>, <code>filter()</code>, <code>every()</code> 和<code>some()</code>都会跳过空位。</li>
+<li><code>map()</code>会跳过空位，但会保留这个值</li>
+<li><code>join()</code>和<code>toString()</code>会将空位视为<code>undefined</code>，而<code>undefined</code>和<code>null</code>会被处理成空字符串。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// forEach方法</span></div><div class="line">[,<span class="string">'a'</span>].forEach(<span class="function">(<span class="params">x,i</span>) =&gt;</span> <span class="built_in">console</span>.log(i)); <span class="comment">// 1</span></div><div class="line"></div><div class="line"><span class="comment">// filter方法</span></div><div class="line">[<span class="string">'a'</span>,,<span class="string">'b'</span>].filter(<span class="function"><span class="params">x</span> =&gt;</span> <span class="literal">true</span>) <span class="comment">// ['a','b']</span></div><div class="line"></div><div class="line"><span class="comment">// every方法</span></div><div class="line">[,<span class="string">'a'</span>].every(<span class="function"><span class="params">x</span> =&gt;</span> x===<span class="string">'a'</span>) <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// some方法</span></div><div class="line">[,<span class="string">'a'</span>].some(<span class="function"><span class="params">x</span> =&gt;</span> x !== <span class="string">'a'</span>) <span class="comment">// false</span></div><div class="line"></div><div class="line"><span class="comment">// map方法</span></div><div class="line">[,<span class="string">'a'</span>].map(<span class="function"><span class="params">x</span> =&gt;</span> <span class="number">1</span>) <span class="comment">// [,1]</span></div><div class="line"></div><div class="line"><span class="comment">// join方法</span></div><div class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].join(<span class="string">'#'</span>) <span class="comment">// "#a##"</span></div><div class="line"></div><div class="line"><span class="comment">// toString方法</span></div><div class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].toString() <span class="comment">// ",a,,"</span></div></pre></td></tr></table></figure>
+<p>ES6 则是明确将空位转为<code>undefined</code>。</p>
+<p><code>Array.from</code>方法会将数组的空位，转为<code>undefined</code>，也就是说，这个方法不会忽略空位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from([<span class="string">'a'</span>,,<span class="string">'b'</span>])</div><div class="line"><span class="comment">// [ "a", undefined, "b" ]</span></div></pre></td></tr></table></figure>
+<p>扩展运算符（<code>...</code>）也会将空位转为<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[...[<span class="string">'a'</span>,,<span class="string">'b'</span>]]</div><div class="line"><span class="comment">// [ "a", undefined, "b" ]</span></div></pre></td></tr></table></figure>
+<p><code>copyWithin()</code>会连空位一起拷贝。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[,<span class="string">'a'</span>,<span class="string">'b'</span>,,].copyWithin(<span class="number">2</span>,<span class="number">0</span>) <span class="comment">// [,"a",,"a"]</span></div></pre></td></tr></table></figure>
+<p><code>fill()</code>会将空位视为正常的数组位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="string">'a'</span>) <span class="comment">// ["a","a","a"]</span></div></pre></td></tr></table></figure>
+<p><code>for...of</code>循环也会遍历空位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [, ,];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>上面代码中，数组<code>arr</code>有两个空位，<code>for...of</code>并没有忽略它们。如果改成<code>map</code>方法遍历，空位是会跳过的。</p>
+<p><code>entries()</code>、<code>keys()</code>、<code>values()</code>、<code>find()</code>和<code>findIndex()</code>会将空位处理成<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entries()</span></div><div class="line">[...[,<span class="string">'a'</span>].entries()] <span class="comment">// [[0,undefined], [1,"a"]]</span></div><div class="line"></div><div class="line"><span class="comment">// keys()</span></div><div class="line">[...[,<span class="string">'a'</span>].keys()] <span class="comment">// [0,1]</span></div><div class="line"></div><div class="line"><span class="comment">// values()</span></div><div class="line">[...[,<span class="string">'a'</span>].values()] <span class="comment">// [undefined,"a"]</span></div><div class="line"></div><div class="line"><span class="comment">// find()</span></div><div class="line">[,<span class="string">'a'</span>].find(<span class="function"><span class="params">x</span> =&gt;</span> <span class="literal">true</span>) <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="comment">// findIndex()</span></div><div class="line">[,<span class="string">'a'</span>].findIndex(<span class="function"><span class="params">x</span> =&gt;</span> <span class="literal">true</span>) <span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<p>由于空位的处理规则非常不统一，所以建议避免出现空位。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/11/atom-edit/" data-toggle="tooltip" data-placement="top" title="Atom使用插件精选(FE)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/02/22/destructuring-es6/" data-toggle="tooltip" data-placement="top" title="Destructuring ES6">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://posrix.me/" target="_blank">posrix</a></li>
+                    
+                        <li><a href="" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2017/02/22/array-es6/";
+    var disqus_url = "http://alenqi.site/2017/02/22/array-es6/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3255406154">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; AlenQi&#39;s Blog 2018
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="https://alenqi.github.io">AlenQi</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=alenqi&repo=AlenQi.github.io&type=star&count=true" >
+                    </iframe>
+                    <!-- Place this tag where you want the button to render. -->
+                    <!-- <a class="github-button" href="https://github.com/alenqi/AlenQi.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star alenqi/AlenQi.github.io on GitHub">Star</a> -->
+                    <br>
+                    <span>I love football , and you?</span>
+                    <br>
+                    <span id="busuanzi_container_site_pv">
+                      本站总访问量
+                      <span id="busuanzi_value_site_pv"></span>次
+                    </span>
+                    <br>
+                    <span>鲁ICP备 17018806号</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/alenqi.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so alenqiblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://alenqi.site/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by alenqi
+    var _gaId = 'UA-97910534-1';
+    var _gaDomain = 'alenqi.site';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by alenqi
+    var _baId = 'd2d1c8212f769b00df2e8fff4ff8c876';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

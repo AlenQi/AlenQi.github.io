@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alenqi的个人博客，一些拙见和总结。">
+    <meta name="keyword"  content="alenqi,blog,前端,程序员,http,javascript">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          CORS 跨域资源共享 - AlenQi的博客 | AlenQi&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://alenqi.site/2017/03/29/cors/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/alenqi.min.css">
+
+    <!-- Extend CSS -->
+    <!-- <link rel="stylesheet" href="/css/extend.css"> -->
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AlenQi&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="alenqiblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                          github
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('cors-blog-main.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
+                        
+                          <a class="tag" href="/tags/#跨域" title="跨域">跨域</a>
+                        
+                          <a class="tag" href="/tags/#cors" title="cors">cors</a>
+                        
+                    </div>
+                    <h1>CORS 跨域资源共享</h1>
+                    <h2 class="subheading">Cross-origin resource sharing</h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2017-03-29
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ol>
+<li><a href="#Foreword">Foreword</a></li>
+<li><a href="#cors-principle">CORS Principle</a></li>
+<li><a href="#三个访问控制场景">三个访问控制场景</a><ol>
+<li><a href="#简单请求">简单请求</a></li>
+<li><a href="#预请求">预请求</a></li>
+<li><a href="#带凭据的请求">带凭据的请求</a></li>
+</ol>
+</li>
+<li><a href="#HTTP请求头">HTTP请求头</a></li>
+<li><a href="#HTTP响应头">HTTP响应头</a></li>
+<li><a href="#IE对CORS的实现">IE对CORS的实现</a></li>
+<li><a href="#浏览器的支持">浏览器的支持</a></li>
+</ol>
+<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
+<p>由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在web开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS」允许跨院访问。</p>
+</blockquote>
+<p>先简单说下跨域，当一个资源请求一个其它域名或者另外一个端口的资源时会产生一个跨域HTTP请求(cross-origin HTTP request)。为了访问资源的可靠信，会有同源策略的限制，浏览器会拦截跨域请求的返回结果，有些浏览器会更加严格，不允许从HTTPS的域跨域访问HTTP，如Chrome和Firefox，这些浏览器在请求还未发出的时候就会拦截请求。</p>
+<h2 id="CORS-Principle"><a href="#CORS-Principle" class="headerlink" title="CORS Principle"></a>CORS Principle</h2><p><img src="cors-principle.png" alt="cors-principle"><br><small class="img-hint">资源请求的响应</small></p>
+<p>CORS（Cross-origin resource sharing,跨域资源共享）是W3C的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通。CORS背后的基本思想，就是使用自定义的HTTP请求头部，让浏览器和服务器进行沟通，从而决定请求或响应是应该成功，还是失败。</p>
+<blockquote>
+<p>这个规范是对针对API容器的，比如 XMLHttpRequest 或者 Fetch</p>
+</blockquote>
+<p>比如一个简单的GET或者POST请求，它没有自定义的头部，而主题内容是text/plain。在发送请求时，需要给它附加一个额外的Oringin头部，其中包含请求页面的源信息（协议，域名和端口），以便服务器根据这个头部消息来决定是否给予响应。下面是Oringin头部的一个示例：</p>
+<blockquote>
+<p>Origin: <a href="http://www.alenqi.com" target="_blank" rel="external">http://www.alenqi.com</a></p>
+</blockquote>
+<p>如果服务器认为这个请求可以接受，就在Access-Control-Allow-Origin头部中返回相同的源信息。示例：</p>
+<blockquote>
+<p>Access-Control-Allow-Origin: Origin: <a href="http://www.alenqi.com" target="_blank" rel="external">http://www.alenqi.com</a></p>
+</blockquote>
+<p>如果没有这个头部，或者有这个头部但是源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。注意，这里的请求和响应都不包含cookie信息。</p>
+<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>浏览器会自动判断如果跨域，自动会添加一些附加的头部信息，还有可能发送预请求。所以，如果服务端实现了响应CORS的接口，就可以跨域访问。</p>
+<h2 id="三个访问控制场景"><a href="#三个访问控制场景" class="headerlink" title="三个访问控制场景"></a>三个访问控制场景</h2><ul>
+<li><h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><ul>
+<li>一些请求不会触发 CORS preflight，而这部分在本文中被称为“简单请求”。满足下述条件的就是“简单请求”：<ul>
+<li>只允许下列方法：<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD</li>
+</ul>
+</li>
+<li>除了用户代理自动设置的头部外，唯一允许人工设置的头部是 Fetch 规范定义的“ CORS-safelisted request-header”，如下：<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type (but note the additional requirements below)</li>
+</ul>
+</li>
+<li>允许的 Content-Type 值有：<ul>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+</li>
+<li>一个简单的CORS头处理的跨域请求<br><img src="simple-req.png" alt="simple-req"><br><small class="img-hint">返回头的“*”代表该资源跨域在跨域行为里可以被任意站点访问，可以设定为指定的域名</small></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h3 id="预请求"><a href="#预请求" class="headerlink" title="预请求"></a>预请求</h3><ul>
+<li>CORS通过一种叫做preflighted Requests的透明服务器验证机制支持开发人员使用自定义的头部，“预请求”要求必须先发送一个 <strong>OPTIONS</strong> 方法请求给目的站点，来查明这个跨站请求对于目的站点是不是安全的可接受的。这样做，是因为跨站请求可能会对目的站点的数据产生影响。 当请求具备以下条件，就会被当成预请求处理：<ul>
+<li>除了下列方法以外方法的请求：<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD</li>
+</ul>
+</li>
+<li>除了用户代理自动设置的头部外，不包括一下的头部信息，如下：<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID        - Content-Type (but note the additional requirements below)</li>
+</ul>
+</li>
+<li>Content-Type 值有除了一下之外的：<ul>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>简而言之，就是非简单请求的请求就会发送预请求。</li>
+<li>发送这个请求之后，服务器可以决定是否允许这种类型的请求。服务器通过在响应中发送头部和浏览器进行沟通。Preflight请求结束后，结果将按照响应头中指定的时间缓存起来。而为此付出的代价只是第一次发送非简单请求时多一次HTTP请求。<br><img src="prelight.png" alt="prelight"><br><small class="img-hint">一个“预请求”形式的跨域请求</small></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h3 id="带凭据的请求"><a href="#带凭据的请求" class="headerlink" title="带凭据的请求"></a>带凭据的请求</h3><ul>
+<li>默认情况下，跨域请求不提供（cookie，HTTP认证及客户端SSL证明等）。通过将withCredentials属性设置为true，可以指定某个请求应该发送凭据。</li>
+<li>如果发送的是带凭据的请求，但是服务器的响应中没有包含这个头部，那么浏览器就不会把响应交给JavaScript（于是，responseText中将是空字符串，status的值为0，而且会调用onerror（）事件处理程序。另外，服务器还可以在Preflight响应中发送这个HTTP头部，表示允许源发送带凭据的请求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP请求头"><a href="#HTTP请求头" class="headerlink" title="HTTP请求头"></a>HTTP请求头</h2><ul>
+<li><p>发送请求的域</p>
+<blockquote>
+<p>Origin: <origin></origin></p>
+</blockquote>
+</li>
+<li><p>请求自身使用的方法</p>
+<blockquote>
+<p>Access-Control-Request-Method: <method></method></p>
+</blockquote>
+</li>
+<li><p>(可选)自定义的头部信息，多个头部逗号分隔</p>
+<blockquote>
+<p>Access-Control-Request-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><ul>
+<li><p>与简单请求的相同</p>
+<blockquote>
+<p>Access-Control-Allow-Origin: <origin> | *</origin></p>
+</blockquote>
+</li>
+<li><p>设置浏览器允许访问的服务器的头信息的白名单</p>
+<blockquote>
+<p>Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</p>
+</blockquote>
+</li>
+<li><p>应该将这个预请求缓存多长时间（以秒表示）</p>
+<blockquote>
+<p>Access-Control-Max-Age: <delta-seconds></delta-seconds></p>
+</blockquote>
+</li>
+<li><p>是否为带凭证的请求</p>
+<blockquote>
+<p>Access-Control-Allow-Credentials: true | false</p>
+</blockquote>
+</li>
+<li><p>允许的方法，多个方法以逗号分隔</p>
+<blockquote>
+<p>Access-Control-Allow-Methods: <method>[, <method>]*</method></method></p>
+</blockquote>
+</li>
+<li><p>允许的头部，多个头部以逗号分隔</p>
+<blockquote>
+<p>Access-Control-Allow-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="IE对CORS的实现"><a href="#IE对CORS的实现" class="headerlink" title="IE对CORS的实现"></a>IE对CORS的实现</h2><ul>
+<li>微软在IE8中引入了XDR（XDomainRequest）类型。这个对象与XHR类似，但能实现安全可靠的跨域通信。XDR对象的安全机制部分实现了W3C的CORS规范。下面是XDR与XHR的一些不同之处：<ul>
+<li>cookie不会随请求发送，也不会随响应返回</li>
+<li>只能设置请求头不信息中的Content-Type字段</li>
+<li>不能访问响应头部信息</li>
+<li>只支持GET和POST请求</li>
+</ul>
+</li>
+<li>好消息是对于CORS在IE 10中有完整的实现</li>
+</ul>
+<h2 id="浏览器的支持"><a href="#浏览器的支持" class="headerlink" title="浏览器的支持"></a>浏览器的支持</h2><ul>
+<li>抛开浏览器谈HTTP相关规范或技术都是耍流氓。</li>
+<li>Desktop<br><img src="desktop.png" alt="Desktop"></li>
+<li>mobile<br><img src="mobile.png" alt="mobile"></li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/05/25/page-load/" data-toggle="tooltip" data-placement="top" title="输入了url然后呢？">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/11/atom-edit/" data-toggle="tooltip" data-placement="top" title="Atom使用插件精选(FE)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
+                        
+                          <a class="tag" href="/tags/#跨域" title="跨域">跨域</a>
+                        
+                          <a class="tag" href="/tags/#cors" title="cors">cors</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://posrix.me/" target="_blank">posrix</a></li>
+                    
+                        <li><a href="" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2017/03/29/cors/";
+    var disqus_url = "http://alenqi.site/2017/03/29/cors/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3255406154">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; AlenQi&#39;s Blog 2018
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="https://alenqi.github.io">AlenQi</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=alenqi&repo=AlenQi.github.io&type=star&count=true" >
+                    </iframe>
+                    <!-- Place this tag where you want the button to render. -->
+                    <!-- <a class="github-button" href="https://github.com/alenqi/AlenQi.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star alenqi/AlenQi.github.io on GitHub">Star</a> -->
+                    <br>
+                    <span>I love football , and you?</span>
+                    <br>
+                    <span id="busuanzi_container_site_pv">
+                      本站总访问量
+                      <span id="busuanzi_value_site_pv"></span>次
+                    </span>
+                    <br>
+                    <span>鲁ICP备 17018806号</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/alenqi.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so alenqiblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://alenqi.site/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by alenqi
+    var _gaId = 'UA-97910534-1';
+    var _gaDomain = 'alenqi.site';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by alenqi
+    var _baId = 'd2d1c8212f769b00df2e8fff4ff8c876';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
