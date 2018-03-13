@@ -2,6 +2,7 @@
 
 ## Catalogue
 
+- [利用标签完善你的网站](http://www.alenqi.site/2018/03/04/complete-tags/)
 - [优雅的JS](http://www.alenqi.site/2017/10/30/graceful-js/)
 - [花式垂直居中](http://www.alenqi.site/2017/10/29/vertical-center/)
 - [函数截流和去抖之间的区别](http://www.alenqi.site/2017/10/06/throttling-debouncing/)
@@ -10,7 +11,6 @@
 - [输入了url然后呢？](http://www.alenqi.site/2017/05/25/page-load/)
 - [CORS 跨域资源共享](http://www.alenqi.site/2017/03/29/cors/)
 - [Atom使用插件精选(FE)](http://www.alenqi.site/2017/03/11/atom-edit/)
-- [Destructuring ES6](http://www.alenqi.site/2017/02/22/destructuring-es6/)
 - [Array ES6](http://www.alenqi.site/2017/02/22/array-es6/)
 - [Promise ES6](http://www.alenqi.site/2017/01/17/promise-es6/)
 - [Git Command Summary](http://www.alenqi.site/2016/06/13/git-command/)
