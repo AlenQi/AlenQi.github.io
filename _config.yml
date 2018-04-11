@@ -154,7 +154,7 @@ deploy:
   type: ftpsync
   host: 60.205.39.232
   user: bxw2442240607
-  pass: qijia3635276
+  pass: ************
   remote: ／
   port: 21
   ignore:
