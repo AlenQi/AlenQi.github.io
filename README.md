@@ -2,7 +2,7 @@
 
 ## Catalogue
 
-- [排序算法](http://www.alenqi.site/2018/03/04/complete-tags/)
+- [排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
 - [利用标签完善你的网站](http://www.alenqi.site/2018/03/04/complete-tags/)
 - [优雅的JS](http://www.alenqi.site/2017/10/30/graceful-js/)
 - [花式垂直居中](http://www.alenqi.site/2017/10/29/vertical-center/)
