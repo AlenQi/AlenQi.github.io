@@ -5,7 +5,9 @@ blog_folder=AlenQi.github.io
 entry_folder=blog-entry
 
 if [ $current_branch = master ]
+
 then
+
   echo "Bundling..."
 
   cd ../"$entry_folder"
@@ -26,6 +28,7 @@ then
   git push origin master
 
   echo "Build Successfully at [`date +%Y-%m-%d:%H:%M:%S`]"
+
 else
   # Define ANSI color variable
   RED='\033[0;31m'
