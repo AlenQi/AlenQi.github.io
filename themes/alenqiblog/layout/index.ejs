@@ -30,6 +30,7 @@ layout: page
 <!-- Pager -->
 
 <ul class="pager">
+    <%- partial('_partial/paginator') %>
     <% if (page.prev){ %>
         <li class="previous">
             <a href="<%- config.root %><%- page.prev_link %>">&larr; Newer Posts</a>
