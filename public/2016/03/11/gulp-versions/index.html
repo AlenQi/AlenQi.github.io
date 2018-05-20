@@ -20,10 +20,10 @@
     <link rel="canonical" href="http://alenqi.site/2016/03/11/gulp-versions/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/alenqi.min.css">
+    <link rel="stylesheet" href="/css/alenqi.css">
 
     <!-- Extend CSS -->
     <!-- <link rel="stylesheet" href="/css/extend.css"> -->
@@ -69,14 +69,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -182,13 +182,13 @@
 <p>在使用gulp自动添加版本号时稍作一点修改，欢迎指正。</p>
 </blockquote>
 <h2 id="开始问题"><a href="#开始问题" class="headerlink" title="开始问题"></a>开始问题</h2><ul>
-<li><p>我使用的是（<a href="https://github.com/sindresorhus/gulp-rev" target="_blank" rel="external">gulp-rev</a> + <a href="https://github.com/shonny-ua/gulp-rev-collector" target="_blank" rel="external">gulp-rev-collector</a>），但是每次自动化构建都是依赖rev生成的json文件：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">"style.css": "style-f048bfa0ab.css",</div><div class="line">"script.js": "scrip-5c69cf6d54.js",</div></pre></td></tr></table></figure>
+<li><p>我使用的是（<a href="https://github.com/sindresorhus/gulp-rev" target="_blank" rel="noopener">gulp-rev</a> + <a href="https://github.com/shonny-ua/gulp-rev-collector" target="_blank" rel="noopener">gulp-rev-collector</a>），但是每次自动化构建都是依赖rev生成的json文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"style.css": "style-f048bfa0ab.css",</span><br><span class="line">"script.js": "scrip-5c69cf6d54.js",</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>利用上面的json去修改html里面的静态路径，第二次如果不想去删除html，只想修改静态资源的路径，文件名被修改无法依赖。</p>
 </li>
 <li><p>最直接的方法就是修改插件，使rev生成的json文件变为下面的依赖关系：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">"style.css": "style.css?v=f048bfa0ab",</div><div class="line">"script.js": "scrip.js?v=5c69cf6d54",</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"style.css": "style.css?v=f048bfa0ab",</span><br><span class="line">"script.js": "scrip.js?v=5c69cf6d54",</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>这样不会修改文件的名称，依赖关系依然成立。每次输出都能按照最新的依赖关系替换我们html文件的静态资源路径。</p>
 </li>
@@ -208,7 +208,7 @@
 </li>
 <li><p>修改之后再构建就能达到开始提到的效果了。</p>
 </li>
-<li><p>点击链接下载修改后的文件<a href="https://pan.baidu.com/s/1c2vRIrY" target="_blank" rel="external">https://pan.baidu.com/s/1c2vRIrY</a></p>
+<li><p>点击链接下载修改后的文件<a href="https://pan.baidu.com/s/1c2vRIrY" target="_blank" rel="noopener">https://pan.baidu.com/s/1c2vRIrY</a></p>
 </li>
 </ul>
 
@@ -442,13 +442,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/alenqi.min.js"></script>
+<script src="/js/alenqi.js"></script>
 
 
 <!-- async load function -->

@@ -20,10 +20,10 @@
     <link rel="canonical" href="http://alenqi.site/2017/10/30/graceful-js/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/alenqi.min.css">
+    <link rel="stylesheet" href="/css/alenqi.css">
 
     <!-- Extend CSS -->
     <!-- <link rel="stylesheet" href="/css/extend.css"> -->
@@ -69,14 +69,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -181,22 +181,22 @@
 </blockquote>
 <ul>
 <li><p><code>首先致敬stackoverflow</code> JavaScript 如何优雅的处理错误</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// something</span></div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">window</span>.location.href =<span class="string">"http://stackoverflow.com/search?q=[js]+"</span> + e.message</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// something</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">window</span>.location.href =<span class="string">"http://stackoverflow.com/search?q=[js]+"</span> + e.message</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如何优雅的取整</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = ~~<span class="number">2.33</span></div><div class="line"><span class="keyword">var</span> b= <span class="number">2.33</span> | <span class="number">0</span></div><div class="line"><span class="keyword">var</span> c= <span class="number">2.33</span> &gt;&gt; <span class="number">0</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = ~~<span class="number">2.33</span></span><br><span class="line"><span class="keyword">var</span> b= <span class="number">2.33</span> | <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> c= <span class="number">2.33</span> &gt;&gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>何优雅的实现金钱格式化：e.g. 1234567890 –&gt; 1,234,567,890</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正则魔法实现：</span></div><div class="line"><span class="keyword">var</span> test1 = <span class="string">'1234567890'</span></div><div class="line"><span class="keyword">var</span> format = test1.replace(<span class="regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="string">','</span>)</div><div class="line"><span class="built_in">console</span>.log(format) <span class="comment">// 1,234,567,890</span></div><div class="line"></div><div class="line"><span class="comment">//非正则的优雅实现：</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatCash</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> str.split(<span class="string">''</span>).reverse().reduce(<span class="function">(<span class="params">prev, next, index</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> ((index % <span class="number">3</span>) ? next : (next + <span class="string">','</span>)) + prev</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(formatCash(<span class="string">'1234567890'</span>)) <span class="comment">// 1,234,567,890</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正则魔法实现：</span></span><br><span class="line"><span class="keyword">var</span> test1 = <span class="string">'1234567890'</span></span><br><span class="line"><span class="keyword">var</span> format = test1.replace(<span class="regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="string">','</span>)</span><br><span class="line"><span class="built_in">console</span>.log(format) <span class="comment">// 1,234,567,890</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//非正则的优雅实现：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatCash</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(<span class="string">''</span>).reverse().reduce(<span class="function">(<span class="params">prev, next, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ((index % <span class="number">3</span>) ? next : (next + <span class="string">','</span>)) + prev</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(formatCash(<span class="string">'1234567890'</span>)) <span class="comment">// 1,234,567,890</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如何优雅的让两个整数交换数值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a ^= b</div><div class="line">b ^= a</div><div class="line">a ^= b</div><div class="line">a= [b, b=a][<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a ^= b</span><br><span class="line">b ^= a</span><br><span class="line">a ^= b</span><br><span class="line">a= [b, b=a][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如何优雅的给数组去重</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[...new <span class="built_in">Set</span>([<span class="number">1</span>, <span class="string">"1"</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>])]</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...new <span class="built_in">Set</span>([<span class="number">1</span>, <span class="string">"1"</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>])]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果优雅的筛选数组中的最大值和最小值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">458</span> , <span class="number">120</span> , <span class="number">-215</span> , <span class="number">228</span> , <span class="number">400</span> , <span class="number">122205</span>, <span class="number">-85411</span>];</div><div class="line"><span class="keyword">var</span> maxInNumbers = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, numbers);</div><div class="line"><span class="keyword">var</span> minInNumbers = <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, numbers);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">5</span>, <span class="number">458</span> , <span class="number">120</span> , <span class="number">-215</span> , <span class="number">228</span> , <span class="number">400</span> , <span class="number">122205</span>, <span class="number">-85411</span>];</span><br><span class="line"><span class="keyword">var</span> maxInNumbers = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, numbers);</span><br><span class="line"><span class="keyword">var</span> minInNumbers = <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, numbers);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -428,13 +428,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/alenqi.min.js"></script>
+<script src="/js/alenqi.js"></script>
 
 
 <!-- async load function -->
