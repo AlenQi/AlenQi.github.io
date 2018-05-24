@@ -14,7 +14,9 @@ comments: true
 我想记录下这成长的过程，然而用文字的方式打上的印记，似乎比记忆更加清晰。
 
 
-我参加过的会议：https://segmentfault.com/sfdc-2016/hz
+我参加过的会议：
+- `杭州开发者大会` https://segmentfault.com/sfdc-2016/hz
+- `第三届中国前端开发者千人峰会` https://fdcon.topgeek.org/
 
 我的翻译：
 

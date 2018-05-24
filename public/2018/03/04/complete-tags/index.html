@@ -20,10 +20,10 @@
     <link rel="canonical" href="http://alenqi.site/2018/03/04/complete-tags/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/alenqi.min.css">
+    <link rel="stylesheet" href="/css/alenqi.css">
 
     <!-- Extend CSS -->
     <!-- <link rel="stylesheet" href="/css/extend.css"> -->
@@ -69,14 +69,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -185,7 +185,7 @@
 <p>The <code>&lt;meta&gt;</code> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable.<br>The metadata can be used by browsers (how to display content or reload page), search engines (keywords), or other web services.</p>
 </blockquote>
 <h2 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a><code>name</code>属性</h2><p>name属性主要用于描述网页，比如网页的关键词，叙述等。与之对应的属性值为content，content中的内容是对name填入类型的具体描述，便于搜索引擎抓取。meta标签中name属性语法格式是：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"参数"</span> <span class="attr">content</span>=<span class="string">"具体的描述"</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"参数"</span> <span class="attr">content</span>=<span class="string">"具体的描述"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -233,12 +233,12 @@
 <tr>
 <td style="text-align:left">fragment</td>
 <td style="text-align:left">!</td>
-<td>表示一个无hash段的URL，通过Ajax获取内容的页面。爬虫会临时地将页面映射为www.example.com?_escapedfragment= 并向服务器发出请求。服务器就相应的返回www.example.com的HTML快照。</td>
+<td>表示一个无hash段的URL，通过Ajax获取内容的页面。爬虫会临时地将页面映射为<a href="http://www.example.com?_escapedfragment=" target="_blank" rel="noopener">www.example.com?_escapedfragment=</a> 并向服务器发出请求。服务器就相应的返回<a href="http://www.example.com的HTML快照。" target="_blank" rel="noopener">www.example.com的HTML快照。</a></td>
 </tr>
 </tbody>
 </table>
 <h2 id="http-equiv属性"><a href="#http-equiv属性" class="headerlink" title="http-equiv属性"></a><code>http-equiv</code>属性</h2><p>使用带有 http-equiv属性的<code>&lt;meta&gt;</code>标签时，服务器将把名称/值对添加到发送给浏览器的内容头部。meta标签中http-equiv属性语法格式是：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"参数"</span> <span class="attr">content</span>=<span class="string">"具体的描述"</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"参数"</span> <span class="attr">content</span>=<span class="string">"具体的描述"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -270,7 +270,7 @@
 </tr>
 <tr>
 <td style="text-align:left">refresh</td>
-<td style="text-align:left">content=”2；URL=<a href="http://www.alenqi.site&quot;（2秒后跳转向我的博客）" target="_blank" rel="external">http://www.alenqi.site&quot;（2秒后跳转向我的博客）</a></td>
+<td style="text-align:left">content=”2；URL=<a href="http://www.alenqi.site&quot;（2秒后跳转向我的博客）" target="_blank" rel="noopener">http://www.alenqi.site&quot;（2秒后跳转向我的博客）</a></td>
 <td>网页将在设定的时间内，自动刷新并调向设定的网址。</td>
 </tr>
 <tr>
@@ -280,7 +280,7 @@
 </tr>
 <tr>
 <td style="text-align:left">Content-Secutity-Policy</td>
-<td style="text-align:left"><p>1.base-uri：用于限制可在页面的 &lt;base&gt; 元素中显示的网址。</p><p>2.child-src：用于列出适用于工作线程和嵌入的帧内容的网址。例如：child-src <a href="https://youtube.com" target="_blank" rel="external">https://youtube.com</a> 将启用来自 YouTube（而非其他来源）的嵌入视频。 使用此指令替代已弃用的 frame-src 指令。</p><p>3.connect-src：用于限制可（通过 XHR、WebSockets 和 EventSource）连接的来源。</p><p>4.font-src：用于指定可提供网页字体的来源。Google 的网页字体可通过 font-src <a href="https://themes.googleusercontent.com" target="_blank" rel="external">https://themes.googleusercontent.com</a> 启用。</p><p>5.form-action：用于列出可从 &lt;form&gt; 标记提交的有效端点。</p><p>6.frame-ancestors：用于指定可嵌入当前页面的来源。此指令适用于 &lt;frame&gt;、&lt;iframe&gt;、&lt;embed&gt; 和 &lt;applet&gt; 标记。此指令不能在 &lt;meta&gt; 标记中使用，并仅适用于非 HTML 资源。</p><p>7.img-src：用于定义可从中加载图像的来源。</p><p>8.media-src：用于限制允许传输视频和音频的来源。</p><p>9.upgrade-insecure-requests：指示 User Agent 将 HTTP 更改为 HTTPS，重写网址架构。</p></td>
+<td style="text-align:left"><p>1.base-uri：用于限制可在页面的 &lt;base&gt; 元素中显示的网址。</p><p>2.child-src：用于列出适用于工作线程和嵌入的帧内容的网址。例如：child-src <a href="https://youtube.com" target="_blank" rel="noopener">https://youtube.com</a> 将启用来自 YouTube（而非其他来源）的嵌入视频。 使用此指令替代已弃用的 frame-src 指令。</p><p>3.connect-src：用于限制可（通过 XHR、WebSockets 和 EventSource）连接的来源。</p><p>4.font-src：用于指定可提供网页字体的来源。Google 的网页字体可通过 font-src <a href="https://themes.googleusercontent.com" target="_blank" rel="noopener">https://themes.googleusercontent.com</a> 启用。</p><p>5.form-action：用于列出可从 &lt;form&gt; 标记提交的有效端点。</p><p>6.frame-ancestors：用于指定可嵌入当前页面的来源。此指令适用于 &lt;frame&gt;、&lt;iframe&gt;、&lt;embed&gt; 和 &lt;applet&gt; 标记。此指令不能在 &lt;meta&gt; 标记中使用，并仅适用于非 HTML 资源。</p><p>7.img-src：用于定义可从中加载图像的来源。</p><p>8.media-src：用于限制允许传输视频和音频的来源。</p><p>9.upgrade-insecure-requests：指示 User Agent 将 HTTP 更改为 HTTPS，重写网址架构。</p></td>
 <td>CSP 定义 Content-Security-Policy HTTP 标头，其允许您创建信任的内容的来源白名单，并指示浏览器仅执行或渲染来自这些来源的资源，而不要盲目地信任服务器提供的所有内容。即使攻击者能够发现可从中注入脚本的漏洞，由于此脚本也不符合此白名单，因此，也不会执行该脚本</td>
 </tr>
 <tr>
@@ -548,13 +548,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/alenqi.min.js"></script>
+<script src="/js/alenqi.js"></script>
 
 
 <!-- async load function -->

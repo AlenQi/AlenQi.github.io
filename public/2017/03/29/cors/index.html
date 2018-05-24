@@ -20,10 +20,10 @@
     <link rel="canonical" href="http://alenqi.site/2017/03/29/cors/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/alenqi.min.css">
+    <link rel="stylesheet" href="/css/alenqi.css">
 
     <!-- Extend CSS -->
     <!-- <link rel="stylesheet" href="/css/extend.css"> -->
@@ -69,14 +69,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -209,11 +209,11 @@
 </blockquote>
 <p>比如一个简单的GET或者POST请求，它没有自定义的头部，而主题内容是text/plain。在发送请求时，需要给它附加一个额外的Oringin头部，其中包含请求页面的源信息（协议，域名和端口），以便服务器根据这个头部消息来决定是否给予响应。下面是Oringin头部的一个示例：</p>
 <blockquote>
-<p>Origin: <a href="http://www.alenqi.com" target="_blank" rel="external">http://www.alenqi.com</a></p>
+<p>Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
 </blockquote>
 <p>如果服务器认为这个请求可以接受，就在Access-Control-Allow-Origin头部中返回相同的源信息。示例：</p>
 <blockquote>
-<p>Access-Control-Allow-Origin: Origin: <a href="http://www.alenqi.com" target="_blank" rel="external">http://www.alenqi.com</a></p>
+<p>Access-Control-Allow-Origin: Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
 </blockquote>
 <p>如果没有这个头部，或者有这个头部但是源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。注意，这里的请求和响应都不包含cookie信息。</p>
 <p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>浏览器会自动判断如果跨域，自动会添加一些附加的头部信息，还有可能发送预请求。所以，如果服务端实现了响应CORS的接口，就可以跨域访问。</p>
@@ -583,13 +583,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/lib/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/alenqi.min.js"></script>
+<script src="/js/alenqi.js"></script>
 
 
 <!-- async load function -->

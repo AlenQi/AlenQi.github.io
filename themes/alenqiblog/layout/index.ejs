@@ -30,7 +30,8 @@ layout: page
 <!-- Pager -->
 
 <ul class="pager">
-    <%- partial('_partial/paginator') %>
+    当前第<%- page.current %>页
+    共<%- page.total %>页
     <% if (page.prev){ %>
         <li class="previous">
             <a href="<%- config.root %><%- page.prev_link %>">&larr; Newer Posts</a>
