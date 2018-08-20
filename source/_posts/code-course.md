@@ -1,6 +1,6 @@
 ---
 layout: post
-title: code-course
+title: 你的JavaScript代码都经历了什么
 date: 2018-08-20 16:34:20
 author: "AlenQi"
 catalog: true
@@ -28,12 +28,14 @@ JavaScript的解析过程分为两个阶段：`预编译期(预处理)`与`执�
 正常的编译型语言编译期，其过程可分为6步：词法分析、语法分析、语义分析、源代码优化、代码生成、目标代码优化。对于JavaScript来说，通过词法分析和语法分析得到语法树后，就会进入到执行期，执行代码。
 
 词法分析：在词法分析阶段，JavaScript解释器先把代码的字符流转换为记号流，例如：
-```
+
+``` js
 a = (b -c)
 ```
+
 转换为记号流：
 
-```
+``` js
 NAME "a"  
 EQUALS  
 OPEN_PARENTHESIS  
@@ -49,7 +51,7 @@ SEMICOLON
 
 语法分析阶段就是把词法分析阶段产生的记号，生成语法树，即把从程序中收集的信息存储到数据结构中，数据结构在此处为两种：1、符号表：记录变量、函数、类；2、语法树：程序结构的树形表示，将此树形结构生成中间代码。例如：
 
-```
+``` js
  if(typeof a == "undefined" ) {
     a = 0
  } else {
@@ -66,7 +68,7 @@ SEMICOLON
 
 #### 执行期
 经过编译阶段的准备，代码在内存中已经构建成语法树，JavaScript引擎会根据这个语法树结构边解释边执行。解释过程中，引擎严格按照作用域机制执行。JavaScript采用的词法作用域，简单说就是变量和函数的作用域在定义时决定，取决于源代码结构。
-```
+``` js
 var value = 1;
 function foo() {
     console.log(value);
@@ -84,7 +86,7 @@ bar();
 
 ##### 闭包
 在执行环境创建的过程中，会有一个特殊的情况——闭包。它由两部分组成。执行上下文(代号A)，以及在该执行上下文中创建的函数（代号B）。当B执行时，如果访问了A中变量对象中的值，那么闭包就会产生。在大多数理解中，包括许多著名的书籍，文章里都以函数B的名字代指这里生成的闭包。而在chrome中，则以执行上下文A的函数名代指闭包。
-```
+``` js
 function A() {
     var a = 20;
     var b = 30;
@@ -109,7 +111,7 @@ JavaScript的单线程，与它的用途有关。作为浏览器脚本语言，J
 - `macro-task`大概包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。
 - `micro-task`大概包括: process.nextTick, Promise, Object.observe(已废弃), MutationObserver(html5新特性)。
 - setTimeout/Promise等我们称之为任务源。而进入任务队列的是他们指定的具体执行任务。
-```
+``` js
 setTimeout(function() {
     console.log('xxxx'); // 这段代码才是进入任务队列的任务
 })

@@ -118,7 +118,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: true
+  auto_detect: false
   tab_replace:
 
 # Category & Tag
@@ -150,13 +150,13 @@ theme: alenqiblog
 #   type: git
 #   repo: https://github.com/AlenQi/AlenQi.github.io.git
 #   branch: master
-deploy:
-  type: ftpsync
-  host: 60.205.39.232
-  user: bxw2442240607
-  pass: 123
-  remote: ／
-  port: 21
-  ignore:
-  connections: 1
-  verbose: true
+# deploy:
+#   type: ftpsync
+#   host: 60.205.39.232
+#   user: bxw2442240607
+#   pass: 123
+#   remote: ／
+#   port: 21
+#   ignore:
+#   connections: 1
+#   verbose: true
