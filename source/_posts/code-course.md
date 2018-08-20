@@ -4,7 +4,7 @@ title: code-course
 date: 2018-08-20 16:34:20
 author: "AlenQi"
 catalog: true
-header-img: "atom-bg.png"
+header-img: "code-course.jpg"
 tags:
     - 前端开发
     - 事件循环
