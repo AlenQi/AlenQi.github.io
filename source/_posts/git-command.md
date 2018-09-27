@@ -8,7 +8,7 @@ author:     "AlenQi"
 header-img: "post-bg-js-version.jpg"
 tags:
     - 前端开发
-    - JavaScript
+    - Git
 ---
 
 > 下滑这里查看更多内容
