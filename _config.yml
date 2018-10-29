@@ -144,19 +144,18 @@ pagination_dir: page
 theme: alenqiblog
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
+# Docs: https://hexo.io/docs/deployment.html
 # git deploy
 # deploy:
 #   type: git
 #   repo: https://github.com/AlenQi/AlenQi.github.io.git
 #   branch: master
-# deploy:
-#   type: ftpsync
-#   host: 60.205.39.232
-#   user: bxw2442240607
-#   pass: 123
-#   remote: ／
-#   port: 21
-#   ignore:
-#   connections: 1
-#   verbose: true
+deploy:
+  type: rsync
+  host: 198.181.37.39
+  user: root
+  root: /usr/blog
+  port: 27696
+  delete: true
+  verbose: true
+  ignore_errors: false
