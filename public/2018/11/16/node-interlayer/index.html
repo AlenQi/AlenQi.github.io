@@ -13,11 +13,11 @@
 
     <title>
         
-          AlenQi的博客 | AlenQi&#39;s Blog
+          我们为什么需要Node中间层 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/i_dont_wanna_use_default_archives/2016/">
+    <link rel="canonical" href="http://alenqi.site/2018/11/16/node-interlayer/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -132,270 +132,161 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AlenQi&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Keep Passion , Sustained Strive</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
+                        
+                    </div>
+                    <h1>我们为什么需要Node中间层</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2018-11-16
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- Main Content -->
-
-
-<div class="post-preview">
-
-    <a href="/2016/06/13/git-command/">
-        <h2 class="post-title">
-            Git Command Summary
-        </h2>
-        <h3 class="post-subtitle">
-            Keynote: git command
-        </h3>
-        <div class="post-content-preview">
-            
-下滑这里查看更多内容
-
-在初学习git时陌生的命令给初学者造成一定的困难为了方便查阅，总结了一些命令在这里
-你也可以在单独的网页查看这个脑图
-Watch Mind Map→...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2016-06-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/03/11/gulp-versions/">
-        <h2 class="post-title">
-            gulp自动化构建html静态资源路径版本号添加和替换
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Foreword
-在使用gulp自动添加版本号时稍作一点修改，欢迎指正。
-
-开始问题
-我使用的是（gulp-rev + gulp-rev-collector），但是每次自动化构建都是依赖rev生成的json文件：
-12"style.css": "style-f048bfa0ab.css","script.js": "scrip-5c69cf6d54.js",
-
-利用上面的json去修改htm......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2016-03-11
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/02/04/IT2048/">
-        <h2 class="post-title">
-            IT2048
-        </h2>
-        <h3 class="post-subtitle">
-            game it 2048
-        </h3>
-        <div class="post-content-preview">
-            
-下滑这里查看更多内容
-
-一个小游戏，IT2048
-光标点击在游戏区域，然后按上下左右即可
-点击New Game开启新游戏
-Watch IT2048→...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2016-02-04
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    当前第1页
-    共1页
-    
-    
+                <h2 id="首先跳出前端"><a href="#首先跳出前端" class="headerlink" title="首先跳出前端"></a>首先跳出前端</h2><p>要看清node中间层在整个服务承担什么角色，首先我们要跳出前端的视野，把自己视角提示一个level —— 去鸟瞰整个项目。</p>
+<p>互联网时代其实就是信息时代，我们都是在利用数据交换，来产生价值。<br>一个最简单的数据流，前端–&gt;后端–&gt;数据库。<br>在这个原始的流程之间，我们有很多事情可以做。来看和前端最近这条线，前端–&gt;后端。</p>
+<ul>
+<li>代理</li>
+<li>缓存</li>
+<li>限流</li>
+<li>日志</li>
+<li>监控</li>
+<li>鉴权</li>
+<li>路由</li>
+<li>灰度</li>
+<li>…</li>
 </ul>
+<p>上面列出的是一些我们一个服务除了前端的展示，service端的网络服务，API的提供，数据落库等之外也要做的部分事情。在前后端没有分离的时代，这些都是交给后端来做，比如Java,PHP等。尤其在之前，套用模板语言就能解决大部分问题的时候，可以说前端不值得单独拿出来做。但是，当谷歌把JavaScript的宿主环境扩展到浏览器以外时，我们有了更宽泛的选择。</p>
+<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><p><img src="1.png" alt="1"></p>
+<p>前后端分离几乎是现在开发的必选项。我要放弃传统的MVC模式，解除模板语言的限制，独立构建开发环境，SPA页面做SEO，分离部署依赖，统一API出口去适应更好的适应多端等等…….前后端分离的优劣我就不过多赘述。</p>
+<p>在前后端分离的前提下，我们就可以在服务器(JAVA)和浏览器(JS)中间架一个中间层(NODEJS).</p>
+<p><img src="2.png" alt="2"></p>
+<p>为什么选择NODEJS做中间层：</p>
+<ul>
+<li>前端熟悉的语言，学习成本极低</li>
+<li>都是JS可以前后端复用</li>
+<li>相似的特性：时间驱动、非阻塞I/O</li>
+<li>执行速度也可接受</li>
+<li>有利于一些SEO的解决方案</li>
+</ul>
+<p><img src="3.jpg" alt="3"></p>
+<h2 id="Node中间层"><a href="#Node中间层" class="headerlink" title="Node中间层"></a>Node中间层</h2><p>在前后端分离的天然选择下，node中间层可以承担更多的责任。</p>
+<ul>
+<li>代理：在开发环境下，我们可以利用代理来，解决最常见的跨域问题；在线上环境下，我们可以利用代理，转发请求到多个服务端。</li>
+<li>缓存：缓存其实是更靠近前端的需求，用户的动作触发数据的更新，node中间层可以直接处理一部分缓存需求。</li>
+<li>限流：node中间层，可以针对接口或者路由做响应的限流。</li>
+<li>日志：相比其他服务端语言，node中间层的日志记录，能更方便快捷的定位问题（是在浏览器端还是服务端）。</li>
+<li>监控：擅长高并发的请求处理，做监控也是合适的选项。</li>
+<li>鉴权：有一个中间层去鉴权，也是一种单一职责的实现。</li>
+<li>路由：前端更需要掌握页面路由的权限和逻辑。</li>
+<li>服务端渲染：node中间层的解决方案更灵活，比如SSR、模板直出、利用一些JS库做预渲染等等。</li>
+<li>更多的可能性</li>
+</ul>
+<p>这些，都是在有个node中间层的好处，使得服务更加的灵活。当然，node也有很多弊端，比如单进程，单线程，只支持单核CPU，不能充分的利用多核CPU服务器。一旦这个进程崩掉，那么整个web服务就崩掉了。CPU使用率较重、IO使用率较轻的应用——如视频编码、人工智能等，Node.js的优势无法发挥。</p>
+<p>没有最好的方案，只有最合适的方案。</p>
 
 
-                <!-- 如果开启评论功能 -->
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/09/27/git-flow/" data-toggle="tooltip" data-placement="top" title="Git 使用分享">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
-    <!-- Sidebar Container -->
+    <!-- Side Catalog Container -->
+        
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
                 sidebar-container
-            ">
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                            
-                            <a href="/tags/#前端开发" title="前端开发" rel="15">前端开发</a>
-                            
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
-                            
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="8">JavaScript</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Git" title="Git" rel="2">Git</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#优化" title="优化" rel="2">优化</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#ES6" title="ES6" rel="3">ES6</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/./img/avatar.jpg" />
-                        
-
-                        
-                            <p>Debug Developer</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            <!--  -->
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/3255406154">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/AlenQi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            <!--  -->
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
@@ -419,9 +310,66 @@ Watch IT2048→...
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2018/11/16/node-interlayer/";
+    var disqus_url = "http://alenqi.site/2018/11/16/node-interlayer/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
@@ -607,6 +555,49 @@ Watch IT2048→...
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 
