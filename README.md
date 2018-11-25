@@ -2,6 +2,7 @@
 
 ## Catalogue
 
+- [Git 使用分享](http://www.alenqi.site/2018/09/27/git-flow/)
 - [你的JavaScript代码都经历了什么](http://www.alenqi.site/2018/08/19/code-course/)
 - [排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
 - [利用标签完善你的网站](http://www.alenqi.site/2018/03/04/complete-tags/)
