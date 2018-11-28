@@ -2,6 +2,7 @@
 
 ## Catalogue
 
+- [我们为什么需要Node中间层](http://www.alenqi.site/2018/11/16/node-interlayer/)
 - [Git 使用分享](http://www.alenqi.site/2018/09/27/git-flow/)
 - [你的JavaScript代码都经历了什么](http://www.alenqi.site/2018/08/19/code-course/)
 - [排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
