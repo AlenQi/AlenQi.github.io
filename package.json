@@ -20,6 +20,6 @@
     "hexo-server": "^0.2.0"
   },
   "scripts": {
-    "build": "hexo g && sh ./tasks/build.sh"
+    "build": "hexo g && sh ./tasks/build.sh && hexo d"
   }
 }
