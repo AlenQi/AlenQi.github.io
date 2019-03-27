@@ -52,6 +52,5 @@ Item.prototype = {
 
 var itemLink = document.getElementById('link')
 itemLink.onclick = function() {
-  console.log(123)
   window.location.href = 'http://www.alenqi.site/index.html'
 }
