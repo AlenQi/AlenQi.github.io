@@ -152,7 +152,7 @@ theme: alenqiblog
 #   branch: master
 deploy:
   type: rsync
-  host: 198.181.37.39
+  host: 198.181.37.133
   user: root
   root: /usr/blog
   port: 27696
