@@ -14,7 +14,7 @@ tags:
     - 优化
 ---
 
-## Catagory
+## Category
 
 1. [Foreword](#Foreword)
 2. [输入地址](#输入地址)

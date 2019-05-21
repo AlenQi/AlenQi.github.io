@@ -189,34 +189,33 @@
 <li><a href="#cors-principle">CORS Principle</a></li>
 <li><a href="#三个访问控制场景">三个访问控制场景</a><ol>
 <li><a href="#简单请求">简单请求</a></li>
-<li><a href="#预请求">预请求</a></li>
-<li><a href="#带凭据的请求">带凭据的请求</a></li>
+<li><a href="#预请求">预请求</a><br>3 . <a href="#带凭据的请求">带凭据的请求</a></li>
 </ol>
 </li>
-<li><a href="#HTTP请求头">HTTP请求头</a></li>
-<li><a href="#HTTP响应头">HTTP响应头</a></li>
-<li><a href="#IE对CORS的实现">IE对CORS的实现</a></li>
+<li><a href="#HTTP请求头">HTTP 请求头</a></li>
+<li><a href="#HTTP响应头">HTTP 响应头</a></li>
+<li><a href="#IE对CORS的实现">IE 对 CORS 的实现</a></li>
 <li><a href="#浏览器的支持">浏览器的支持</a></li>
 </ol>
 <h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
-<p>由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在web开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS」允许跨院访问。</p>
+<p>由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在 web 开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS」允许跨院访问。</p>
 </blockquote>
-<p>先简单说下跨域，当一个资源请求一个其它域名或者另外一个端口的资源时会产生一个跨域HTTP请求(cross-origin HTTP request)。为了访问资源的可靠信，会有同源策略的限制，浏览器会拦截跨域请求的返回结果，有些浏览器会更加严格，不允许从HTTPS的域跨域访问HTTP，如Chrome和Firefox，这些浏览器在请求还未发出的时候就会拦截请求。</p>
+<p>先简单说下跨域，当一个资源请求一个其它域名或者另外一个端口的资源时会产生一个跨域 HTTP 请求(cross-origin HTTP request)。为了访问资源的可靠信，会有同源策略的限制，浏览器会拦截跨域请求的返回结果，有些浏览器会更加严格，不允许从 HTTPS 的域跨域访问 HTTP，如 Chrome 和 Firefox，这些浏览器在请求还未发出的时候就会拦截请求。</p>
 <h2 id="CORS-Principle"><a href="#CORS-Principle" class="headerlink" title="CORS Principle"></a>CORS Principle</h2><p><img src="cors-principle.png" alt="cors-principle"><br><small class="img-hint">资源请求的响应</small></p>
-<p>CORS（Cross-origin resource sharing,跨域资源共享）是W3C的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通。CORS背后的基本思想，就是使用自定义的HTTP请求头部，让浏览器和服务器进行沟通，从而决定请求或响应是应该成功，还是失败。</p>
+<p>CORS（Cross-origin resource sharing,跨域资源共享）是 W3C 的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通。CORS 背后的基本思想，就是使用自定义的 HTTP 请求头部，让浏览器和服务器进行沟通，从而决定请求或响应是应该成功，还是失败。</p>
 <blockquote>
-<p>这个规范是对针对API容器的，比如 XMLHttpRequest 或者 Fetch</p>
+<p>这个规范是对针对 API 容器的，比如 XMLHttpRequest 或者 Fetch</p>
 </blockquote>
-<p>比如一个简单的GET或者POST请求，它没有自定义的头部，而主题内容是text/plain。在发送请求时，需要给它附加一个额外的Oringin头部，其中包含请求页面的源信息（协议，域名和端口），以便服务器根据这个头部消息来决定是否给予响应。下面是Oringin头部的一个示例：</p>
+<p>比如一个简单的 GET 或者 POST 请求，它没有自定义的头部，而主题内容是 text/plain。在发送请求时，需要给它附加一个额外的 Oringin 头部，其中包含请求页面的源信息（协议，域名和端口），以便服务器根据这个头部消息来决定是否给予响应。下面是 Oringin 头部的一个示例：</p>
 <blockquote>
 <p>Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
 </blockquote>
-<p>如果服务器认为这个请求可以接受，就在Access-Control-Allow-Origin头部中返回相同的源信息。示例：</p>
+<p>如果服务器认为这个请求可以接受，就在 Access-Control-Allow-Origin 头部中返回相同的源信息。示例：</p>
 <blockquote>
 <p>Access-Control-Allow-Origin: Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
 </blockquote>
-<p>如果没有这个头部，或者有这个头部但是源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。注意，这里的请求和响应都不包含cookie信息。</p>
-<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>浏览器会自动判断如果跨域，自动会添加一些附加的头部信息，还有可能发送预请求。所以，如果服务端实现了响应CORS的接口，就可以跨域访问。</p>
+<p>如果没有这个头部，或者有这个头部但是源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。注意，这里的请求和响应都不包含 cookie 信息。</p>
+<p>CORS 需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE 浏览器不能低于 IE10。<br>浏览器会自动判断如果跨域，自动会添加一些附加的头部信息，还有可能发送预请求。所以，如果服务端实现了响应 CORS 的接口，就可以跨域访问。</p>
 <h2 id="三个访问控制场景"><a href="#三个访问控制场景" class="headerlink" title="三个访问控制场景"></a>三个访问控制场景</h2><ul>
 <li><h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><ul>
 <li>一些请求不会触发 CORS preflight，而这部分在本文中被称为“简单请求”。满足下述条件的就是“简单请求”：<ul>
@@ -240,7 +239,7 @@
 <li>text/plain</li>
 </ul>
 </li>
-<li>一个简单的CORS头处理的跨域请求<br><img src="simple-req.png" alt="simple-req"><br><small class="img-hint">返回头的“*”代表该资源跨域在跨域行为里可以被任意站点访问，可以设定为指定的域名</small></li>
+<li>一个简单的 CORS 头处理的跨域请求<br><img src="simple-req.png" alt="simple-req"><br><small class="img-hint">返回头的“*”代表该资源跨域在跨域行为里可以被任意站点访问，可以设定为指定的域名</small></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +247,7 @@
 </ul>
 <ul>
 <li><h3 id="预请求"><a href="#预请求" class="headerlink" title="预请求"></a>预请求</h3><ul>
-<li>CORS通过一种叫做preflighted Requests的透明服务器验证机制支持开发人员使用自定义的头部，“预请求”要求必须先发送一个 <strong>OPTIONS</strong> 方法请求给目的站点，来查明这个跨站请求对于目的站点是不是安全的可接受的。这样做，是因为跨站请求可能会对目的站点的数据产生影响。 当请求具备以下条件，就会被当成预请求处理：<ul>
+<li>CORS 通过一种叫做 preflighted Requests 的透明服务器验证机制支持开发人员使用自定义的头部，“预请求”要求必须先发送一个 <strong>OPTIONS</strong> 方法请求给目的站点，来查明这个跨站请求对于目的站点是不是安全的可接受的。这样做，是因为跨站请求可能会对目的站点的数据产生影响。 当请求具备以下条件，就会被当成预请求处理：<ul>
 <li>除了下列方法以外方法的请求：<ul>
 <li>GET</li>
 <li>POST</li>
@@ -259,7 +258,7 @@
 <li>Accept</li>
 <li>Accept-Language</li>
 <li>Content-Language</li>
-<li>Last-Event-ID        - Content-Type (but note the additional requirements below)</li>
+<li>Last-Event-ID - Content-Type (but note the additional requirements below)</li>
 </ul>
 </li>
 <li>Content-Type 值有除了一下之外的：<ul>
@@ -271,18 +270,18 @@
 </ul>
 </li>
 <li>简而言之，就是非简单请求的请求就会发送预请求。</li>
-<li>发送这个请求之后，服务器可以决定是否允许这种类型的请求。服务器通过在响应中发送头部和浏览器进行沟通。Preflight请求结束后，结果将按照响应头中指定的时间缓存起来。而为此付出的代价只是第一次发送非简单请求时多一次HTTP请求。<br><img src="prelight.png" alt="prelight"><br><small class="img-hint">一个“预请求”形式的跨域请求</small></li>
+<li>发送这个请求之后，服务器可以决定是否允许这种类型的请求。服务器通过在响应中发送头部和浏览器进行沟通。Preflight 请求结束后，结果将按照响应头中指定的时间缓存起来。而为此付出的代价只是第一次发送非简单请求时多一次 HTTP 请求。<br><img src="prelight.png" alt="prelight"><br><small class="img-hint">一个“预请求”形式的跨域请求</small></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><h3 id="带凭据的请求"><a href="#带凭据的请求" class="headerlink" title="带凭据的请求"></a>带凭据的请求</h3><ul>
-<li>默认情况下，跨域请求不提供（cookie，HTTP认证及客户端SSL证明等）。通过将withCredentials属性设置为true，可以指定某个请求应该发送凭据。</li>
-<li>如果发送的是带凭据的请求，但是服务器的响应中没有包含这个头部，那么浏览器就不会把响应交给JavaScript（于是，responseText中将是空字符串，status的值为0，而且会调用onerror（）事件处理程序。另外，服务器还可以在Preflight响应中发送这个HTTP头部，表示允许源发送带凭据的请求。</li>
+<li>默认情况下，跨域请求不提供（cookie，HTTP 认证及客户端 SSL 证明等）。通过将 withCredentials 属性设置为 true，可以指定某个请求应该发送凭据。</li>
+<li>如果发送的是带凭据的请求，但是服务器的响应中没有包含这个头部，那么浏览器就不会把响应交给 JavaScript（于是，responseText 中将是空字符串，status 的值为 0，而且会调用 onerror（）事件处理程序。另外，服务器还可以在 Preflight 响应中发送这个 HTTP 头部，表示允许源发送带凭据的请求。</li>
 </ul>
 </li>
 </ul>
-<h2 id="HTTP请求头"><a href="#HTTP请求头" class="headerlink" title="HTTP请求头"></a>HTTP请求头</h2><ul>
+<h2 id="HTTP-请求头"><a href="#HTTP-请求头" class="headerlink" title="HTTP 请求头"></a>HTTP 请求头</h2><ul>
 <li><p>发送请求的域</p>
 <blockquote>
 <p>Origin: <origin></origin></p>
@@ -299,7 +298,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><ul>
+<h2 id="HTTP-响应头"><a href="#HTTP-响应头" class="headerlink" title="HTTP 响应头"></a>HTTP 响应头</h2><ul>
 <li><p>与简单请求的相同</p>
 <blockquote>
 <p>Access-Control-Allow-Origin: <origin> | *</origin></p>
@@ -331,18 +330,18 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="IE对CORS的实现"><a href="#IE对CORS的实现" class="headerlink" title="IE对CORS的实现"></a>IE对CORS的实现</h2><ul>
-<li>微软在IE8中引入了XDR（XDomainRequest）类型。这个对象与XHR类似，但能实现安全可靠的跨域通信。XDR对象的安全机制部分实现了W3C的CORS规范。下面是XDR与XHR的一些不同之处：<ul>
-<li>cookie不会随请求发送，也不会随响应返回</li>
-<li>只能设置请求头不信息中的Content-Type字段</li>
+<h2 id="IE-对-CORS-的实现"><a href="#IE-对-CORS-的实现" class="headerlink" title="IE 对 CORS 的实现"></a>IE 对 CORS 的实现</h2><ul>
+<li>微软在 IE8 中引入了 XDR（XDomainRequest）类型。这个对象与 XHR 类似，但能实现安全可靠的跨域通信。XDR 对象的安全机制部分实现了 W3C 的 CORS 规范。下面是 XDR 与 XHR 的一些不同之处：<ul>
+<li>cookie 不会随请求发送，也不会随响应返回</li>
+<li>只能设置请求头不信息中的 Content-Type 字段</li>
 <li>不能访问响应头部信息</li>
-<li>只支持GET和POST请求</li>
+<li>只支持 GET 和 POST 请求</li>
 </ul>
 </li>
-<li>好消息是对于CORS在IE 10中有完整的实现</li>
+<li>好消息是对于 CORS 在 IE 10 中有完整的实现</li>
 </ul>
 <h2 id="浏览器的支持"><a href="#浏览器的支持" class="headerlink" title="浏览器的支持"></a>浏览器的支持</h2><ul>
-<li>抛开浏览器谈HTTP相关规范或技术都是耍流氓。</li>
+<li>抛开浏览器谈 HTTP 相关规范或技术都是耍流氓。</li>
 <li>Desktop<br><img src="desktop.png" alt="Desktop"></li>
 <li>mobile<br><img src="mobile.png" alt="mobile"></li>
 </ul>

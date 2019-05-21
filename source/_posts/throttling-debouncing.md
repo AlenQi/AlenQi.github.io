@@ -2,12 +2,12 @@
 layout: post
 title: 函数节流和去抖之间的区别
 date: 2017-10-06 15:52:35
-author: "AlenQi"
+author: 'AlenQi'
 catalog: true
-header-img: "bg.jpg"
-tags: 
-    - 前端开发 
-    - javascript
+header-img: 'bg.jpg'
+tags:
+  - 前端开发
+  - javascript
 ---
 
 > 函数节流和去抖都是限制基于 DOM 事件执行的 javascript 数量的方法，都是为了提高 JS 性能，但是两者是有区别的。

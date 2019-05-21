@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Preference"
+title: 'Preference'
 date: 2017-07-10 16:56:35
-author: "AlenQi"
+author: 'AlenQi'
 catalog: true
-header-img: "bg.jpeg"
+header-img: 'bg.jpeg'
 tags:
-    - 前端开发
-    - github
+  - 前端开发
+  - github
 ---
 
 # Preference
@@ -32,13 +32,13 @@ tags:
 
 - `babel`
   Babel is a compiler for writing next generation JavaScript.
-  https://github.com/babel/babel  
+  https://github.com/babel/babel
 
 ## Frameworks
 
 - `vue`
   A progressive, incrementally-adoptable JavaScript framework for building UI on the web
-  https://github.com/vuejs/vue   
+  https://github.com/vuejs/vue
 
 - `react`
   A declarative, efficient, and flexible JavaScript library for building user interfaces.
@@ -72,8 +72,7 @@ tags:
   Build amazing native and progressive web apps with open web technologies. One app running on everything
   https://github.com/ionic-team/ionic
 
-
-## Reset and Normalize  
+## Reset and Normalize
 
 - `normalize.css`
   A collection of HTML element and attribute style-normalizations
@@ -95,7 +94,7 @@ tags:
 
 - `tween.js`
   JavaScript tweening engine for easy animations, incorporating optimised Robert Penner's equations.
-  https://github.com/tweenjs/tween.js  
+  https://github.com/tweenjs/tween.js
 
 - `TweenJS`
   A simple but powerful tweening / animation library for Javascript. Part of the CreateJS suite of libraries.
@@ -107,7 +106,7 @@ tags:
 
 - `Swiper`
   Most modern mobile touch slider with hardware accelerated transitions
-  https://github.com/nolimits4web/Swiper  
+  https://github.com/nolimits4web/Swiper
 
 ## Package Managers
 
@@ -137,7 +136,6 @@ tags:
   webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
   https://github.com/webpack/webpack
 
-
 ## Interview
 
 - `Front-end-Interview-questions`
@@ -156,7 +154,7 @@ tags:
 
 - `mobile-web-favorites`
   This is a favorites, with a mobile web tips.
-  https://github.com/hoosin/mobile-web-favorites    
+  https://github.com/hoosin/mobile-web-favorites
 
 ## Chart
 
@@ -188,14 +186,13 @@ tags:
 
 - `karma`
   Spectacular Test Runner for JavaScript
-  https://github.com/karma-runner/karma  
+  https://github.com/karma-runner/karma
 
 - `Ghost`
-    A simple, powerful publishing platform
-    https://github.com/TryGhost/Ghost  
+  A simple, powerful publishing platform
+  https://github.com/TryGhost/Ghost
 
-
-## Template  
+## Template
 
 - `polymer`
   Build modern apps using web components
@@ -203,12 +200,11 @@ tags:
 
 - `pug`
   Pug – robust, elegant, feature rich template engine for Node.js  
-  https://github.com/pugjs/pug  
+  https://github.com/pugjs/pug
 
 - `hexo`
   A fast, simple & powerful blog framework, powered by Node.js.
   https://github.com/hexojs/hexo
-
 
 ## Power Point
 
@@ -216,8 +212,7 @@ tags:
   It's a presentation framework based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com.
   https://github.com/impress/impress.js
 
-
-- `reveal.js`
+* `reveal.js`
   The HTML Presentation Framework
   https://github.com/hakimel/reveal.js
 
@@ -227,19 +222,17 @@ tags:
   Application Architecture for Building User Interfaces
   https://github.com/facebook/flux
 
-
 ## Code Guide
 
 - `Airbnb`
   JavaScript Style Guide
   https://github.com/airbnb/javascript
 
-
 ## Editor
+
 - `atom`
   Beautification abstraction package for Atom editor  
   https://github.com/Glavin001/atom-beautify
-
 
 ## Node
 

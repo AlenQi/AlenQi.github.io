@@ -1,24 +1,24 @@
 ---
-layout:     post
-title:      "Array ES6"
-subtitle:   "Array, ES6"
-date:       2017-02-21 21:33:31
-author:     "AlenQi"
-catalog:    true
-header-img: "array.png"
+layout: post
+title: 'Array ES6'
+subtitle: 'Array, ES6'
+date: 2017-02-21 21:33:31
+author: 'AlenQi'
+catalog: true
+header-img: 'array.png'
 tags:
-    - ES6
-    - JavaScript
+  - ES6
+  - JavaScript
 ---
 
-## Catagory
+## Category
 
 1. [Foreword](#Foreword)
 2. [Array.from()](#Array.from)
 3. [Array.of()](#Array.of)
-4. [数组实例的copyWithin()](#copyWithin)
-5. [数组实例的fill()](#fill)
-6. [数组实例的entries()，keys()，values()](#entries&keys&values)
+4. [数组实例的 copyWithin()](#copyWithin)
+5. [数组实例的 fill()](#fill)
+6. [数组实例的 entries()，keys()，values()](#entries&keys&values)
 7. [数组实例的 includes()](#includes)
 8. [数组的空位](#数组的空位)
 
@@ -27,6 +27,7 @@ tags:
 > 数组的扩展,及其模拟实现.
 
 <a id="Array.from">
+
 ## Array.from()
 
 `Array.from(arrayLike[, mapFn[, thisArg]])`
@@ -37,25 +38,25 @@ Parameters
   An array-like or iterable object to convert to an array.
 
 - mapFn Optional
-  Map function to call on every element of the array.  
+  Map function to call on every element of the array.
 
 - thisArg Optional
-  Value to use as this when executing mapFn.  
+  Value to use as this when executing mapFn.
 
 Return value
 
 - A new Array instance.
 
-`Array.from`方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。
+`Array.from`方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
 
 下面是一个类似数组的对象，`Array.from`将它转为真正的数组。
 
 ```javascript
 let arrayLike = {
-    '0': 'a',
-    '1': 'b',
-    '2': 'c',
-    length: 3
+  '0': 'a',
+  '1': 'b',
+  '2': 'c',
+  length: 3
 };
 
 // ES5的写法
@@ -68,27 +69,25 @@ let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
 对于还没有部署该方法的浏览器，可以用`Array.prototype.slice`方法替代。
 
 ```javascript
-const toArray = (() =>
-  Array.from ? Array.from : obj => [].slice.call(obj)
-)();
+const toArray = (() => (Array.from ? Array.from : obj => [].slice.call(obj)))();
 ```
 
-只要是部署了Iterator接口的数据结构，`Array.from`都能将其转为数组。
+只要是部署了 Iterator 接口的数据结构，`Array.from`都能将其转为数组。
 
 ```javascript
-Array.from('hello')
+Array.from('hello');
 // ['h', 'e', 'l', 'l', 'o']
 
-let namesSet = new Set(['a', 'b'])
-Array.from(namesSet) // ['a', 'b']
+let namesSet = new Set(['a', 'b']);
+Array.from(namesSet); // ['a', 'b']
 ```
 
-上面代码中，字符串和Set结构都具有Iterator接口，因此可以被`Array.from`转为真正的数组。
+上面代码中，字符串和 Set 结构都具有 Iterator 接口，因此可以被`Array.from`转为真正的数组。
 
 如果参数是一个真正的数组，`Array.from`会返回一个一模一样的新数组。
 
 ```javascript
-Array.from([1, 2, 3])
+Array.from([1, 2, 3]);
 // [1, 2, 3]
 ```
 
@@ -108,24 +107,24 @@ Array.from(arrayLike, x => x * x);
 // 等同于
 Array.from(arrayLike).map(x => x * x);
 
-Array.from([1, 2, 3], (x) => x * x)
+Array.from([1, 2, 3], x => x * x);
 // [1, 4, 9]
 ```
 
 下面的例子将数组中布尔值为`false`的成员转为`0`。
 
 ```javascript
-Array.from([1, , 2, , 3], (n) => n || 0)
+Array.from([1, , 2, , 3], n => n || 0);
 // [1, 0, 2, 0, 3]
 ```
 
 另一个例子是返回各种数据的类型。
 
 ```javascript
-function typesOf () {
-  return Array.from(arguments, value => typeof value)
+function typesOf() {
+  return Array.from(arguments, value => typeof value);
 }
-typesOf(null, [], NaN)
+typesOf(null, [], NaN);
 // ['object', 'object', 'number']
 ```
 
@@ -134,13 +133,13 @@ typesOf(null, [], NaN)
 `Array.from()`可以将各种值转为真正的数组，并且还提供`map`功能。这实际上意味着，只要有一个原始的数据结构，你就可以先对它的值进行处理，然后转成规范的数组结构，进而就可以使用数量众多的数组方法。
 
 ```javascript
-Array.from({ length: 2 }, () => 'jack')
+Array.from({ length: 2 }, () => 'jack');
 // ['jack', 'jack']
 ```
 
 上面代码中，`Array.from`的第一个参数指定了第二个参数运行的次数。这种特性可以让该方法的用法变得非常灵活。
 
-`Array.from()`的另一个应用是，将字符串转为数组，然后返回字符串的长度。因为它能正确处理各种Unicode字符，可以避免JavaScript将大于`\uFFFF`的Unicode字符，算作两个字符的bug。
+`Array.from()`的另一个应用是，将字符串转为数组，然后返回字符串的长度。因为它能正确处理各种 Unicode 字符，可以避免 JavaScript 将大于`\uFFFF`的 Unicode 字符，算作两个字符的 bug。
 
 ```javascript
 function countSymbols(string) {
@@ -149,6 +148,7 @@ function countSymbols(string) {
 ```
 
 <a id="Array.of">
+
 ## Array.of()
 
 `Array.of(element0[, element1[, ...[, elementN]]])`
@@ -166,15 +166,15 @@ Return value
 
 ```javascript
 //`Array`方法没有参数、一个参数、三个参数时，返回结果都不一样。只有当参数个数不少于2个时，`Array()`才会返回由参数组成的新数组。参数个数只有一个时，实际上是指定数组的长度。
-Array() // []
-Array(3) // [, , ,]
-Array(3, 11, 8) // [3, 11, 8]
+Array(); // []
+Array(3); // [, , ,]
+Array(3, 11, 8); // [3, 11, 8]
 
 //`Array.of`基本上可以用来替代`Array()`或`new Array()`，并且不存在由于参数不同而导致的重载。它的行为非常统一。
-Array.of() // []
-Array.of(undefined) // [undefined]
-Array.of(1) // [1]
-Array.of(1, 2) // [1, 2]
+Array.of(); // []
+Array.of(undefined); // [undefined]
+Array.of(1); // [1]
+Array.of(1, 2); // [1, 2]
 ```
 
 `Array.of`总是返回参数值组成的数组。如果没有参数，就返回一个空数组。
@@ -182,13 +182,14 @@ Array.of(1, 2) // [1, 2]
 `Array.of`方法可以用下面的代码模拟实现。
 
 ```javascript
-function ArrayOf(){
+function ArrayOf() {
   return [].slice.call(arguments);
 }
 ```
 
 <a id="copyWithin">
-## 数组实例的copyWithin()
+
+## 数组实例的 copyWithin()
 
 `arr.copyWithin(target)`
 `arr.copyWithin(target, start)`
@@ -239,7 +240,8 @@ i32a.copyWithin(0, 2);
 ```
 
 <a id="find&findIndex">
-## 数组实例的find()&&findIndex()
+
+## 数组实例的 find()&&findIndex()
 
 `arr.find(callback[, thisArg])`
 
@@ -268,16 +270,16 @@ Return value
 数组实例的`find`方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为`true`的成员，然后返回该成员。如果没有符合条件的成员，则返回`undefined`。
 
 ```javascript
-[1, 4, -5, 10].find((n) => n < 0)
+[1, 4, -5, 10].find(n => n < 0);
 // -5
 ```
 
-上面代码找出数组中第一个小于0的成员。
+上面代码找出数组中第一个小于 0 的成员。
 
 ```javascript
 [1, 5, 10, 15].find(function(value, index, arr) {
   return value > 9;
-}) // 10
+}); // 10
 ```
 
 上面代码中，`find`方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。
@@ -310,7 +312,7 @@ Return value
 ```javascript
 [1, 5, 10, 15].findIndex(function(value, index, arr) {
   return value > 9;
-}) // 2
+}); // 2
 ```
 
 这两个方法都可以接受第二个参数，用来绑定回调函数的`this`对象。
@@ -318,17 +320,19 @@ Return value
 另外，这两个方法都可以发现`NaN`，弥补了数组的`IndexOf`方法的不足。
 
 ```javascript
-[NaN].indexOf(NaN)
-// -1
+[NaN]
+  .indexOf(NaN)
+  // -1
 
-[NaN].findIndex(y => Object.is(NaN, y))
+  [NaN].findIndex(y => Object.is(NaN, y));
 // 0
 ```
 
 上面代码中，`indexOf`方法无法识别数组的`NaN`成员，但是`findIndex`方法可以借助`Object.is`方法做到。
 
 <a id="fill">
-## 数组实例的fill()
+
+## 数组实例的 fill()
 
 `arr.fill(value)`
 `arr.fill(value, start)`
@@ -352,10 +356,10 @@ Return value
 `fill`方法使用给定值，填充一个数组。
 
 ```javascript
-['a', 'b', 'c'].fill(7)
+['a', 'b', 'c'].fill(7);
 // [7, 7, 7]
 
-new Array(3).fill(7)
+new Array(3).fill(7);
 // [7, 7, 7]
 ```
 
@@ -364,14 +368,15 @@ new Array(3).fill(7)
 `fill`方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。
 
 ```javascript
-['a', 'b', 'c'].fill(7, 1, 2)
+['a', 'b', 'c'].fill(7, 1, 2);
 // ['a', 7, 'c']
 ```
 
-上面代码表示，`fill`方法从1号位开始，向原数组填充7，到2号位之前结束。
+上面代码表示，`fill`方法从 1 号位开始，向原数组填充 7，到 2 号位之前结束。
 
 <a id="entries&keys&values">
-## 数组实例的entries()，keys()，values()
+
+## 数组实例的 entries()，keys()，values()
 
 `a.entries()`
 `arr.keys()`
@@ -381,7 +386,7 @@ Return value
 
 - A new Array iterator object.
 
-ES6提供三个新的方法——`entries()`，`keys()`和`values()`——用于遍历数组。它们都返回一个遍历器对象，可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
+ES6 提供三个新的方法——`entries()`，`keys()`和`values()`——用于遍历数组。它们都返回一个遍历器对象，可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
 
 ```javascript
 for (let index of ['a', 'b'].keys()) {
@@ -404,6 +409,7 @@ for (let [index, elem] of ['a', 'b'].entries()) {
 ```
 
 <a id="includes">
+
 ## 数组实例的 includes()
 
 `arr.includes(searchElement)`
@@ -424,15 +430,16 @@ Return value
 `Array.prototype.includes`方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的`includes`方法类似。
 
 ```javascript
-[1, 2, 3].includes(2)     // true
-[1, 2, 3].includes(4)     // false
-[1, 2, NaN].includes(NaN) // true
+[1, 2, 3]
+  .includes(2) // true
+  [(1, 2, 3)].includes(4) // false
+  [(1, 2, NaN)].includes(NaN); // true
 ```
 
 该方法的第二个参数表示搜索的起始位置，默认为`0`。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度（比如第二个参数为`-4`，但数组长度为`3`），则会重置为从`0`开始。
 
 ```javascript
-[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, 3); // false
 [1, 2, 3].includes(3, -1); // true
 ```
 
@@ -447,14 +454,14 @@ if (arr.indexOf(el) !== -1) {
 `indexOf`方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于`-1`，表达起来不够直观。二是，它内部使用严格相等运算符（`===`）进行判断，这会导致对`NaN`的误判。
 
 ```javascript
-[NaN].indexOf(NaN)
+[NaN].indexOf(NaN);
 // -1
 ```
 
 `includes`使用的是不一样的判断算法，就没有这个问题。
 
 ```javascript
-[NaN].includes(NaN)
+[NaN].includes(NaN);
 // true
 ```
 
@@ -464,8 +471,7 @@ if (arr.indexOf(el) !== -1) {
 const contains = (() =>
   Array.prototype.includes
     ? (arr, value) => arr.includes(value)
-    : (arr, value) => arr.some(el => el === value)
-)();
+    : (arr, value) => arr.some(el => el === value))();
 contains(['foo', 'bar'], 'baz'); // => false
 ```
 
@@ -474,19 +480,19 @@ contains(['foo', 'bar'], 'baz'); // => false
 数组的空位指，数组的某一个位置没有任何值。比如，`Array`构造函数返回的数组都是空位。
 
 ```javascript
-Array(3) // [, , ,]
+Array(3); // [, , ,]
 ```
 
-上面代码中，`Array(3)`返回一个具有3个空位的数组。
+上面代码中，`Array(3)`返回一个具有 3 个空位的数组。
 
 注意，空位不是`undefined`，一个位置的值等于`undefined`，依然是有值的。空位是没有任何值，`in`运算符可以说明这一点。
 
 ```javascript
-0 in [undefined, undefined, undefined] // true
-0 in [, , ,] // false
+0 in [undefined, undefined, undefined]; // true
+0 in [, , ,]; // false
 ```
 
-上面代码说明，第一个数组的0号位置是有值的，第二个数组的0号位置没有值。
+上面代码说明，第一个数组的 0 号位置是有值的，第二个数组的 0 号位置没有值。
 
 ES5 对空位的处理，已经很不一致了，大多数情况下会忽略空位。
 
@@ -522,27 +528,27 @@ ES6 则是明确将空位转为`undefined`。
 `Array.from`方法会将数组的空位，转为`undefined`，也就是说，这个方法不会忽略空位。
 
 ```javascript
-Array.from(['a',,'b'])
+Array.from(['a', , 'b']);
 // [ "a", undefined, "b" ]
 ```
 
 扩展运算符（`...`）也会将空位转为`undefined`。
 
 ```javascript
-[...['a',,'b']]
+[...['a', , 'b']];
 // [ "a", undefined, "b" ]
 ```
 
 `copyWithin()`会连空位一起拷贝。
 
 ```javascript
-[,'a','b',,].copyWithin(2,0) // [,"a",,"a"]
+[, 'a', 'b', ,].copyWithin(2, 0); // [,"a",,"a"]
 ```
 
 `fill()`会将空位视为正常的数组位置。
 
 ```javascript
-new Array(3).fill('a') // ["a","a","a"]
+new Array(3).fill('a'); // ["a","a","a"]
 ```
 
 `for...of`循环也会遍历空位。

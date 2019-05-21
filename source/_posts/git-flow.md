@@ -259,14 +259,4 @@ Git 用以计算校验和的机制叫做 SHA-1 散列（hash，哈希）。 这�
   rm -rf new-feature-or-bug-fix
   
   git worktree prune
-  ```  
-
-
-  
-  
-    
-
-
-
-
-
+  ```
