@@ -5,8 +5,8 @@ date:       2018-09-26 20:11:36
 author:     "AlenQi"
 header-img: "bg.png"
 tags:
-    - 前端开发
-    - Git
+  - 前端开发
+  - Git
 ---
 
 # Git 使用分享

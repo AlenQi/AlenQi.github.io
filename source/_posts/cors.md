@@ -1,10 +1,10 @@
 ---
-layout: post
-title: 'CORS 跨域资源共享'
-subtitle: 'Cross-origin resource sharing'
-date: 2017-03-28 22:41:37
-author: 'AlenQi'
-catalog: true
+layout:     post
+title:      'CORS 跨域资源共享'
+subtitle:   'Cross-origin resource sharing'
+date:       2017-03-28 22:41:37
+author:     'AlenQi'
+catalog:    true
 header-img: 'cors-blog-main.jpg'
 tags:
   - 前端开发

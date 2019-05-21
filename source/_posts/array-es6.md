@@ -7,10 +7,8 @@ author:     'AlenQi'
 catalog:    true
 header-img: 'array.png'
 tags:
-
-    - ES6
-    - JavaScript
-
+  - ES6
+  - JavaScript
 ---
 
 ## Category

@@ -7,7 +7,7 @@ author:     "AlenQi"
 catalog:    true
 header-img: "bg.jpg"
 tags:
-    - JavaScript
+  - JavaScript
 ---
 
 > 有很多有趣的JS的写法,比如：`[[]] == 0`,这里只总结一些华而实的JS优雅写法,随手补充

@@ -13,7 +13,7 @@
 
     <title>
         
-          输入了 url 然后呢？ - AlenQi的博客 | AlenQi&#39;s Blog
+          输入了 url 然后呢？  - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
@@ -161,7 +161,7 @@
                           <a class="tag" href="/tags/#优化" title="优化">优化</a>
                         
                     </div>
-                    <h1>输入了 url 然后呢？</h1>
+                    <h1>输入了 url 然后呢？ </h1>
                     <h2 class="subheading">url 加载 渲染 优化</h2>
                     <span class="meta">
                         Posted by AlenQi on
@@ -196,57 +196,66 @@
 <p>What really happens when you navigate to a URL</p>
 </blockquote>
 <h2 id="输入地址"><a href="#输入地址" class="headerlink" title="输入地址"></a>输入地址</h2><p><img src="1.jpeg" alt="input url"><br><small class="img-hint">输入 url</small></p>
-<p>当我们在浏览器输入 url 时，浏览器已经开始只能匹配了，它会从我们的历史记录里，书签等地方找到可能匹配的字符串，给出补全的 url，有些浏览器甚至会把相关的页面展示出来。</p>
-<h2 id="浏览器查找-IP-地址"><a href="#浏览器查找-IP-地址" class="headerlink" title="浏览器查找 IP 地址"></a>浏览器查找 IP 地址</h2><p>需要把我们输入的域名地址转换成 IP 地址，这一过程称为 DNS 解析。DNS 解析是一个递归查询的过程。</p>
+<p>当我们在浏览器输入 url 时， 浏览器已经开始只能匹配了， 它会从我们的历史记录里， 书签等地方找到可能匹配的字符串， 给出补全的 url， 有些浏览器甚至会把相关的页面展示出来。 </p>
+<h2 id="浏览器查找-IP-地址"><a href="#浏览器查找-IP-地址" class="headerlink" title="浏览器查找 IP 地址"></a>浏览器查找 IP 地址</h2><p>需要把我们输入的域名地址转换成 IP 地址， 这一过程称为 DNS 解析。 DNS 解析是一个递归查询的过程。 </p>
 <p><img src="2.gif" alt="input url"><br><small class="img-hint">DNS 域名解析过程</small></p>
 <blockquote>
 <p>域名解析过程： . -&gt; .com -&gt; google.com. -&gt; <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a>.</p>
 </blockquote>
 <ul>
-<li>浏览器缓存<br>浏览器缓存 DNS 记录一段时间，操作系统并没有告诉浏览器每个 DNS 记录的生存时间，因此浏览器会将其缓存一段固定的时间（一般在 2 到 30 分钟之间）。</li>
-<li>系统缓存<br>如果浏览器缓存不包含所需的记录，则浏览器进行调用操作系统的缓存。</li>
-<li>路由器缓存<br>请求继续到路由器，路由器通常具有自己的 DNS 缓存。</li>
-<li>IPS 服务器缓存<br>检查的下一个位置是缓存 ISP 的 DNS 服务器。</li>
-<li>根域名服务器缓存</li>
+<li><p>浏览器缓存</p>
+<p>浏览器缓存 DNS 记录一段时间， 操作系统并没有告诉浏览器每个 DNS 记录的生存时间， 因此浏览器会将其缓存一段固定的时间（一般在 2 到 30 分钟之间）。 </p>
+</li>
+<li><p>系统缓存</p>
+<p>如果浏览器缓存不包含所需的记录， 则浏览器进行调用操作系统的缓存。 </p>
+</li>
+<li><p>路由器缓存</p>
+<p>请求继续到路由器， 路由器通常具有自己的 DNS 缓存。 </p>
+</li>
+<li><p>IPS 服务器缓存</p>
+<p>检查的下一个位置是缓存 ISP 的 DNS 服务器。 </p>
+</li>
+<li><p>根域名服务器缓存</p>
+</li>
 <li>顶级域名服务器缓存</li>
 <li>主域名服务器缓存</li>
 </ul>
 <blockquote>
-<p>DNS 负载均衡：成千上万台服务器都可以作为解析的 IP 地址，DNS 可以返回一个适合的机器的 IP 给用户，从而达到加速和稳定的效果，例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等，这种过程就是 DNS 负载均衡，又叫做 DNS 重定向。CDN 就是利用了 DNS 的重定向技术，DNS 服务器会返回一个跟用户最接近的点的 IP 地址给用户，CDN 节点的服务器负责响应用户的请求，提供所需的内容。</p>
+<p>DNS 负载均衡： 成千上万台服务器都可以作为解析的 IP 地址， DNS 可以返回一个适合的机器的 IP 给用户， 从而达到加速和稳定的效果， 例如可以根据每台机器的负载量， 该机器离用户地理位置的距离等等， 这种过程就是 DNS 负载均衡， 又叫做 DNS 重定向。 CDN 就是利用了 DNS 的重定向技术， DNS 服务器会返回一个跟用户最接近的点的 IP 地址给用户， CDN 节点的服务器负责响应用户的请求， 提供所需的内容。 </p>
 </blockquote>
-<h2 id="浏览器向-Web-服务器发送-HTTP-请求"><a href="#浏览器向-Web-服务器发送-HTTP-请求" class="headerlink" title="浏览器向 Web 服务器发送 HTTP 请求"></a>浏览器向 Web 服务器发送 HTTP 请求</h2><p>在动态网页中，浏览器需要发送请求到网站的服务器。<br>一般连接头要求服务器保持 TCP 连接打开以用于进一步的请求。<br>请求中一般都会包含浏览器对此域的 Cookie。<br>HTTP 协议是使用 TCP 作为其传输层协议的，当 TCP 出现瓶颈时，HTTP 也会受到影响。TCP 通过三次握手协议保证通信正常。</p>
+<h2 id="浏览器向-Web-服务器发送-HTTP-请求"><a href="#浏览器向-Web-服务器发送-HTTP-请求" class="headerlink" title="浏览器向 Web 服务器发送 HTTP 请求"></a>浏览器向 Web 服务器发送 HTTP 请求</h2><p>在动态网页中， 浏览器需要发送请求到网站的服务器。<br>一般连接头要求服务器保持 TCP 连接打开以用于进一步的请求。<br>请求中一般都会包含浏览器对此域的 Cookie。<br>HTTP 协议是使用 TCP 作为其传输层协议的， 当 TCP 出现瓶颈时， HTTP 也会受到影响。 TCP 通过三次握手协议保证通信正常。 </p>
 <blockquote>
-<p>HTTP 和 HTTPS,HTTPS 协议的本质就是 HTTP + SSL(or TLS).HTTP 请求报文由三部分组成: <code>请求行</code>, <code>请求报头</code>,<code>请求正文</code>。</p>
+<p>HTTP 和 HTTPS, HTTPS 协议的本质就是 HTTP + SSL(or TLS). HTTP 请求报文由三部分组成: <code>请求行</code> , <code>请求报头</code> , <code>请求正文</code> 。 </p>
 </blockquote>
 <p>服务器处理请求并返回 HTTP 报文.</p>
 <blockquote>
-<p>HTTP 响应报文也是由三部分组成: <code>状态码</code>, <code>响应报头</code>,<code>响应报文</code>。根据状态码浏览器可能做重定向。浏览器会再次跟踪重定向的地址。</p>
+<p>HTTP 响应报文也是由三部分组成: <code>状态码</code> , <code>响应报头</code> , <code>响应报文</code> 。 根据状态码浏览器可能做重定向。 浏览器会再次跟踪重定向的地址。 </p>
 </blockquote>
-<p>浏览器根据返回的响应报文，进行页面的渲染。</p>
+<p>浏览器根据返回的响应报文， 进行页面的渲染。 </p>
 <h2 id="浏览器解析渲染页面"><a href="#浏览器解析渲染页面" class="headerlink" title="浏览器解析渲染页面"></a>浏览器解析渲染页面</h2><p><img src="3.png" alt="input url"><br><small class="img-hint">页面渲染</small></p>
-<p>浏览器是一个边解析边渲染的过程。首先浏览器解析 HTML 文件构建 DOM 树，然后解析 CSS 文件构建渲染树，等到渲染树构建完成后，浏览器开始布局渲染树并将其绘制到屏幕上。这个过程比较复杂，涉及到两个概念: reflow(回流)和 repain(重绘)。DOM 节点中的各个元素都是以盒模型的形式存在，这些都需要浏览器去计算其位置和大小等，这个过程称为 relow;当盒模型的位置,大小以及其他属性，如颜色,字体,等确定下来之后，浏览器便开始绘制内容，这个过程称为 repain。页面在首次加载时必然会经历 reflow 和 repain。reflow 和 repain 过程是非常消耗性能的，尤其是在移动设备上，它会破坏用户体验，有时会造成页面卡顿。所以我们应该尽可能少的减少 reflow 和 repain。计算样式并生成渲染对象的过程为 attachment，每个 dom 节点有一个 attach 方法，attachment 的过程是同步的，调用新节点的 attach 方法插入到 dom 树中。</p>
-<p>parser：解析， Render Tree:渲染树 Layout:安排布局</p>
-<p>浏览器在解析页面的过程中，如果遇到请求外部资源时，就会发送请求获取嵌入在 HTML 中的资源（如图片、音频、视频、CSS、JS 等等），请求是异步的，并不会影响文档的加载。但是，如果遇到 JS 文件，HTML 文档会挂起渲染，要等待 JS 加载并且解析完毕，在回到断点处继续渲染。因为 JS 可能改变文档结构，浏览器的 JS 阻塞行为，是为了更有效的渲染页面。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>抛过 UI 层面，一个网页的体感很大程度就要依靠加载的速度，在这一系列的加载渲染过程中，可优化的项目很多：</p>
+<p>浏览器是一个边解析边渲染的过程。 首先浏览器解析 HTML 文件构建 DOM 树， 然后解析 CSS 文件构建渲染树， 等到渲染树构建完成后， 浏览器开始布局渲染树并将其绘制到屏幕上。 这个过程比较复杂， 涉及到两个概念: reflow(回流)和 repain(重绘)。 DOM 节点中的各个元素都是以盒模型的形式存在， 这些都需要浏览器去计算其位置和大小等， 这个过程称为 relow; 当盒模型的位置, 大小以及其他属性， 如颜色, 字体, 等确定下来之后， 浏览器便开始绘制内容， 这个过程称为 repain。 页面在首次加载时必然会经历 reflow 和 repain。 reflow 和 repain 过程是非常消耗性能的， 尤其是在移动设备上， 它会破坏用户体验， 有时会造成页面卡顿。 所以我们应该尽可能少的减少 reflow 和 repain。 计算样式并生成渲染对象的过程为 attachment， 每个 dom 节点有一个 attach 方法， attachment 的过程是同步的， 调用新节点的 attach 方法插入到 dom 树中。 </p>
+<p>parser： 解析， Render Tree:渲染树 Layout:安排布局</p>
+<p>浏览器在解析页面的过程中， 如果遇到请求外部资源时， 就会发送请求获取嵌入在 HTML 中的资源（如图片、 音频、 视频、 CSS、 JS 等等）， 请求是异步的， 并不会影响文档的加载。 但是， 如果遇到 JS 文件， HTML 文档会挂起渲染， 要等待 JS 加载并且解析完毕， 在回到断点处继续渲染。 因为 JS 可能改变文档结构， 浏览器的 JS 阻塞行为， 是为了更有效的渲染页面。 </p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>抛过 UI 层面， 一个网页的体感很大程度就要依靠加载的速度， 在这一系列的加载渲染过程中， 可优化的项目很多： </p>
 <ul>
-<li><p>缓存，既然浏览器第一个寻找的是缓存，那么我们就要先利用缓存。能缓存在本地的尽量从本地加载。脱离网络，将静态资源缓存在浏览器端。</p>
+<li><p>缓存， 既然浏览器第一个寻找的是缓存， 那么我们就要先利用缓存。 能缓存在本地的尽量从本地加载。 脱离网络， 将静态资源缓存在浏览器端。 </p>
 </li>
-<li><p>DNS，必须从网络加载的，要缩短链路时间，合理的利用 DNS 资源。在减少 DNS 查找和允许高并发下载中找到折中方案。</p>
+<li><p>DNS， 必须从网络加载的， 要缩短链路时间， 合理的利用 DNS 资源。 在减少 DNS 查找和允许高并发下载中找到折中方案。 </p>
 </li>
-<li><p>减少请求数，合并文件，图片映射，行内图片，懒加载等，都可以提升首屏时间。</p>
+<li><p>减少请求数， 合并文件， 图片映射， 行内图片， 懒加载等， 都可以提升首屏时间。 </p>
 </li>
-<li><p>避免重定向，重定向不可避免的降低的用户体验，如果只是为了链接两个网站，可以创建一条 CNAME 指向。</p>
+<li><p>避免重定向， 重定向不可避免的降低的用户体验， 如果只是为了链接两个网站， 可以创建一条 CNAME 指向。 </p>
 </li>
-<li><p>减少 DOM 元素，可以说避免不必要的 DOM 深度，浏览器会节省遍历树的时间。</p>
+<li><p>减少 DOM 元素， 可以说避免不必要的 DOM 深度， 浏览器会节省遍历树的时间。 </p>
 </li>
-<li><p>规范 CSS，不要使用行内样式，避免后代选择器，尽量使用子选择器，避免使用通配符，选择<link>舍弃@import，样式表放在顶部等。</p>
+<li><p>规范 CSS， 不要使用行内样式， 避免后代选择器， 尽量使用子选择器， 避免使用通配符， 选择<link>舍弃@import， 样式表放在顶部等。 </p>
 </li>
-<li><p>减少 JS 对 DOM 对操作，避免利用 JS 去修复布局问题，把脚本放在底部。</p>
+<li><p>减少 JS 对 DOM 对操作， 避免利用 JS 去修复布局问题， 把脚本放在底部。 </p>
 </li>
-<li><p>清除不必要对 Cookie，保证 Cookie 尽量小，给 cookie 设置合适的域级别，以免影响其它子域，设置合适对有效期。</p>
+<li><p>清除不必要对 Cookie， 保证 Cookie 尽量小， 给 cookie 设置合适的域级别， 以免影响其它子域， 设置合适对有效期。 </p>
 </li>
 </ul>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p><a href="https://github.com/AlenQi/what-happens-when" target="_blank" rel="noopener">这里再推荐一个更加详细的版本，点击传送</a></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p><a href="https://github.com/AlenQi/what-happens-when" target="_blank" rel="noopener">这里再推荐一个更加详细的版本， 点击传送</a></p>
 
 
                 <hr>

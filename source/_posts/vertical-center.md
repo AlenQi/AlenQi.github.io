@@ -7,13 +7,13 @@ author:     "AlenQi"
 catalog:    true
 header-img: "bg.png"
 tags:
-    - ES6
-    - CSS
+  - ES6
+  - CSS
 ---
 
-## 方法一：
+## 方法一： 
 
-原理：在元素属性为`table`使用里使用`vertical-align`属性
+原理： 在元素属性为 `table` 使用里使用 `vertical-align` 属性
 
 ``` html
   <!DOCTYPE html>
@@ -51,9 +51,9 @@ tags:
 
 ![Alt text](1.jpg)
 
-## 方法二：
+## 方法二： 
 
-原理：对于有固定宽高的元素，利用绝对定位设置为：`top: 0; bottom: 0; left: 0; right: 0; margin: auto`因为这个元素有固定的高度，并不能距离上下都为0，`margin： 0`会使它居中显示。
+原理： 对于有固定宽高的元素， 利用绝对定位设置为： `top: 0; bottom: 0; left: 0; right: 0; margin: auto` 因为这个元素有固定的高度， 并不能距离上下都为0， `margin： 0` 会使它居中显示。 
 
 ``` html
   <!DOCTYPE html>
@@ -87,9 +87,9 @@ tags:
 
 ![Alt text](2.jpg)
 
-## 方法三：
+## 方法三： 
 
-原理：利用行高，设置`line-height`和元素等高就行。
+原理： 利用行高， 设置 `line-height` 和元素等高就行。 
 
 ``` html
   <!DOCTYPE html>
@@ -117,9 +117,9 @@ tags:
 
 ![Alt text](3.jpg)
 
-## 方法四：
+## 方法四： 
 
-原理：使用css3的`display: -webkit-box`属性，再设置`-webkit-box-pack: cente; -webkit-box-align:c enter`
+原理： 使用css3的 `display: -webkit-box` 属性， 再设置 `-webkit-box-pack: cente; -webkit-box-align:c enter` 
 
 ``` html
   <!DOCTYPE html>
@@ -150,9 +150,9 @@ tags:
 
 ![Alt text](4.jpg)
 
-## 方法五：
+## 方法五： 
 
-原理：使用css3的新属性`transform: translate(x,y)`属性
+原理： 使用css3的新属性 `transform: translate(x,y)` 属性
 
 ``` html
   <!DOCTYPE html>
@@ -195,9 +195,9 @@ tags:
 
 ![Alt text](5.jpg)
 
-## 方法六：
+## 方法六： 
 
-原理：使用`:before`元素
+原理： 使用 `:before` 元素
 
 ``` html
   <!DOCTYPE html>

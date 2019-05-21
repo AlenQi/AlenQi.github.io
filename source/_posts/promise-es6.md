@@ -1,10 +1,10 @@
 ---
-layout: post
-title: 'Promise ES6'
-subtitle: 'Promise，ES6'
-date: 2017-01-17 14:34:52
-author: 'AlenQi'
-catalog: true
+layout:     post
+title:      'Promise ES6'
+subtitle:   'Promise，ES6'
+date:       2017-01-17 14:34:52
+author:     'AlenQi'
+catalog:    true
 header-img: 'post-bg-js-promise-es6.jpg'
 tags:
   - 前端开发
@@ -13,7 +13,7 @@ tags:
   - ES6
 ---
 
-<!-- ## Catagory
+## Catagory
 
 1. [Foreword](#Foreword)
 2. [什么是Promise?](#什么是Promise?)
@@ -22,7 +22,7 @@ tags:
 5. [Promise的方法链](#Promise的方法链)
 6. [Promise.all&&Promise.race](#Promise.all&&Promise.race)
   1. [Promise.all](#Promise.all)
-  2. [Promise.race](#Promise.race) -->
+  2. [Promise.race](#Promise.race)
 
 ## Foreword
 

@@ -6,12 +6,10 @@ author:     'AlenQi'
 catalog:    true
 header-img: 'atom-bg.png'
 tags:
-
-    - 前端开发
-    - atom
-    - 编辑器
-    - 插件
-
+  - 前端开发
+  - atom
+  - 编辑器
+  - 插件
 ---
 
 ## Foreword
