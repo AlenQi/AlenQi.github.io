@@ -1,10 +1,10 @@
 ---
-layout: post
-title: 你的JavaScript代码都经历了什么
-date: 2018-08-20 16:34:20
-author: "AlenQi"
-catalog: true
-header-img: "code-course.jpg"
+layout:       post
+title:        你的JavaScript代码都经历了什么
+date:         2018-08-20 16:34:20
+author:       "AlenQi"
+catalog:      true
+header-img:   "code-course.jpg"
 tags:
     - 前端开发
     - 事件循环

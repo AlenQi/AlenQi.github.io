@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: 我们为什么需要 Node 中间层
 date: 2018-11-15 17:36:39
@@ -7,11 +6,9 @@ author: 'AlenQi'
 catalog: true
 header-img: 'bg.jpg'
 tags:
-
-- 前端开发
-- JavaScript
-- Node.js
-
+  - 前端开发
+  - JavaScript
+  - Node.js
 ---
 
 ## 首先跳出前端

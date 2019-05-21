@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: '输入了 url 然后呢？'
 subtitle: 'url 加载 渲染 优化'
@@ -8,13 +7,11 @@ author: 'AlenQi'
 catalog: true
 header-img: 'bg.gif'
 tags:
-
-- 前端开发
-- JavaScript
-- HTTP
-- 页面加载
-- 优化
-
+    - 前端开发
+    - JavaScript
+    - HTTP
+    - 页面加载
+    - 优化
 ---
 
 ## Catagory

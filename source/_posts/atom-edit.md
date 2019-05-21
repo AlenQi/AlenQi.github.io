@@ -1,13 +1,15 @@
 ---
-
-layout: post
-title: "Atom 使用插件精选(FE)"
-date: 2017-03-10 21:56:25
-author: "AlenQi"
-catalog: true
-header-img: "atom-bg.png"
-tags: - 前端开发 - atom - 编辑器 - 插件
-
+layout:     post
+title:      'Atom 使用插件精选(FE)'
+date:       2017-03-10 21:56:25
+author:     'AlenQi'
+catalog:    true
+header-img: 'atom-bg.png'
+tags:
+    - 前端开发
+    - atom
+    - 编辑器
+    - 插件
 ---
 
 ## Foreword
