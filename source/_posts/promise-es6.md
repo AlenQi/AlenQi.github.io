@@ -1,18 +1,17 @@
 ---
-layout:     post
-title:      "Promise ES6"
-subtitle:   "Promise，ES6"
-date:       2017-01-17 14:34:52
-author:     "AlenQi"
-catalog:    true
-header-img: "post-bg-js-promise-es6.jpg"
+layout: post
+title: 'Promise ES6'
+subtitle: 'Promise，ES6'
+date: 2017-01-17 14:34:52
+author: 'AlenQi'
+catalog: true
+header-img: 'post-bg-js-promise-es6.jpg'
 tags:
-    - 前端开发
-    - JavaScript
-    - promise
-    - ES6
+  - 前端开发
+  - JavaScript
+  - promise
+  - ES6
 ---
-
 
 <!-- ## Catagory
 
@@ -25,57 +24,62 @@ tags:
   1. [Promise.all](#Promise.all)
   2. [Promise.race](#Promise.race) -->
 
-
 ## Foreword
 
 > promise
 
-## 什么是Promise?
+## 什么是 Promise?
 
-Promise是抽象异步处理对象以及对其进行各种操作的组件。Promise最早被提出与基于并列/并行处理设计的***E语言***，JavaScript也因为Promise拥有5投入这种特性。
+Promise 是抽象异步处理对象以及对其进行各种操作的组件。Promise 最早被提出与基于并列/并行处理设计的**_E 语言_**，JavaScript 也因为 Promise 拥有 5 投入这种特性。
 
-ES6 Promises的规范来源于Promises/A+社区，它有很多版本的实现。
+ES6 Promises 的规范来源于 Promises/A+社区，它有很多版本的实现。
 
-- 用new Promise 实例化的promise对象有三个状态。
-  1. ***Pending***
-  2. ***Fulfilled***
-  3. ***Rejected***
+- 用 new Promise 实例化的 promise 对象有三个状态。
+  1. **_Pending_**
+  2. **_Fulfilled_**
+  3. **_Rejected_**
 
-根据ES6 Promises定义的API大致可以分为下面三种
+根据 ES6 Promises 定义的 API 大致可以分为下面三种
 
 - Constructor
-  - Promise类似于 XMLHttpRequest，从构造函数 Promise 来创建一个新建新promise对象作为接口。
-    要想创建一个promise对象、可以使用new来调用Promise的构造器来进行实例化
 
-    ``` Javascript
+  - Promise 类似于 XMLHttpRequest，从构造函数 Promise 来创建一个新建新 promise 对象作为接口。
+    要想创建一个 promise 对象、可以使用 new 来调用 Promise 的构造器来进行实例化
+
+    ```Javascript
     let promise = new Promise(function(resolve, reject) {
         // 异步处理
         // 处理结束后、调用resolve 或 reject
     })
     ```
-    promise对象刚被创建后的初始化状态就是 `Pending`
+
+    promise 对象刚被创建后的初始化状态就是 `Pending`
 
 - Instance Method
-  - 对通过new生成的promise对象为了设置其值在 resolve(成功) / reject(失败)时调用的回调函数
-    可以使用promise.then() 实例方法。
 
-    ``` JavaScript
+  - 对通过 new 生成的 promise 对象为了设置其值在 resolve(成功) / reject(失败)时调用的回调函数
+    可以使用 promise.then() 实例方法。
+
+    ```JavaScript
     promise.then(onFulfilled, onRejected)
     ```
+
   - resolve(成功)时
     此时的对象状态改变为 `Fulfilled`
     onFulfilled 会被调用
   - reject(失败)时
     此时的对象状态改变为 `Rejected`
     onRejected 会被调用
-  >promise对象的状态，从Pending转换为Fulfilled或Rejected之后， 这个promise对象的状态就不会再发生任何变化。也就是说，在[.then]后执行的函数只会被调用一次。
+    > promise 对象的状态，从 Pending 转换为 Fulfilled 或 Rejected 之后， 这个 promise 对象的状态就不会再发生任何变化。也就是说，在[.then]后执行的函数只会被调用一次。
 
 - Static Method
-  -  Promise 全局对象还拥有一些静态方法
+  - Promise 全局对象还拥有一些静态方法
 
-## Promise如何用?
-- 我们先用Promise来通过异步处理方式来获取XMLHttpRequest(XHR)的数据看看
-``` Javascript
+## Promise 如何用?
+
+- 我们先用 Promise 来通过异步处理方式来获取 XMLHttpRequest(XHR)的数据看看
+
+```Javascript
 function getURL(URL) {
     return new Promise(function (resolve, reject) {
         let req = new XMLHttpRequest()
@@ -115,9 +119,11 @@ getURL(URL).then(function onFulfilled(value){
 //  并调用onRejected函数，即第二个参数或者catch中的函数
 ```
 
-## Promise的同步与异步
-- 在promise状态就算是在注册时立即转变为Settled（不变的），Promise也会以异步的方式调用该回调函数，这是在Promise设计时的规定
-``` JavaScript
+## Promise 的同步与异步
+
+- 在 promise 状态就算是在注册时立即转变为 Settled（不变的），Promise 也会以异步的方式调用该回调函数，这是在 Promise 设计时的规定
+
+```JavaScript
 let promise = new Promise(function (resolve){
     console.log("1") // 1
     resolve(2)
@@ -129,16 +135,19 @@ console.log("3") // 2
 
 // 输出结果为1、3、2
 ```
-- 这样的设计是合理且符合规范的，如果是同步调用那么promise状态转变是否是立即转变就会影响程序执行的顺序，难以控制预期。
-- [Effective JavaScript](//effectivejs.com/)也对同步异步有所解释
->绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。
-如果对异步回调函数进行同步调用的话，处理顺序可能会与预期不符，可能带来意料之外的后果。
-对异步回调函数进行同步调用，还可能导致栈溢出或异常处理错乱等问题。
-如果想在将来某时刻调用异步回调函数的话，可以使用 setTimeout 等异步API。
 
-## Promise的方法链
-- Promise.prototype.then方法返回的是一个新的Promise对象，因此可以采用链式写法。由于这种promise chain,promise适合处理这种异步处理较多的应用场景。
-``` JavaScript
+- 这样的设计是合理且符合规范的，如果是同步调用那么 promise 状态转变是否是立即转变就会影响程序执行的顺序，难以控制预期。
+- [Effective JavaScript](//effectivejs.com/)也对同步异步有所解释
+  > 绝对不能对异步回调函数（即使在数据已经就绪）进行同步调用。
+  > 如果对异步回调函数进行同步调用的话，处理顺序可能会与预期不符，可能带来意料之外的后果。
+  > 对异步回调函数进行同步调用，还可能导致栈溢出或异常处理错乱等问题。
+  > 如果想在将来某时刻调用异步回调函数的话，可以使用 setTimeout 等异步 API。
+
+## Promise 的方法链
+
+- Promise.prototype.then 方法返回的是一个新的 Promise 对象，因此可以采用链式写法。由于这种 promise chain,promise 适合处理这种异步处理较多的应用场景。
+
+```JavaScript
 let correctChain = new Promise(function (resolve) {
     resolve(1)
 })
@@ -152,18 +161,20 @@ correctChain.then(function(value) {
   return value + 1
 }).then(function(value) {
   // third
-  // value === 3  
+  // value === 3
   return value + 1
 }).catch(function onRejected(error){
     console.log(error)
 })
 ```
->promise chain - 方法链越短越好。
 
-- 这里`then`没有第二个方法，在发生异常的时候，或者状态变为reject是会被catch捕获。我们只能捕获到错误，无法判断错误来源，我们也无法判断错误是主动抛出还是其他异常导致的，这也是建议reject而不是throw。
-- 方法链值的传递，传给每个`then`方法的`value`的值都是前一个promise对象通过`return`返回的值。
-- 每次 promise.then 调用都会返回一个新创建的promise对象，所以链式调用不能写在成下面的样子
-``` JavaScript
+> promise chain - 方法链越短越好。
+
+- 这里`then`没有第二个方法，在发生异常的时候，或者状态变为 reject 是会被 catch 捕获。我们只能捕获到错误，无法判断错误来源，我们也无法判断错误是主动抛出还是其他异常导致的，这也是建议 reject 而不是 throw。
+- 方法链值的传递，传给每个`then`方法的`value`的值都是前一个 promise 对象通过`return`返回的值。
+- 每次 promise.then 调用都会返回一个新创建的 promise 对象，所以链式调用不能写在成下面的样子
+
+```JavaScript
 let errorChain = new Promise(function (resolve) {
     resolve(1)
 })
@@ -177,11 +188,14 @@ errorChain.then(function (value) {
     console.log("1: " + value)  // => 100
 })
 ```
-- 这样传给每个`then`的value值都是相同的`1`,而且几乎是同时调用的  
+
+- 这样传给每个`then`的 value 值都是相同的`1`,而且几乎是同时调用的
 
 ## Promise.all&&Promise.race
+
 - Promise.all
-``` JavaScript
+
+```JavaScript
 Promise.all(promiseArray)
 // 生成并返回一个新的promise对象
 let array1 = Promise.resolve(1)
@@ -197,7 +211,8 @@ Promise.all([array1, array1, array1]).then(function (results) {
 ```
 
 - Promise.race
-``` JavaScript
+
+```JavaScript
 Promise.race(promiseArray);
 // 生成并返回一个新的promise对象
 let array1 = Promise.resolve(1)
