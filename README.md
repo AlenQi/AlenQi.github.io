@@ -12,7 +12,7 @@
 - [函数截流和去抖之间的区别](http://www.alenqi.site/2017/10/06/throttling-debouncing/)
 - [那些被阻止的页面](http://www.alenqi.site/2017/10/05/the-blocked-page/)
 - [Preference](http://www.alenqi.site/2017/07/11/preference/)
-- [输入了 url 然后呢？](http://www.alenqi.site/2017/05/25/page-load/)
+- [输入了 url 然后呢？ ](http://www.alenqi.site/2017/05/25/page-load/)
 - [CORS 跨域资源共享](http://www.alenqi.site/2017/03/29/cors/)
 - [Atom 使用插件精选(FE)](http://www.alenqi.site/2017/03/11/atom-edit/)
 - [Array ES6](http://www.alenqi.site/2017/02/22/array-es6/)
@@ -33,32 +33,33 @@ I didn't publish it as a single theme folder because a few of the pages are adde
 npm run build
 ```
 
-#### 1.Init
+#### 1. Init
 
 ```
-git clone https://github.com/AlenQi/AlenQi.github.io.git
-cd AlenQi.github.io
+git clone https: //github.com/AlenQi/AlenQi.github.io.git
+    cd AlenQi.github.io
 npm install
 ```
 
-#### 2.Modify
+#### 2. Modify
 
 Modify `_config.yml` file with your own info.
 Especially the section:
 
 ```
 deploy:
- type: git
- repo: https://github.com/AlenQi/AlenQi.github.io.git
- branch: master
+    type: git
+repo: https: //github.com/AlenQi/AlenQi.github.io.git
+    branch: master
 ```
 
 Replace with your own repo!
 
-#### 3.Writting/Serve/Deploy
+#### 3. Writting/Serve/Deploy
 
 ```
 hexo new post IMAPOST
 hexo serve // run hexo in local environment
 hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(master) of your repo!
 ```
+
