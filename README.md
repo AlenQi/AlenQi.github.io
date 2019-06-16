@@ -5,7 +5,7 @@
 - [我们为什么需要 Node 中间层](http://www.alenqi.site/2018/11/16/node-interlayer/)
 - [Git 使用分享](http://www.alenqi.site/2018/09/27/git-flow/)
 - [你的 JavaScript 代码都经历了什么](http://www.alenqi.site/2018/08/19/code-course/)
-- [排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
+- [算法实现系列（1）——算法排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
 - [利用标签完善你的网站](http://www.alenqi.site/2018/03/04/complete-tags/)
 - [优雅的 JS](http://www.alenqi.site/2017/10/30/graceful-js/)
 - [花式垂直居中](http://www.alenqi.site/2017/10/29/vertical-center/)
