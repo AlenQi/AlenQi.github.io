@@ -13,11 +13,11 @@
 
     <title>
         
-          AlenQi的博客 | AlenQi&#39;s Blog
+          大数求和 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/tags/github/">
+    <link rel="canonical" href="http://alenqi.site/2019/06/17/addition-of-large-numbers/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -132,220 +132,117 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AlenQi&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Keep Passion , Sustained Strive</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                    </div>
+                    <h1>大数求和</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2019-06-17
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- Main Content -->
-
-
-<div class="post-preview">
-
-    <a href="/2017/07/11/preference/">
-        <h2 class="post-title">
-            Preference
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            PreferenceForeword
-personal preference
-
-Preprocessors
-postcss 
-Transforming styles with JS pluginshttps://github.com/postcss/postcss#plugins
-
-less.js 
-Less. The dynamic stylesheet language.https://......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2017-07-11
-    </p>
-
-</div>
-<hr>
+                <blockquote>
+<p>JS中只有一种类型数， 即64位（1bit 的符号位， 11bits 的指数部分 ， 以及52bits 的小数部分）双精度浮点数， 当整数数值过大时， 就会发生精度丢失。 </p>
+</blockquote>
+<blockquote>
+<p>所谓安全整数即能够唯一确定的数字， 即能够使用64位二进制数唯一确定的整数。 考虑2^{53}， 转换成对应表示方式后其小数部分总共包括53位， 发生了精度丢失， 所以在JS中无法区别 2^{53} 与 2^{53} +1。 </p>
+</blockquote>
+<blockquote>
+<p>安全整数与JS是否能够正确进行运算关系密切， 当运算数与运算结果都处于安全整数的范围内时， 才能保证JS运算结果正确。 </p>
+</blockquote>
+<blockquote>
+<p>对于超过了JS安全范围的整数， 对于两个超过了JS安全范围的整数， 用加法求和并不能得到准确的结果， 所以我们要特殊实现超过安全范围的数计算方式。 </p>
+</blockquote>
+<h3 id="简要步骤："><a href="#简要步骤：" class="headerlink" title="简要步骤："></a>简要步骤：</h3><p>1： 采用手动计算求和的方法， 从最低位依次相加， 得到最后的结果；<br>2： 把需要求和的大数， 分开每一位进行相加；<br>3： 因为对于较大的数js会自动采用科学记数法的方式表示， 所以参与计算的参数用字符串表示。 </p>
+<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  对两个超过JavaScript安全范围的数求和</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d1 - 加数</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d2 - 被加数</span></span><br><span class="line"><span class="comment">//  @returns &#123;string&#125; - 返回计算结果</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">additionOfLargeNumbers</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果第一个数较大则交换两个数</span></span><br><span class="line">    <span class="keyword">if</span> (d1.length &lt; d2.length) &#123;</span><br><span class="line"></span><br><span class="line">        [d1, d2] = [d2, d1];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将两个数转为数组形式</span></span><br><span class="line">    <span class="keyword">let</span> [arr1, arr2] = [</span><br><span class="line">        [...d1].reverse(), [...d2].reverse()</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// num用作当对应位数相加大于10时做进位</span></span><br><span class="line">    <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 循环arr1.length次求和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr1.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr2[i]) &#123;</span><br><span class="line">            arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + <span class="built_in">Number</span>.parseInt(arr2[i]) + num;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 判断相加大于10时做进位</span></span><br><span class="line">        <span class="keyword">if</span> (arr1[i] &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">            [arr1[i], num] = [arr1[i] % <span class="number">10</span>, <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            num = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果最后进位为1， 则结果前应加1为</span></span><br><span class="line">    <span class="keyword">if</span> (num === <span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">        arr1[arr1.length] = num;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回结果字符串</span></span><br><span class="line">    <span class="keyword">return</span> arr1.reverse().join(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法分析："><a href="#算法分析：" class="headerlink" title="算法分析："></a>算法分析：</h3><p>最佳情况： T(n) = O(n)<br>最差情况： T(n) = O(n)<br>平均情况： T(n) = O(n)</p>
 
 
+                <hr>
 
-<!-- Pager -->
+                
 
-<ul class="pager">
-    当前第1页
-    共1页
-    
-    
-</ul>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/11/16/node-interlayer/" data-toggle="tooltip" data-placement="top" title="我们为什么需要 Node 中间层">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
+                
 
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                            
-                            <a href="/tags/#前端开发" title="前端开发" rel="16">前端开发</a>
-                            
-                        
-                            
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="8">JavaScript</a>
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="2">算法</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Git" title="Git" rel="2">Git</a>
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#优化" title="优化" rel="2">优化</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#ES6" title="ES6" rel="3">ES6</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/./img/avatar.jpg" />
-                        
-
-                        
-                            <p>Debug Developer</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            <!--  -->
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/3255406154">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/AlenQi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            <!--  -->
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
@@ -369,9 +266,66 @@ Less. The dynamic stylesheet language.https://......
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2019/06/17/addition-of-large-numbers/";
+    var disqus_url = "http://alenqi.site/2019/06/17/addition-of-large-numbers/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
