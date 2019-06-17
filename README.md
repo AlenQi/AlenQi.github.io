@@ -59,7 +59,7 @@ Replace with your own repo!
 #### 3. Writting/Serve/Deploy
 
 ```
-hexo new post IMAPOST
+hexo new post "IMAPOST"
 hexo serve // run hexo in local environment
 hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(master) of your repo!
 ```
