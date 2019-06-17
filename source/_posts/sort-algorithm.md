@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "排序算法"
+title:      "算法实现系列（1）——算法排序算法"
 date:       2018-03-10 21:56:25
 author:     "AlenQi"
 catalog:    true

@@ -70,8 +70,8 @@ featured-condition-size: 1          # A tag will be featured if the size of it i
 # Friends
 friends: [
     {
-      title: "posrix",
-      href: "http://posrix.me/"
+      title: "专栏",
+      href: "https://zhuanlan.zhihu.com/AlenQi"
     },{
         title: "",
         href: ""

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      大数求和
+title:      算法实现系列（2）——大数求和
 date:       2019-06-16 17:12:46
 author:     "AlenQi"
 header-img: "bg.jpg"
