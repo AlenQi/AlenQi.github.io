@@ -36,8 +36,8 @@ npm run build
 
 #### 1. Init
 
-```
-git clone https: //github.com/AlenQi/AlenQi.github.io.git
+``` bash
+git clone https://github.com/AlenQi/AlenQi.github.io.git
     cd AlenQi.github.io
 npm install
 ```
@@ -47,10 +47,10 @@ npm install
 Modify `_config.yml` file with your own info.
 Especially the section:
 
-```
+``` bash
 deploy:
     type: git
-repo: https: //github.com/AlenQi/AlenQi.github.io.git
+repo: https://github.com/AlenQi/AlenQi.github.io.git
     branch: master
 ```
 
@@ -58,9 +58,11 @@ Replace with your own repo!
 
 #### 3. Writting/Serve/Deploy
 
-```
+``` bash
 hexo new post "IMAPOST"
-hexo serve // run hexo in local environment
-hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(master) of your repo!
+hexo serve 
+# run hexo in local environment
+hexo clean && hexo deploy 
+# hexo will push the static files automatically into the specific branch(master) of your repo!
 ```
 
