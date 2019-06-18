@@ -13,11 +13,11 @@
 
     <title>
         
-          CORS 跨域资源共享 - AlenQi的博客 | AlenQi&#39;s Blog
+          算法实现系列（3）——0.1+0.2 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/2017/03/29/cors/">
+    <link rel="canonical" href="http://alenqi.site/2019/06/19/decimal-addition/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -140,7 +140,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('cors-blog-main.jpg')
+        background-image: url('bg.png')
     }
 </style>
 <header class="intro-header" >
@@ -152,20 +152,14 @@
                         
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-                        
-                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
-                        
-                          <a class="tag" href="/tags/#跨域" title="跨域">跨域</a>
-                        
-                          <a class="tag" href="/tags/#cors" title="cors">cors</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>CORS 跨域资源共享</h1>
-                    <h2 class="subheading">Cross-origin resource sharing</h2>
+                    <h1>算法实现系列（3）——0.1+0.2</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by AlenQi on
-                        2017-03-29
+                        2019-06-19
                     </span>
                 </div>
             </div>
@@ -184,167 +178,31 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ol>
-<li><a href="#Foreword">Foreword</a></li>
-<li><a href="#cors-principle">CORS Principle</a></li>
-<li><a href="#三个访问控制场景">三个访问控制场景</a><ol>
-<li><a href="#简单请求">简单请求</a></li>
-<li><a href="#预请求">预请求</a><br>3 . <a href="#带凭据的请求">带凭据的请求</a></li>
-</ol>
-</li>
-<li><a href="#HTTP请求头">HTTP 请求头</a></li>
-<li><a href="#HTTP响应头">HTTP 响应头</a></li>
-<li><a href="#IE对CORS的实现">IE 对 CORS 的实现</a></li>
-<li><a href="#浏览器的支持">浏览器的支持</a></li>
-</ol>
-<h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
-<p>由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在 web 开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS」允许跨院访问。</p>
+                <blockquote>
+<p>众所周知， 在js的运算中有如下的骚逻辑</p>
 </blockquote>
-<p>先简单说下跨域，当一个资源请求一个其它域名或者另外一个端口的资源时会产生一个跨域 HTTP 请求(cross-origin HTTP request)。为了访问资源的可靠信，会有同源策略的限制，浏览器会拦截跨域请求的返回结果，有些浏览器会更加严格，不允许从 HTTPS 的域跨域访问 HTTP，如 Chrome 和 Firefox，这些浏览器在请求还未发出的时候就会拦截请求。</p>
-<h2 id="CORS-Principle"><a href="#CORS-Principle" class="headerlink" title="CORS Principle"></a>CORS Principle</h2><p><img src="cors-principle.png" alt="cors-principle"><br><small class="img-hint">资源请求的响应</small></p>
-<p>CORS（Cross-origin resource sharing,跨域资源共享）是 W3C 的一个工作草案，定义了在必须访问跨域资源时，浏览器与服务器应该如何沟通。CORS 背后的基本思想，就是使用自定义的 HTTP 请求头部，让浏览器和服务器进行沟通，从而决定请求或响应是应该成功，还是失败。</p>
+<p><img src="1.png" alt="0.1+0.2现场"></p>
 <blockquote>
-<p>这个规范是对针对 API 容器的，比如 XMLHttpRequest 或者 Fetch</p>
+<p>JavaScript使用Number类型表示数字（整数和浮点数）， 遵循 IEEE 754 标准 通过64位来表示一个数字</p>
 </blockquote>
-<p>比如一个简单的 GET 或者 POST 请求，它没有自定义的头部，而主题内容是 text/plain。在发送请求时，需要给它附加一个额外的 Oringin 头部，其中包含请求页面的源信息（协议，域名和端口），以便服务器根据这个头部消息来决定是否给予响应。下面是 Oringin 头部的一个示例：</p>
-<blockquote>
-<p>Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
-</blockquote>
-<p>如果服务器认为这个请求可以接受，就在 Access-Control-Allow-Origin 头部中返回相同的源信息。示例：</p>
-<blockquote>
-<p>Access-Control-Allow-Origin: Origin: <a href="http://www.alenqi.com" target="_blank" rel="noopener">http://www.alenqi.com</a></p>
-</blockquote>
-<p>如果没有这个头部，或者有这个头部但是源信息不匹配，浏览器就会驳回请求。正常情况下，浏览器会处理请求。注意，这里的请求和响应都不包含 cookie 信息。</p>
-<p>CORS 需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE 浏览器不能低于 IE10。<br>浏览器会自动判断如果跨域，自动会添加一些附加的头部信息，还有可能发送预请求。所以，如果服务端实现了响应 CORS 的接口，就可以跨域访问。</p>
-<h2 id="三个访问控制场景"><a href="#三个访问控制场景" class="headerlink" title="三个访问控制场景"></a>三个访问控制场景</h2><ul>
-<li><h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><ul>
-<li>一些请求不会触发 CORS preflight，而这部分在本文中被称为“简单请求”。满足下述条件的就是“简单请求”：<ul>
-<li>只允许下列方法：<ul>
-<li>GET</li>
-<li>POST</li>
-<li>HEAD</li>
-</ul>
-</li>
-<li>除了用户代理自动设置的头部外，唯一允许人工设置的头部是 Fetch 规范定义的“ CORS-safelisted request-header”，如下：<ul>
-<li>Accept</li>
-<li>Accept-Language</li>
-<li>Content-Language</li>
-<li>Last-Event-ID</li>
-<li>Content-Type (but note the additional requirements below)</li>
-</ul>
-</li>
-<li>允许的 Content-Type 值有：<ul>
-<li>application/x-www-form-urlencoded</li>
-<li>multipart/form-data</li>
-<li>text/plain</li>
-</ul>
-</li>
-<li>一个简单的 CORS 头处理的跨域请求<br><img src="simple-req.png" alt="simple-req"><br><small class="img-hint">返回头的“*”代表该资源跨域在跨域行为里可以被任意站点访问，可以设定为指定的域名</small></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p><img src="2.png" alt="IEEE 754 浮点数三个域"></p>
 <ul>
-<li><h3 id="预请求"><a href="#预请求" class="headerlink" title="预请求"></a>预请求</h3><ul>
-<li>CORS 通过一种叫做 preflighted Requests 的透明服务器验证机制支持开发人员使用自定义的头部，“预请求”要求必须先发送一个 <strong>OPTIONS</strong> 方法请求给目的站点，来查明这个跨站请求对于目的站点是不是安全的可接受的。这样做，是因为跨站请求可能会对目的站点的数据产生影响。 当请求具备以下条件，就会被当成预请求处理：<ul>
-<li>除了下列方法以外方法的请求：<ul>
-<li>GET</li>
-<li>POST</li>
-<li>HEAD</li>
+<li>第0位： 符号位， 0表示正数， 1表示负数(s)</li>
+<li>第1位到第11位： 储存指数部分（e）</li>
+<li>第12位到第63位： 储存小数部分（即有效数字）f</li>
 </ul>
-</li>
-<li>除了用户代理自动设置的头部外，不包括一下的头部信息，如下：<ul>
-<li>Accept</li>
-<li>Accept-Language</li>
-<li>Content-Language</li>
-<li>Last-Event-ID - Content-Type (but note the additional requirements below)</li>
-</ul>
-</li>
-<li>Content-Type 值有除了一下之外的：<ul>
-<li>application/x-www-form-urlencoded</li>
-<li>multipart/form-data</li>
-<li>text/plain</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>简而言之，就是非简单请求的请求就会发送预请求。</li>
-<li>发送这个请求之后，服务器可以决定是否允许这种类型的请求。服务器通过在响应中发送头部和浏览器进行沟通。Preflight 请求结束后，结果将按照响应头中指定的时间缓存起来。而为此付出的代价只是第一次发送非简单请求时多一次 HTTP 请求。<br><img src="prelight.png" alt="prelight"><br><small class="img-hint">一个“预请求”形式的跨域请求</small></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h3 id="带凭据的请求"><a href="#带凭据的请求" class="headerlink" title="带凭据的请求"></a>带凭据的请求</h3><ul>
-<li>默认情况下，跨域请求不提供（cookie，HTTP 认证及客户端 SSL 证明等）。通过将 withCredentials 属性设置为 true，可以指定某个请求应该发送凭据。</li>
-<li>如果发送的是带凭据的请求，但是服务器的响应中没有包含这个头部，那么浏览器就不会把响应交给 JavaScript（于是，responseText 中将是空字符串，status 的值为 0，而且会调用 onerror（）事件处理程序。另外，服务器还可以在 Preflight 响应中发送这个 HTTP 头部，表示允许源发送带凭据的请求。</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTTP-请求头"><a href="#HTTP-请求头" class="headerlink" title="HTTP 请求头"></a>HTTP 请求头</h2><ul>
-<li><p>发送请求的域</p>
 <blockquote>
-<p>Origin: <origin></origin></p>
+<p>0.1和0.2写成二进制标准， 会变成无限循环， 后面超出标准的位数会被截掉， 现在已经失去了精度</p>
 </blockquote>
-</li>
-<li><p>请求自身使用的方法</p>
 <blockquote>
-<p>Access-Control-Request-Method: <method></method></p>
+<p>在进制的转换和对阶运算过程中， 会丢失精度</p>
 </blockquote>
-</li>
-<li><p>(可选)自定义的头部信息，多个头部逗号分隔</p>
-<blockquote>
-<p>Access-Control-Request-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="HTTP-响应头"><a href="#HTTP-响应头" class="headerlink" title="HTTP 响应头"></a>HTTP 响应头</h2><ul>
-<li><p>与简单请求的相同</p>
-<blockquote>
-<p>Access-Control-Allow-Origin: <origin> | *</origin></p>
-</blockquote>
-</li>
-<li><p>设置浏览器允许访问的服务器的头信息的白名单</p>
-<blockquote>
-<p>Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</p>
-</blockquote>
-</li>
-<li><p>应该将这个预请求缓存多长时间（以秒表示）</p>
-<blockquote>
-<p>Access-Control-Max-Age: <delta-seconds></delta-seconds></p>
-</blockquote>
-</li>
-<li><p>是否为带凭证的请求</p>
-<blockquote>
-<p>Access-Control-Allow-Credentials: true | false</p>
-</blockquote>
-</li>
-<li><p>允许的方法，多个方法以逗号分隔</p>
-<blockquote>
-<p>Access-Control-Allow-Methods: <method>[, <method>]*</method></method></p>
-</blockquote>
-</li>
-<li><p>允许的头部，多个头部以逗号分隔</p>
-<blockquote>
-<p>Access-Control-Allow-Headers: <field-name>[, <field-name>]*</field-name></field-name></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="IE-对-CORS-的实现"><a href="#IE-对-CORS-的实现" class="headerlink" title="IE 对 CORS 的实现"></a>IE 对 CORS 的实现</h2><ul>
-<li>微软在 IE8 中引入了 XDR（XDomainRequest）类型。这个对象与 XHR 类似，但能实现安全可靠的跨域通信。XDR 对象的安全机制部分实现了 W3C 的 CORS 规范。下面是 XDR 与 XHR 的一些不同之处：<ul>
-<li>cookie 不会随请求发送，也不会随响应返回</li>
-<li>只能设置请求头不信息中的 Content-Type 字段</li>
-<li>不能访问响应头部信息</li>
-<li>只支持 GET 和 POST 请求</li>
-</ul>
-</li>
-<li>好消息是对于 CORS 在 IE 10 中有完整的实现</li>
-</ul>
-<h2 id="浏览器的支持"><a href="#浏览器的支持" class="headerlink" title="浏览器的支持"></a>浏览器的支持</h2><ul>
-<li>抛开浏览器谈 HTTP 相关规范或技术都是耍流氓。</li>
-<li>Desktop<br><img src="desktop.png" alt="Desktop"></li>
-<li>mobile<br><img src="mobile.png" alt="mobile"></li>
-</ul>
+<h3 id="简要步骤"><a href="#简要步骤" class="headerlink" title="简要步骤"></a>简要步骤</h3><ol>
+<li>获取加数和被加数小数位数</li>
+<li>得到小数位数的数量级</li>
+<li>加数和被加数换算成整数相加， 再还原到小数</li>
+</ol>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decimalAddition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> args = [...arguments]</span><br><span class="line">  <span class="keyword">const</span> maxLen = <span class="built_in">Math</span>.max.apply(</span><br><span class="line"></span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      args.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">const</span> str = <span class="built_in">String</span>(item).split(<span class="string">'.'</span>)[<span class="number">1</span>]</span><br><span class="line">          <span class="keyword">return</span> str ? str.length : <span class="number">0</span></span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line"></span><br><span class="line">      args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur * <span class="number">10</span> ** maxLen, <span class="number">0</span>) / <span class="number">10</span> ** maxLen</span><br><span class="line"></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -353,13 +211,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/05/25/page-load/" data-toggle="tooltip" data-placement="top" title="输入了 url 然后呢？ ">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/11/atom-edit/" data-toggle="tooltip" data-placement="top" title="Atom 使用插件精选(FE)">Next Post &rarr;</a>
+                            <a href="/2019/06/17/addition-of-large-numbers/" data-toggle="tooltip" data-placement="top" title="算法实现系列（2）——大数求和">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -376,20 +230,6 @@
 
             </div>
     <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
         
 
     <!-- Sidebar Container -->
@@ -408,13 +248,7 @@
                        
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-                        
-                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
-                        
-                          <a class="tag" href="/tags/#跨域" title="跨域">跨域</a>
-                        
-                          <a class="tag" href="/tags/#cors" title="cors">cors</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
@@ -454,8 +288,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "alenqi-github-io";
-    var disqus_identifier = "http://alenqi.site/2017/03/29/cors/";
-    var disqus_url = "http://alenqi.site/2017/03/29/cors/";
+    var disqus_identifier = "http://alenqi.site/2019/06/19/decimal-addition/";
+    var disqus_url = "http://alenqi.site/2019/06/19/decimal-addition/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -717,57 +551,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-  function generateCatalog(selector) {
-    var P = $('div.post-container'),
-      a,
-      n,
-      t,
-      l,
-      i,
-      c;
-    a = P.find('h1,h2,h3,h4,h5,h6');
-    a.each(function() {
-      n = $(this)
-        .prop('tagName')
-        .toLowerCase();
-      i = '#' + $(this).prop('id');
-      t = $(this).text();
-      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
-      l = $('<li class="' + n + '_nav"></li>').append(c);
-      $(selector).append(l);
-    });
-    return true;
-  }
-
-  generateCatalog('.catalog-body');
-
-  // toggle side catalog
-  $('.catalog-toggle').click(function(e) {
-    e.preventDefault();
-    $('.side-catalog').toggleClass('fold');
-  });
-
-  /*
-   * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-   */
-  async('/js/jquery.nav.js', function() {
-    $('.catalog-body').onePageNav({
-      currentClass: 'active',
-      changeHash: !1,
-      easing: 'swing',
-      filter: '',
-      scrollSpeed: 700,
-      scrollOffset: 0,
-      scrollThreshold: 0.2,
-      begin: null,
-      end: null,
-      scrollChange: null,
-      padding: 80
-    });
-  });
-</script>
 
 
 
