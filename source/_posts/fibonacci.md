@@ -1,22 +1,37 @@
 ---
-layout:     post
-title:      算法实现系列（4）——斐波那契数列
-date:       2019-06-20 13:32:21
-author:     "AlenQi"
-header-img: "bg.png"
+layout: post
+title: 算法实现系列（4）——斐波那契数列
+date: 2019-06-20 13:32:21
+author: 'AlenQi'
+header-img: 'bg.jpg'
 tags:
   - 前端开发
   - 算法
 ---
 
-``` js 
-let Fibonacci = n => (n > 1 ? Fibonacci(n - 1) + Fibonacci(n - 2) : n); 
+> 第一个月初有一对刚诞生的兔子, 第二个月之后（第三个月初）它们可以生育, 每月每对可生育的兔子会诞生下一对新兔子, 兔子永不死去
 
-let Fibonacci_ = (curr, next, n) =>
-  Object.is(n, 0) ? curr : Fibonacci_(next, curr + next, n - 1); 
+> 假设在 n 月有兔子总共 a 对， n+1 月总共有 b 对。 在 n+2 月必定总共有 a+b 对： 因为在 n+2 月的时候， 前一月（n+1 月）的 b 对兔子可以存留至第 n+2 月（在当月属于新诞生的兔子尚不能生育）。 而新生育出的兔子对数等于所有在 n 月就已存在的 a 对
 
-let Fibonacci = n => Fibonacci_(0, 1, n); 
+### 简要步骤：
 
+1. 在数学上， 斐波纳契数列以如下被以递归的方法定义： F(0)=0， F(1)=1, F(n)=F(n-1)+F(n-2)（n>=2， n∈N\*）
+2. 第 3 项开始， 每一项都等于前两项之和
+3. 可以采用递归的方法， 从第 0 项开始计算的方式， 只到第 n 项
+
+### 具体实现：
+
+```js
+let Fibonacci = n => (n > 1 ? Fibonacci(n - 1) + Fibonacci(n - 2) : n);
 ```
 
-  
+### 优化：
+
+上面的写法虽然很清晰， 但在性能上有很大问题， 总是很多的重复计算， 造成浪费。 我们改为将计算结果作为参数传递下去。
+
+```js
+let Fibonacci_ = (curr, next, n) =>
+  Object.is(n, 0) ? curr : Fibonacci_(next, curr + next, n - 1);
+
+let Fibonacci = n => Fibonacci_(0, 1, n);
+```
