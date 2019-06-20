@@ -13,11 +13,11 @@
 
     <title>
         
-          AlenQi的博客 | AlenQi&#39;s Blog
+          算法实现系列（4）——斐波那契数列 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/i_dont_wanna_use_default_archives/2017/03/">
+    <link rel="canonical" href="http://alenqi.site/2019/06/20/fibonacci/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -132,267 +132,116 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>AlenQi&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Keep Passion , Sustained Strive</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                    </div>
+                    <h1>算法实现系列（4）——斐波那契数列</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2019-06-20
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- Main Content -->
-
-
-<div class="post-preview">
-
-    <a href="/2017/03/29/cors/">
-        <h2 class="post-title">
-            CORS 跨域资源共享
-        </h2>
-        <h3 class="post-subtitle">
-            Cross-origin resource sharing
-        </h3>
-        <div class="post-content-preview">
-            Catagory
-Foreword
-CORS Principle
-三个访问控制场景
-简单请求
-预请求3 . 带凭据的请求
+                <blockquote>
+<p>第一个月初有一对刚诞生的兔子, 第二个月之后（第三个月初）它们可以生育, 每月每对可生育的兔子会诞生下一对新兔子, 兔子永不死去</p>
+</blockquote>
+<blockquote>
+<p>假设在 n 月有兔子总共 a 对， n+1 月总共有 b 对。 在 n+2 月必定总共有 a+b 对： 因为在 n+2 月的时候， 前一月（n+1 月）的 b 对兔子可以存留至第 n+2 月（在当月属于新诞生的兔子尚不能生育）。 而新生育出的兔子对数等于所有在 n 月就已存在的 a 对</p>
+</blockquote>
+<h3 id="简要步骤："><a href="#简要步骤：" class="headerlink" title="简要步骤："></a>简要步骤：</h3><ol>
+<li>在数学上， 斐波纳契数列以如下被以递归的方法定义： F(0)=0， F(1)=1, F(n)=F(n-1)+F(n-2)（n&gt;=2， n∈N*）</li>
+<li>第 3 项开始， 每一项都等于前两项之和</li>
+<li>可以采用递归的方法， 从第 0 项开始计算的方式， 只到第 n 项</li>
+</ol>
+<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Fibonacci = <span class="function"><span class="params">n</span> =&gt;</span> (n &gt; <span class="number">1</span> ? Fibonacci(n - <span class="number">1</span>) + Fibonacci(n - <span class="number">2</span>) : n);</span><br></pre></td></tr></table></figure>
+<h3 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h3><p>上面的写法虽然很清晰， 但在性能上有很大问题， 总是很多的重复计算， 造成浪费。 我们改为将计算结果作为参数传递下去。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Fibonacci_ = <span class="function">(<span class="params">curr, next, n</span>) =&gt;</span></span><br><span class="line">  <span class="built_in">Object</span>.is(n, <span class="number">0</span>) ? curr : Fibonacci_(next, curr + next, n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Fibonacci = <span class="function"><span class="params">n</span> =&gt;</span> Fibonacci_(<span class="number">0</span>, <span class="number">1</span>, n);</span><br></pre></td></tr></table></figure>
 
 
-HTTP 请求头
-HTTP 响应头
-IE 对 CORS 的实现
-浏览器的支持
+                <hr>
 
-Foreword
-由于同源策略限制从一个源加载的文档或脚本与来自另一个源的资源进行交互。在 web 开发中跨域是难免的问题，或是开发时的跨域，或是线上资源请求的跨域。我们可以使用「CORS......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2017-03-29
-    </p>
+                
 
-</div>
-<hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/06/19/decimal-addition/" data-toggle="tooltip" data-placement="top" title="算法实现系列（3）——0.1+0.2">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-<div class="post-preview">
+                
 
-    <a href="/2017/03/11/atom-edit/">
-        <h2 class="post-title">
-            Atom 使用插件精选(FE)
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Foreword
-Atom 琳琅满目的插件中， 很多插件良莠不齐， 根据我的实践情况， 为前端 coder 推荐一些实用的插件。 
-
-
-sync-settings
-
-
-
-首先， 这是一个配置备份插件， 方便以后的迁移， 配合 gist 实用快捷。 
-
-atom-beautify
-
-
-
-使你的代码一键格式化， 支持多种语言， 相对较全。 
-
-autoclose-html
-
-
-
-html 代码自......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2017-03-11
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    当前第1页
-    共1页
-    
-    
-</ul>
-
-
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                            
-                            <a href="/tags/#前端开发" title="前端开发" rel="18">前端开发</a>
-                            
-                        
-                            
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="8">JavaScript</a>
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="4">算法</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Git" title="Git" rel="2">Git</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#优化" title="优化" rel="2">优化</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#ES6" title="ES6" rel="3">ES6</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/./img/avatar.jpg" />
-                        
-
-                        
-                            <p>Debug Developer</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            <!--  -->
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/alen-qi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/3255406154">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/AlenQi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            <!--  -->
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
@@ -416,9 +265,66 @@ html 代码自......
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2019/06/20/fibonacci/";
+    var disqus_url = "http://alenqi.site/2019/06/20/fibonacci/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
