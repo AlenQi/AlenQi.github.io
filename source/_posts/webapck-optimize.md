@@ -2,8 +2,8 @@
 layout: post
 title: Webpack优化
 date: 2019-06-25 16:14:22
-author: 'AlenQi'
-header-img: 'bg.jpg'
+author: AlenQi
+header-img: bg.jpg
 tags:
   - 前端开发
   - 优化
