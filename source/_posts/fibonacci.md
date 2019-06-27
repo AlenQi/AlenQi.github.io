@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 算法实现系列（4）——斐波那契数列
+title: 算法实现系列（4）—— 斐波那契数列
 date: 2019-06-20 13:32:21
 author: 'AlenQi'
 header-img: 'bg.jpg'
