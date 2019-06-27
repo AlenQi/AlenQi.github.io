@@ -69,3 +69,5 @@ const search = (arr, count, sum) => {
   return res;
 };
 ```
+
+参考：[源码终结者](https://juejin.im/user/5ae087fbf265da0b9c104fa4)
