@@ -69,13 +69,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -83,7 +76,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -169,9 +162,64 @@
 
 <div class="post-preview">
 
+    <a href="/2019/06/27/find-addend/">
+        <h2 class="post-title">
+            算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+从一个长度为 n 的数组中，选出 m 个数，使得这 m 个数之和等于 sum
+
+简要步骤：
+要得到所有数字的排列组合，如果是[1,2,3,4,5]取出 3 个，那么可能性就有 10 种 C(5,3)= C(5,2)，全排列 P(n,m)=n!/(n-m)!，组合排列 P(n,m)=n!/m!/(n-m)!，C(5,2)=5!/2!*3!=5*4*3*2*1/[(2*1)*(3*2\*1)]......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2019-06-27
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/26/webapck-optimize/">
+        <h2 class="post-title">
+            Webpack优化
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Webpack 是现在主流的功能强大的模块化打包工具，在使用 Webpack 时，如果不注意性能优化，有非常大的可能会产生性能问题，性能问题主要分为开发时打包构建速度慢、开发调试时的重复性工作、以及输出文件质量不高等。不同于gulp、grunt等打包工具，Webpack 是模块化的。
+
+一、优化构建速度
+缩小文件的搜索范围
+
+
+利用 resolve 字段
+
+设置 resolve.modul......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by AlenQi on
+        2019-06-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/06/20/fibonacci/">
         <h2 class="post-title">
-            算法实现系列（4）——斐波那契数列
+            算法实现系列（4）—— 斐波那契数列
         </h2>
         <h3 class="post-subtitle">
             
@@ -196,27 +244,27 @@
 
     <a href="/2019/06/19/decimal-addition/">
         <h2 class="post-title">
-            算法实现系列（3）——0.1+0.2
+            算法实现系列（3）—— 0.1+0.2
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-众所周知， 在js的运算中有如下的骚逻辑
+众所周知， 在 js 的运算中有如下的骚逻辑
 
 
 
-JavaScript使用Number类型表示数字（整数和浮点数）， 遵循 IEEE 754 标准 通过64位来表示一个数字
+JavaScript 使用 Number 类型表示数字（整数和浮点数）， 遵循 IEEE 754 标准 通过 64 位来表示一个数字
 
 
 
-第0位： 符号位， 0表示正数， 1表示负数(s)
-第1位到第11位： 储存指数部分（e）
-第12位到第63位： 储存小数部分（即有效数字）f
+第 0 位： 符号位， 0 表示正数， 1 表示负数(s)
+第 1 位到第 11 位： 储存指数部分（e）
+第 12 位到第 63 位： 储存小数部分（即有效数字）f
 
 
-0.1和0.2写成二进制标准， 会变成无限循环， 后面超出标准的位......
+0.1 和 0.2 写成二进......
         </div>
     </a>
     <p class="post-meta">
@@ -231,17 +279,17 @@ JavaScript使用Number类型表示数字（整数和浮点数）， 遵循 IEEE 
 
     <a href="/2019/06/17/addition-of-large-numbers/">
         <h2 class="post-title">
-            算法实现系列（2）——大数求和
+            算法实现系列（2）—— 大数求和
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-JS中只有一种类型数， 即64位（1bit 的符号位， 11bits 的指数部分 ， 以及52bits 的小数部分）双精度浮点数， 当整数数值过大时， 就会发生精度丢失。 
+JS 中只有一种类型数， 即 64 位（1bit 的符号位， 11bits 的指数部分 ， 以及 52bits 的小数部分）双精度浮点数， 当整数数值过大时， 就会发生精度丢失。
 
 
-所谓安全整数即能够唯一确定的数字， 即能够使用64位二进制数唯一确定的整数。 考虑2^{53}， 转换成对应表示方式后其小数部分总共包括53位， 发生了精度丢失， 所以在JS中无法区别 2^{53} 与 2^{53......
+所谓安全整数即能够唯一确定的数字， 即能够使用 64 位二进制数唯一确定的整数。 考虑 2^{53}， 转换成对应表示方式后其小数部分总共包括 53 位， 发生了精度丢失， 所以在 JS 中无法区别 2^{5......
         </div>
     </a>
     <p class="post-meta">
@@ -328,7 +376,7 @@ JS中只有一种类型数， 即64位（1bit 的符号位， 11bits 的指数�
 
     <a href="/2018/03/11/sort-algorithm/">
         <h2 class="post-title">
-            算法实现系列（1）——算法排序算法
+            算法实现系列（1）—— 算法排序算法
         </h2>
         <h3 class="post-subtitle">
             
@@ -337,12 +385,12 @@ JS中只有一种类型数， 即64位（1bit 的符号位， 11bits 的指数�
             
 1. 冒泡排序（Bubble Sort）
 
-冒泡排序是一种简单的排序算法。 它重复地遍历过要排序的数列， 每次比较两个元素， 如果它们的顺序不符合预期， 就把它们的位置交换过来。 遍历数列的工作是重复地进行直到没有再需要交换。 因为每遍历数列一次， 就有一个元素“浮”到数列的顶端， 故此叫做“冒泡排序”。 
+冒泡排序是一种简单的排序算法。 它重复地遍历过要排序的数列， 每次比较两个元素， 如果它们的顺序不符合预期， 就把它们的位置交换过来。 遍历数列的工作是重复地进行直到没有再需要交换。 因为每遍历数列一次， 就有一个元素“浮”到数列的顶端， 故此叫做“冒泡排序”。
 
 简要步骤
 
-比较相邻的元素。 如果第一个比第二个大， 就交换它们两个； 
-对每一......
+比较相邻的元素。 如果第一个比第二个大， 就交换它们两个；
+对每一对相......
         </div>
     </a>
     <p class="post-meta">
@@ -371,54 +419,6 @@ The &lt;meta&gt; tag provides metadata about the HTML document. Metadata will no
     <p class="post-meta">
         Posted by AlenQi on
         2018-03-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/10/30/graceful-js/">
-        <h2 class="post-title">
-            优雅的JS
-        </h2>
-        <h3 class="post-subtitle">
-            graceful, js
-        </h3>
-        <div class="post-content-preview">
-            
-有很多有趣的JS的写法,比如：[[]] == 0,这里只总结一些华而实的JS优雅写法,随手补充
-
-
-首先致敬stackoverflow JavaScript 如何优雅的处理错误
-12345try &#123;  // something&#125; catch (e) &#123;  window.location.href ="http://stackoverflow.com/searc......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2017-10-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/10/29/vertical-center/">
-        <h2 class="post-title">
-            花式垂直居中
-        </h2>
-        <h3 class="post-subtitle">
-            vertical-center, css
-        </h3>
-        <div class="post-content-preview">
-            方法一：原理： 在元素属性为 table 使用里使用 vertical-align 属性
-12345678910111213141516171819202122232425262728293031&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;  &lt;meta charset="UTF-8"&gt;  &lt;meta nam......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by AlenQi on
-        2017-10-29
     </p>
 
 </div>
@@ -460,7 +460,7 @@ The &lt;meta&gt; tag provides metadata about the HTML document. Metadata will no
                     <div class="tags">
                         
                             
-                            <a href="/tags/#前端开发" title="前端开发" rel="18">前端开发</a>
+                            <a href="/tags/#前端开发" title="前端开发" rel="20">前端开发</a>
                             
                         
                             
@@ -468,7 +468,7 @@ The &lt;meta&gt; tag provides metadata about the HTML document. Metadata will no
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="4">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="5">算法</a>
                             
                         
                             
@@ -496,7 +496,7 @@ The &lt;meta&gt; tag provides metadata about the HTML document. Metadata will no
                             
                         
                             
-                            <a href="/tags/#优化" title="优化" rel="2">优化</a>
+                            <a href="/tags/#优化" title="优化" rel="3">优化</a>
                             
                         
                             

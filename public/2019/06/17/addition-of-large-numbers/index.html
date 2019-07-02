@@ -13,7 +13,7 @@
 
     <title>
         
-          算法实现系列（2）——大数求和 - AlenQi的博客 | AlenQi&#39;s Blog
+          算法实现系列（2）—— 大数求和 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
@@ -69,13 +69,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -83,7 +76,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -155,7 +148,7 @@
                           <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>算法实现系列（2）——大数求和</h1>
+                    <h1>算法实现系列（2）—— 大数求和</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by AlenQi on
@@ -179,23 +172,23 @@
                 post-container">
 
                 <blockquote>
-<p>JS中只有一种类型数， 即64位（1bit 的符号位， 11bits 的指数部分 ， 以及52bits 的小数部分）双精度浮点数， 当整数数值过大时， 就会发生精度丢失。 </p>
+<p>JS 中只有一种类型数， 即 64 位（1bit 的符号位， 11bits 的指数部分 ， 以及 52bits 的小数部分）双精度浮点数， 当整数数值过大时， 就会发生精度丢失。</p>
 </blockquote>
 <blockquote>
-<p>所谓安全整数即能够唯一确定的数字， 即能够使用64位二进制数唯一确定的整数。 考虑2^{53}， 转换成对应表示方式后其小数部分总共包括53位， 发生了精度丢失， 所以在JS中无法区别 2^{53} 与 2^{53} +1。 </p>
+<p>所谓安全整数即能够唯一确定的数字， 即能够使用 64 位二进制数唯一确定的整数。 考虑 2^{53}， 转换成对应表示方式后其小数部分总共包括 53 位， 发生了精度丢失， 所以在 JS 中无法区别 2^{53} 与 2^{53} +1。</p>
 </blockquote>
 <blockquote>
-<p>安全整数与JS是否能够正确进行运算关系密切， 当运算数与运算结果都处于安全整数的范围内时， 才能保证JS运算结果正确。 </p>
+<p>安全整数与 JS 是否能够正确进行运算关系密切， 当运算数与运算结果都处于安全整数的范围内时， 才能保证 JS 运算结果正确。</p>
 </blockquote>
 <blockquote>
-<p>对于超过了JS安全范围的整数， 对于两个超过了JS安全范围的整数， 用加法求和并不能得到准确的结果， 所以我们要特殊实现超过安全范围的数计算方式。 </p>
+<p>对于超过了 JS 安全范围的整数， 对于两个超过了 JS 安全范围的整数， 用加法求和并不能得到准确的结果， 所以我们要特殊实现超过安全范围的数计算方式。</p>
 </blockquote>
 <h3 id="简要步骤："><a href="#简要步骤：" class="headerlink" title="简要步骤："></a>简要步骤：</h3><ol>
-<li>采用手动计算求和的方法， 从最低位依次相加， 得到最后的结果； </li>
-<li>把需要求和的大数， 分开每一位进行相加； </li>
-<li>因为对于较大的数js会自动采用科学记数法的方式表示， 所以参与计算的参数用字符串表示。 </li>
+<li>采用手动计算求和的方法， 从最低位依次相加， 得到最后的结果；</li>
+<li>把需要求和的大数， 分开每一位进行相加；</li>
+<li>因为对于较大的数 js 会自动采用科学记数法的方式表示， 所以参与计算的参数用字符串表示。</li>
 </ol>
-<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  对两个超过JavaScript安全范围的数求和</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d1 - 加数</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d2 - 被加数</span></span><br><span class="line"><span class="comment">//  @returns &#123;string&#125; - 返回计算结果</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">additionOfLargeNumbers</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果第一个数较大则交换两个数</span></span><br><span class="line">    <span class="keyword">if</span> (d1.length &lt; d2.length) &#123;</span><br><span class="line"></span><br><span class="line">        [d1, d2] = [d2, d1];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将两个数转为数组形式</span></span><br><span class="line">    <span class="keyword">let</span> [arr1, arr2] = [</span><br><span class="line">        [...d1].reverse(), [...d2].reverse()</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// num用作当对应位数相加大于10时做进位</span></span><br><span class="line">    <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 循环arr1.length次求和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr1.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr2[i]) &#123;</span><br><span class="line">            arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + <span class="built_in">Number</span>.parseInt(arr2[i]) + num;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 判断相加大于10时做进位</span></span><br><span class="line">        <span class="keyword">if</span> (arr1[i] &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">            [arr1[i], num] = [arr1[i] % <span class="number">10</span>, <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            num = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果最后进位为1， 则结果前应加1为</span></span><br><span class="line">    <span class="keyword">if</span> (num === <span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">        arr1[arr1.length] = num;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回结果字符串</span></span><br><span class="line">    <span class="keyword">return</span> arr1.reverse().join(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  对两个超过JavaScript安全范围的数求和</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d1 - 加数</span></span><br><span class="line"><span class="comment">//  @param &#123;string&#125; d2 - 被加数</span></span><br><span class="line"><span class="comment">//  @returns &#123;string&#125; - 返回计算结果</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">additionOfLargeNumbers</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 如果第一个数较大则交换两个数</span></span><br><span class="line">  <span class="keyword">if</span> (d1.length &lt; d2.length) &#123;</span><br><span class="line">    [d1, d2] = [d2, d1];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 将两个数转为数组形式</span></span><br><span class="line">  <span class="keyword">let</span> [arr1, arr2] = [[...d1].reverse(), [...d2].reverse()];</span><br><span class="line">  <span class="comment">// num用作当对应位数相加大于10时做进位</span></span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 循环arr1.length次求和</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr1.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr2[i]) &#123;</span><br><span class="line">      arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + <span class="built_in">Number</span>.parseInt(arr2[i]) + num;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      arr1[i] = <span class="built_in">Number</span>.parseInt(arr1[i]) + num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 判断相加大于10时做进位</span></span><br><span class="line">    <span class="keyword">if</span> (arr1[i] &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">      [arr1[i], num] = [arr1[i] % <span class="number">10</span>, <span class="number">1</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      num = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 如果最后进位为1， 则结果前应加1为</span></span><br><span class="line">  <span class="keyword">if</span> (num === <span class="number">1</span>) &#123;</span><br><span class="line">    arr1[arr1.length] = num;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回结果字符串</span></span><br><span class="line">  <span class="keyword">return</span> arr1.reverse().join(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="算法分析："><a href="#算法分析：" class="headerlink" title="算法分析："></a>算法分析：</h3><p>最佳情况： T(n) = O(n)<br>最差情况： T(n) = O(n)<br>平均情况： T(n) = O(n)</p>
 
 
@@ -206,7 +199,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/06/19/decimal-addition/" data-toggle="tooltip" data-placement="top" title="算法实现系列（3）——0.1+0.2">&larr; Previous Post</a>
+                            <a href="/2019/06/19/decimal-addition/" data-toggle="tooltip" data-placement="top" title="算法实现系列（3）—— 0.1+0.2">&larr; Previous Post</a>
                         </li>
                     
                     

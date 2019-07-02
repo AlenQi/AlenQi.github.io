@@ -13,11 +13,11 @@
 
     <title>
         
-          Atom 使用插件精选(FE) - AlenQi的博客 | AlenQi&#39;s Blog
+          算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/2017/03/11/atom-edit/">
+    <link rel="canonical" href="http://alenqi.site/2019/06/27/find-addend/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -133,7 +133,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('atom-bg.png')
+        background-image: url('bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -145,18 +145,14 @@
                         
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#atom" title="atom">atom</a>
-                        
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
-                        
-                          <a class="tag" href="/tags/#插件" title="插件">插件</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>Atom 使用插件精选(FE)</h1>
+                    <h1>算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by AlenQi on
-                        2017-03-11
+                        2019-06-27
                     </span>
                 </div>
             </div>
@@ -175,193 +171,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
-<p>Atom 琳琅满目的插件中， 很多插件良莠不齐， 根据我的实践情况， 为前端 coder 推荐一些实用的插件。 </p>
+                <blockquote>
+<p>从一个长度为 n 的数组中，选出 m 个数，使得这 m 个数之和等于 sum</p>
 </blockquote>
-<ol>
-<li><big><a href="https://atom.io/packages/sync-settings" target="_blank" rel="noopener">sync-settings</a></big>
-
+<h3 id="简要步骤："><a href="#简要步骤：" class="headerlink" title="简要步骤："></a>简要步骤：</h3><ol>
+<li><p>要得到所有数字的排列组合，如果是[1,2,3,4,5]取出 3 个，那么可能性就有 10 种 <code>C(5,3)= C(5,2)</code>，全排列 <code>P(n,m)=n!/(n-m)!</code>，组合排列 <code>P(n,m)=n!/m!/(n-m)!</code>，<code>C(5,2)=5!/2!*3!=5*4*3*2*1/[(2*1)*(3*2\*1)]=10</code></p>
+</li>
+<li><p>用二进制来模拟排列组合的情况，比如<code>array = [1, 2, 3]</code>,二进制的<code>111</code>三个位，<code>0</code>表示未选取，<code>1</code>表示已经选取，正好可以排列组合出所有情况</p>
+</li>
+<li><p>用位掩码来计算迭代情况，来化简运算。位移运算来判断当前的数是否被选取</p>
 </li>
 </ol>
-<p>首先， 这是一个配置备份插件， 方便以后的迁移， 配合 gist 实用快捷。 </p>
-<ol start="2">
-<li><big><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="noopener">atom-beautify</a></big>
-
-</li>
-</ol>
-<p>使你的代码一键格式化， 支持多种语言， 相对较全。 </p>
-<ol start="3">
-<li><big><a href="https://atom.io/packages/autoclose-html" target="_blank" rel="noopener">autoclose-html</a></big>
-
-</li>
-</ol>
-<p>html 代码自动化闭合， 更加便捷的写 div.</p>
-<ol start="4">
-<li><big><a href="https://atom.io/packages/autocomplete-paths" target="_blank" rel="noopener">autocomplete-paths</a></big>
-
-</li>
-</ol>
-<p>更加智能的补全你的资源路径。 </p>
-<ol start="5">
-<li><big><a href="https://atom.io/packages/autoprefixer" target="_blank" rel="noopener">autoprefixer</a></big>
-
-</li>
-</ol>
-<p>为 CSS 和 SCSS 增加浏览器前缀。 </p>
-<ol start="6">
-<li><big><a href="https://atom.io/packages/color-picker" target="_blank" rel="noopener">color-picker</a></big>
-
-</li>
-</ol>
-<p>在编辑器选择你想要的颜色， 找到颜色， 点击就 OK.</p>
-<ol start="7">
-<li><big><a href="https://atom.io/packages/docblockr" target="_blank" rel="noopener">docblockr</a></big>
-
-</li>
-</ol>
-<p>辅助编写你的注释， 让你爱上写注释。 </p>
-<ol start="8">
-<li><big><a href="https://atom.io/packages/elastic-tabstops" target="_blank" rel="noopener">elastic-tabstops</a></big>
-
-</li>
-</ol>
-<p>弹性制表符， 适用于对于 tab 有强迫症的 coder。 </p>
-<ol start="9">
-<li><big><a href="https://atom.io/packages/emmet" target="_blank" rel="noopener">emmet</a></big>
-
-</li>
-</ol>
-<p>前端神器多年， 前端必备， 配合快捷键更个性化。 </p>
-<ol start="10">
-<li><big><a href="https://atom.io/packages/file-icons" target="_blank" rel="noopener">file-icons</a></big>
-
-</li>
-</ol>
-<p>指定文件扩展名的图标和颜色， 改善视觉。 </p>
-<ol start="11">
-<li><big><a href="https://atom.io/packages/git-control" target="_blank" rel="noopener">git-control</a></big>
-
-</li>
-</ol>
-<p>提供了一个 GUI 界面来管理所有常用的 git 命令。 （如果你不喜欢命令行）</p>
-<ol start="12">
-<li><big><a href="https://zhuanlan.zhihu.com/p/24753739" target="_blank" rel="noopener">gulp-control</a></big>
-
-</li>
-</ol>
-<p>显示 gulp 任务的列表, 在 atom 里实现 GUI 执行。 </p>
-<ol start="13">
-<li><big><a href="https://atom.io/packages/highlight-selected" target="_blank" rel="noopener">highlight-selected</a></big>
-
-</li>
-</ol>
-<p>双击时高亮当前选择的词。 </p>
-<ol start="14">
-<li><big><a href="https://atom.io/packages/jquery-snippets" target="_blank" rel="noopener">jquery-snippets</a></big>
-
-</li>
-</ol>
-<p>支持 jquery 代码编写。 </p>
-<ol start="15">
-<li><big><a href="https://atom.io/packages/language-vue" target="_blank" rel="noopener">language-vue</a></big>
-
-</li>
-</ol>
-<p>高亮显示 Vue 代码, 支持 Vue 组件。 </p>
-<ol start="16">
-<li><big><a href="https://atom.io/packages/linter-csslint" target="_blank" rel="noopener">linter-csslint</a></big>
-
-</li>
-</ol>
-<p>检测你的 CSS 是否基本规范， 减少你的错误， 提高代码质量。 </p>
-<ol start="17">
-<li><big><a href="https://atom.io/packages/linter-eslint" target="_blank" rel="noopener">linter-eslint</a></big>
-
-</li>
-</ol>
-<p>看你上面的， 我想你也了解这个是干嘛的了。 </p>
-<ol start="18">
-<li><big><a href="https://atom.io/packages/linter-sass-lint" target="_blank" rel="noopener">linter-sass-lint</a></big>
-
-</li>
-</ol>
-<p>如果你使用 SASS/SCSS， 这个检测是必要的。 </p>
-<ol start="19">
-<li><big><a href="https://atom.io/packages/minimap" target="_blank" rel="noopener">minimap</a></big>
-
-</li>
-</ol>
-<p>一个完整源代码的预览， 让你看到代码地图。 （不建议在一个文件里写很长的代码）</p>
-<ol start="20">
-<li><a href="https://atom.io/packages/minimap-highlight-selected" target="_blank" rel="noopener">minimap-highlight-selected</a></li>
-</ol>
-<p>在你代码概览地图上高亮显示你的选择。 </p>
-<ol start="21">
-<li><big><a href="https://atom.io/packages/open-in-browsers" target="_blank" rel="noopener">open-in-browsers</a></big>
-
-</li>
-</ol>
-<p>你想在哪个浏览器里运行你的代码， 安装这个吧。 </p>
-<ol start="22">
-<li><big><a href="https://atom.io/packages/regex-railroad-diagram" target="_blank" rel="noopener">regex-railroad-diagram</a></big>
-
-</li>
-</ol>
-<p>如果你经常要写正则表达式， 这个插件可以显示光标下的正则表达式铁路图。 </p>
-<ol start="23">
-<li><big><a href="https://atom.io/packages/simplified-chinese-menu" target="_blank" rel="noopener">simplified-chinese-menu</a></big>
-
-</li>
-</ol>
-<p>Atom 的简体中文语言包， 完整汉化， 兼容所有已发布版本 Atom。 </p>
-<ol start="24">
-<li><big><a href="https://atom.io/packages/tree-view-git-status" target="_blank" rel="noopener">tree-view-git-status</a></big>
-
-</li>
-</ol>
-<p>树形文件视图中显示 Git 存储库状态。 </p>
-<ol start="25">
-<li><big><a href="https://atom.io/packages/prettier-atom" target="_blank" rel="noopener">prettier-atom</a></big>
-
-</li>
-</ol>
-<p>An atom package for the prettier formatter.</p>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h3><ol>
-<li><p>之前找了很久 atom 的自动保存插件， 没找到， 原来骑驴找驴， 在自带的核心扩展里面就有。 <a href="https://atom.io/packages/autosave" target="_blank" rel="noopener">autosave</a>， 把里面的配置 settings 里的”Enabled”勾选中， 就可以在当前编辑页面失去焦点的时候自动保存。 </p>
-</li>
-<li><p>在编辑器的核心包里有<a href="https://atom.io/packages/line-ending-selector" target="_blank" rel="noopener">line-ending-selector</a>可以定义你的换行类型。 </p>
-</li>
-<li><p>这个链接是我的配置 gist： </p>
-<p><a href="https://gist.github.com/AlenQi/e84eca296c2a5f274234e3212f8a6736" target="_blank" rel="noopener">GitHubGist</a>（包含上面所有的插件， 还有我自己的配置， 可以直接导入扩展）</p>
-</li>
-<li><p>如果你想更改 atom-beautify 里的换行符， LF or CRLF ， see:</p>
-</li>
-</ol>
-<ul>
-<li><p>Retrieves the default line ending based upon the Atom configuration</p>
-</li>
-<li><p><code>line-ending-selector.defaultLineEnding</code> . If the Atom configuration</p>
-</li>
-<li><p>indicates “OS Default”, the <code>process.platform</code> is queried, returning</p>
-</li>
-<li><p>CRLF for Windows systems and LF for all other systems.</p>
-</li>
-<li><p>Code modified from atom/line-ending-selector</p>
-</li>
-<li><p>returns: The correct line-ending character sequence based upon the Atom</p>
-</li>
-<li><p>configuration, or <code>null</code> if the Atom line ending configuration was not</p>
-</li>
-<li><p>recognized.</p>
-</li>
-<li><p>see: <a href="https://github.com/atom/line-ending-selector/blob/master/lib/main.js" target="_blank" rel="noopener">line-ending</a></p>
-</li>
-<li><p>在下面的路径下修改你想要的： </p>
-</li>
-<li><p><code>packages\atom-beautify\src\beautifiers\js-beautify.coffee</code> </p>
-</li>
-</ul>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getDefaultLineEnding</span>= -&gt;</span></span><br><span class="line"><span class="keyword">switch</span> atom.config.get(<span class="string">'line-ending-selector.defaultLineEnding'</span>)</span><br><span class="line">  <span class="keyword">when</span> <span class="string">'LF'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\n'</span></span><br><span class="line">  <span class="keyword">when</span> <span class="string">'CRLF'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\r\n'</span></span><br><span class="line">  <span class="keyword">when</span> <span class="string">'OS Default'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">if</span> process.platform <span class="keyword">is</span> <span class="string">'win32'</span> <span class="keyword">then</span> <span class="string">'\r\n'</span> <span class="keyword">else</span> <span class="string">'\n'</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<h3 id="具体实现："><a href="#具体实现：" class="headerlink" title="具体实现："></a>具体实现：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param arr 目标数组</span></span><br><span class="line"><span class="comment"> * @param count 要选取的元素数目</span></span><br><span class="line"><span class="comment"> * @param sum 目标和</span></span><br><span class="line"><span class="comment"> * @returns [] 计算结果的数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> search = <span class="function">(<span class="params">arr, count, sum</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 利用二进制，选择元素的个数</span></span><br><span class="line">  <span class="keyword">const</span> n = <span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">      num &amp;= num - <span class="number">1</span>;</span><br><span class="line">      count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> len = arr.length;</span><br><span class="line">  <span class="keyword">let</span> bit = <span class="number">1</span> &lt;&lt; len; <span class="comment">// 换算成二进制，所有情况的总和</span></span><br><span class="line">  <span class="keyword">let</span> res = [];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 遍历所有的选择情况, 这里忽略了 0 的情况(n = 0)</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; bit; i++) &#123;</span><br><span class="line">    <span class="comment">// 满足选择的元素个数 === count</span></span><br><span class="line">    <span class="keyword">if</span> (n(i) === count) &#123;</span><br><span class="line">      <span class="keyword">let</span> s = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">let</span> temp = [];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 每一种满足个数为 n 的选择情况下，继续判断是否满足 和为 m</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">        <span class="comment">// 建立映射，找出选择位上的元素</span></span><br><span class="line">        <span class="keyword">if</span> ((i &amp; (<span class="number">1</span> &lt;&lt; j)) !== <span class="number">0</span>) &#123;</span><br><span class="line">          s += arr[j];</span><br><span class="line">          temp.push(arr[j]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果这种选择情况满足和为 M , 添加到结果数组中</span></span><br><span class="line">      <span class="keyword">if</span> (s === sum) &#123;</span><br><span class="line">        res.push(temp);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://juejin.im/user/5ae087fbf265da0b9c104fa4" target="_blank" rel="noopener">源码终结者</a></p>
 
 
                 <hr>
@@ -370,13 +192,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/03/29/cors/" data-toggle="tooltip" data-placement="top" title="CORS 跨域资源共享">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/03/01/about/index/" data-toggle="tooltip" data-placement="top" title="About">Next Post &rarr;</a>
+                            <a href="/2019/06/26/webapck-optimize/" data-toggle="tooltip" data-placement="top" title="Webpack优化">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -393,20 +211,6 @@
 
             </div>
     <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
         
 
     <!-- Sidebar Container -->
@@ -425,11 +229,7 @@
                        
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#atom" title="atom">atom</a>
-                        
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
-                        
-                          <a class="tag" href="/tags/#插件" title="插件">插件</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
@@ -469,8 +269,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "alenqi-github-io";
-    var disqus_identifier = "http://alenqi.site/2017/03/11/atom-edit/";
-    var disqus_url = "http://alenqi.site/2017/03/11/atom-edit/";
+    var disqus_identifier = "http://alenqi.site/2019/06/27/find-addend/";
+    var disqus_url = "http://alenqi.site/2019/06/27/find-addend/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -732,57 +532,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-  function generateCatalog(selector) {
-    var P = $('div.post-container'),
-      a,
-      n,
-      t,
-      l,
-      i,
-      c;
-    a = P.find('h1,h2,h3,h4,h5,h6');
-    a.each(function() {
-      n = $(this)
-        .prop('tagName')
-        .toLowerCase();
-      i = '#' + $(this).prop('id');
-      t = $(this).text();
-      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
-      l = $('<li class="' + n + '_nav"></li>').append(c);
-      $(selector).append(l);
-    });
-    return true;
-  }
-
-  generateCatalog('.catalog-body');
-
-  // toggle side catalog
-  $('.catalog-toggle').click(function(e) {
-    e.preventDefault();
-    $('.side-catalog').toggleClass('fold');
-  });
-
-  /*
-   * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-   */
-  async('/js/jquery.nav.js', function() {
-    $('.catalog-body').onePageNav({
-      currentClass: 'active',
-      changeHash: !1,
-      easing: 'swing',
-      filter: '',
-      scrollSpeed: 700,
-      scrollOffset: 0,
-      scrollThreshold: 0.2,
-      begin: null,
-      end: null,
-      scrollChange: null,
-      padding: 80
-    });
-  });
-</script>
 
 
 

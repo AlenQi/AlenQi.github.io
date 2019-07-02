@@ -69,13 +69,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -83,7 +76,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -179,31 +172,31 @@
                 post-container">
 
                 <h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
-<p>在使用 gulp 自动添加版本号时稍作一点修改， 欢迎指正。 </p>
+<p>在使用 gulp 自动添加版本号时稍作一点修改， 欢迎指正。</p>
 </blockquote>
 <h2 id="开始问题"><a href="#开始问题" class="headerlink" title="开始问题"></a>开始问题</h2><ul>
-<li>我使用的是（<a href="https://github.com/sindresorhus/gulp-rev" target="_blank" rel="noopener">gulp-rev</a> + <a href="https://github.com/shonny-ua/gulp-rev-collector" target="_blank" rel="noopener">gulp-rev-collector</a>）， 但是每次自动化构建都是依赖 rev 生成的 json 文件： </li>
+<li>我使用的是（<a href="https://github.com/sindresorhus/gulp-rev" target="_blank" rel="noopener">gulp-rev</a> + <a href="https://github.com/shonny-ua/gulp-rev-collector" target="_blank" rel="noopener">gulp-rev-collector</a>）， 但是每次自动化构建都是依赖 rev 生成的 json 文件：</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"style.css": "style-f048bfa0ab.css",</span><br><span class="line">"script.js": "scrip-5c69cf6d54.js",</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>利用上面的 json 去修改 html 里面的静态路径， 第二次如果不想去删除 html， 只想修改静态资源的路径， 文件名被修改无法依赖。 </p>
+<li><p>利用上面的 json 去修改 html 里面的静态路径， 第二次如果不想去删除 html， 只想修改静态资源的路径， 文件名被修改无法依赖。</p>
 </li>
-<li><p>最直接的方法就是修改插件， 使 rev 生成的 json 文件变为下面的依赖关系： </p>
+<li><p>最直接的方法就是修改插件， 使 rev 生成的 json 文件变为下面的依赖关系：</p>
 </li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"style.css": "style.css?v=f048bfa0ab",</span><br><span class="line">"script.js": "scrip.js?v=5c69cf6d54",</span><br></pre></td></tr></table></figure>
 <ul>
-<li>这样不会修改文件的名称， 依赖关系依然成立。 每次输出都能按照最新的依赖关系替换我们 html 文件的静态资源路径。 </li>
+<li>这样不会修改文件的名称， 依赖关系依然成立。 每次输出都能按照最新的依赖关系替换我们 html 文件的静态资源路径。</li>
 </ul>
 <h2 id="如何做"><a href="#如何做" class="headerlink" title="如何做"></a>如何做</h2><ol>
-<li><p>分别安装 <code>gulp-rev</code> 、 <code>gulp-rev-collerctor</code> </p>
+<li><p>分别安装 <code>gulp-rev</code> 、 <code>gulp-rev-collerctor</code></p>
 <p>npm install –save-dev gulp-rev<br>npm install –save-dev gulp-rev-collector</p>
 </li>
 <li><p>打开 node_modules\gulp-rev\index.js</p>
-<p>第 133 行 manifest[originalFile] = revisionedFile;<br>更新为: manifest[originalFile] = originalFile + ‘?v=’ + file.revHash; </p>
+<p>第 133 行 manifest[originalFile] = revisionedFile;<br>更新为: manifest[originalFile] = originalFile + ‘?v=’ + file.revHash;</p>
 </li>
 <li><p>打开 node_modules\gulp-rev\node_modules\rev-path\index.js</p>
-<p>10 行 return filename + ‘-‘ + hash + ext;<br>更新为: return filename + ext; </p>
+<p>10 行 return filename + ‘-‘ + hash + ext;<br>更新为: return filename + ext;</p>
 </li>
 <li><p>打开 node_modules\gulp-rev-collector\index.js</p>
 <p>31 行 if ( path.basename(json[key]).replace(new RegExp( opts.revSuffix ), ‘’ ) !== path.basename(key) ) {<br>更新为: if ( path.basename(json[key]).split(‘?’)[0] !== path.basename(key) )</p>
@@ -212,7 +205,7 @@
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h2><ul>
 <li><p>这三个文件的路径不是绝对的， 比如 rev-path 这个文件夹也可能直接在 node_modules\rev-path</p>
 </li>
-<li><p>修改之后再构建就能达到开始提到的效果了。 </p>
+<li><p>修改之后再构建就能达到开始提到的效果了。</p>
 </li>
 <li><p>点击链接下载修改后的文件<a href="https://pan.baidu.com/s/1c2vRIrY" target="_blank" rel="noopener">https://pan.baidu.com/s/1c2vRIrY</a></p>
 </li>

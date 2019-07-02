@@ -13,7 +13,7 @@
 
     <title>
         
-          算法实现系列（3）——0.1+0.2 - AlenQi的博客 | AlenQi&#39;s Blog
+          算法实现系列（3）—— 0.1+0.2 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
@@ -69,13 +69,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -83,7 +76,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -155,7 +148,7 @@
                           <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>算法实现系列（3）——0.1+0.2</h1>
+                    <h1>算法实现系列（3）—— 0.1+0.2</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by AlenQi on
@@ -179,20 +172,20 @@
                 post-container">
 
                 <blockquote>
-<p>众所周知， 在js的运算中有如下的骚逻辑</p>
+<p>众所周知， 在 js 的运算中有如下的骚逻辑</p>
 </blockquote>
 <p><img src="1.png" alt="0.1+0.2现场"></p>
 <blockquote>
-<p>JavaScript使用Number类型表示数字（整数和浮点数）， 遵循 IEEE 754 标准 通过64位来表示一个数字</p>
+<p>JavaScript 使用 Number 类型表示数字（整数和浮点数）， 遵循 IEEE 754 标准 通过 64 位来表示一个数字</p>
 </blockquote>
 <p><img src="2.png" alt="IEEE 754 浮点数三个域"></p>
 <ul>
-<li>第0位： 符号位， 0表示正数， 1表示负数(s)</li>
-<li>第1位到第11位： 储存指数部分（e）</li>
-<li>第12位到第63位： 储存小数部分（即有效数字）f</li>
+<li>第 0 位： 符号位， 0 表示正数， 1 表示负数(s)</li>
+<li>第 1 位到第 11 位： 储存指数部分（e）</li>
+<li>第 12 位到第 63 位： 储存小数部分（即有效数字）f</li>
 </ul>
 <blockquote>
-<p>0.1和0.2写成二进制标准， 会变成无限循环， 后面超出标准的位数会被截掉， 现在已经失去了精度</p>
+<p>0.1 和 0.2 写成二进制标准， 会变成无限循环， 后面超出标准的位数会被截掉， 现在已经失去了精度</p>
 </blockquote>
 <blockquote>
 <p>在进制的转换和对阶运算过程中， 会丢失精度</p>
@@ -202,7 +195,7 @@
 <li>得到小数位数的数量级</li>
 <li>加数和被加数换算成整数相加， 再还原到小数</li>
 </ol>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decimalAddition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> args = [...arguments]</span><br><span class="line">  <span class="keyword">const</span> maxLen = <span class="built_in">Math</span>.max.apply(</span><br><span class="line"></span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      args.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">const</span> str = <span class="built_in">String</span>(item).split(<span class="string">'.'</span>)[<span class="number">1</span>]</span><br><span class="line">          <span class="keyword">return</span> str ? str.length : <span class="number">0</span></span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line"></span><br><span class="line">      args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur * <span class="number">10</span> ** maxLen, <span class="number">0</span>) / <span class="number">10</span> ** maxLen</span><br><span class="line"></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decimalAddition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> args = [...arguments];</span><br><span class="line">  <span class="keyword">const</span> maxLen = <span class="built_in">Math</span>.max.apply(</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    args.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> str = <span class="built_in">String</span>(item).split(<span class="string">'.'</span>)[<span class="number">1</span>];</span><br><span class="line">      <span class="keyword">return</span> str ? str.length : <span class="number">0</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">sum, cur</span>) =&gt;</span> sum + cur * <span class="number">10</span> ** maxLen, <span class="number">0</span>) / <span class="number">10</span> ** maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -212,12 +205,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/06/20/fibonacci/" data-toggle="tooltip" data-placement="top" title="算法实现系列（4）——斐波那契数列">&larr; Previous Post</a>
+                            <a href="/2019/06/20/fibonacci/" data-toggle="tooltip" data-placement="top" title="算法实现系列（4）—— 斐波那契数列">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/06/17/addition-of-large-numbers/" data-toggle="tooltip" data-placement="top" title="算法实现系列（2）——大数求和">Next Post &rarr;</a>
+                            <a href="/2019/06/17/addition-of-large-numbers/" data-toggle="tooltip" data-placement="top" title="算法实现系列（2）—— 大数求和">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

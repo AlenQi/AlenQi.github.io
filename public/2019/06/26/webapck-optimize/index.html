@@ -13,11 +13,11 @@
 
     <title>
         
-          Atom 使用插件精选(FE) - AlenQi的博客 | AlenQi&#39;s Blog
+          Webpack优化 - AlenQi的博客 | AlenQi&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://alenqi.site/2017/03/11/atom-edit/">
+    <link rel="canonical" href="http://alenqi.site/2019/06/26/webapck-optimize/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
@@ -133,7 +133,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('atom-bg.png')
+        background-image: url('bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -145,18 +145,14 @@
                         
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#atom" title="atom">atom</a>
-                        
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
-                        
-                          <a class="tag" href="/tags/#插件" title="插件">插件</a>
+                          <a class="tag" href="/tags/#优化" title="优化">优化</a>
                         
                     </div>
-                    <h1>Atom 使用插件精选(FE)</h1>
+                    <h1>Webpack优化</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by AlenQi on
-                        2017-03-11
+                        2019-06-26
                     </span>
                 </div>
             </div>
@@ -175,193 +171,126 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><blockquote>
-<p>Atom 琳琅满目的插件中， 很多插件良莠不齐， 根据我的实践情况， 为前端 coder 推荐一些实用的插件。 </p>
+                <blockquote>
+<p>Webpack 是现在主流的功能强大的模块化打包工具，在使用 Webpack 时，如果不注意性能优化，有非常大的可能会产生性能问题，性能问题主要分为开发时打包构建速度慢、开发调试时的重复性工作、以及输出文件质量不高等。不同于<code>gulp</code>、<code>grunt</code>等打包工具，Webpack 是模块化的。</p>
 </blockquote>
-<ol>
-<li><big><a href="https://atom.io/packages/sync-settings" target="_blank" rel="noopener">sync-settings</a></big>
-
-</li>
-</ol>
-<p>首先， 这是一个配置备份插件， 方便以后的迁移， 配合 gist 实用快捷。 </p>
-<ol start="2">
-<li><big><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="noopener">atom-beautify</a></big>
-
-</li>
-</ol>
-<p>使你的代码一键格式化， 支持多种语言， 相对较全。 </p>
-<ol start="3">
-<li><big><a href="https://atom.io/packages/autoclose-html" target="_blank" rel="noopener">autoclose-html</a></big>
-
-</li>
-</ol>
-<p>html 代码自动化闭合， 更加便捷的写 div.</p>
-<ol start="4">
-<li><big><a href="https://atom.io/packages/autocomplete-paths" target="_blank" rel="noopener">autocomplete-paths</a></big>
-
-</li>
-</ol>
-<p>更加智能的补全你的资源路径。 </p>
-<ol start="5">
-<li><big><a href="https://atom.io/packages/autoprefixer" target="_blank" rel="noopener">autoprefixer</a></big>
-
-</li>
-</ol>
-<p>为 CSS 和 SCSS 增加浏览器前缀。 </p>
-<ol start="6">
-<li><big><a href="https://atom.io/packages/color-picker" target="_blank" rel="noopener">color-picker</a></big>
-
-</li>
-</ol>
-<p>在编辑器选择你想要的颜色， 找到颜色， 点击就 OK.</p>
-<ol start="7">
-<li><big><a href="https://atom.io/packages/docblockr" target="_blank" rel="noopener">docblockr</a></big>
-
-</li>
-</ol>
-<p>辅助编写你的注释， 让你爱上写注释。 </p>
-<ol start="8">
-<li><big><a href="https://atom.io/packages/elastic-tabstops" target="_blank" rel="noopener">elastic-tabstops</a></big>
-
-</li>
-</ol>
-<p>弹性制表符， 适用于对于 tab 有强迫症的 coder。 </p>
-<ol start="9">
-<li><big><a href="https://atom.io/packages/emmet" target="_blank" rel="noopener">emmet</a></big>
-
-</li>
-</ol>
-<p>前端神器多年， 前端必备， 配合快捷键更个性化。 </p>
-<ol start="10">
-<li><big><a href="https://atom.io/packages/file-icons" target="_blank" rel="noopener">file-icons</a></big>
-
-</li>
-</ol>
-<p>指定文件扩展名的图标和颜色， 改善视觉。 </p>
-<ol start="11">
-<li><big><a href="https://atom.io/packages/git-control" target="_blank" rel="noopener">git-control</a></big>
-
-</li>
-</ol>
-<p>提供了一个 GUI 界面来管理所有常用的 git 命令。 （如果你不喜欢命令行）</p>
-<ol start="12">
-<li><big><a href="https://zhuanlan.zhihu.com/p/24753739" target="_blank" rel="noopener">gulp-control</a></big>
-
-</li>
-</ol>
-<p>显示 gulp 任务的列表, 在 atom 里实现 GUI 执行。 </p>
-<ol start="13">
-<li><big><a href="https://atom.io/packages/highlight-selected" target="_blank" rel="noopener">highlight-selected</a></big>
-
-</li>
-</ol>
-<p>双击时高亮当前选择的词。 </p>
-<ol start="14">
-<li><big><a href="https://atom.io/packages/jquery-snippets" target="_blank" rel="noopener">jquery-snippets</a></big>
-
-</li>
-</ol>
-<p>支持 jquery 代码编写。 </p>
-<ol start="15">
-<li><big><a href="https://atom.io/packages/language-vue" target="_blank" rel="noopener">language-vue</a></big>
-
-</li>
-</ol>
-<p>高亮显示 Vue 代码, 支持 Vue 组件。 </p>
-<ol start="16">
-<li><big><a href="https://atom.io/packages/linter-csslint" target="_blank" rel="noopener">linter-csslint</a></big>
-
-</li>
-</ol>
-<p>检测你的 CSS 是否基本规范， 减少你的错误， 提高代码质量。 </p>
-<ol start="17">
-<li><big><a href="https://atom.io/packages/linter-eslint" target="_blank" rel="noopener">linter-eslint</a></big>
-
-</li>
-</ol>
-<p>看你上面的， 我想你也了解这个是干嘛的了。 </p>
-<ol start="18">
-<li><big><a href="https://atom.io/packages/linter-sass-lint" target="_blank" rel="noopener">linter-sass-lint</a></big>
-
-</li>
-</ol>
-<p>如果你使用 SASS/SCSS， 这个检测是必要的。 </p>
-<ol start="19">
-<li><big><a href="https://atom.io/packages/minimap" target="_blank" rel="noopener">minimap</a></big>
-
-</li>
-</ol>
-<p>一个完整源代码的预览， 让你看到代码地图。 （不建议在一个文件里写很长的代码）</p>
-<ol start="20">
-<li><a href="https://atom.io/packages/minimap-highlight-selected" target="_blank" rel="noopener">minimap-highlight-selected</a></li>
-</ol>
-<p>在你代码概览地图上高亮显示你的选择。 </p>
-<ol start="21">
-<li><big><a href="https://atom.io/packages/open-in-browsers" target="_blank" rel="noopener">open-in-browsers</a></big>
-
-</li>
-</ol>
-<p>你想在哪个浏览器里运行你的代码， 安装这个吧。 </p>
-<ol start="22">
-<li><big><a href="https://atom.io/packages/regex-railroad-diagram" target="_blank" rel="noopener">regex-railroad-diagram</a></big>
-
-</li>
-</ol>
-<p>如果你经常要写正则表达式， 这个插件可以显示光标下的正则表达式铁路图。 </p>
-<ol start="23">
-<li><big><a href="https://atom.io/packages/simplified-chinese-menu" target="_blank" rel="noopener">simplified-chinese-menu</a></big>
-
-</li>
-</ol>
-<p>Atom 的简体中文语言包， 完整汉化， 兼容所有已发布版本 Atom。 </p>
-<ol start="24">
-<li><big><a href="https://atom.io/packages/tree-view-git-status" target="_blank" rel="noopener">tree-view-git-status</a></big>
-
-</li>
-</ol>
-<p>树形文件视图中显示 Git 存储库状态。 </p>
-<ol start="25">
-<li><big><a href="https://atom.io/packages/prettier-atom" target="_blank" rel="noopener">prettier-atom</a></big>
-
-</li>
-</ol>
-<p>An atom package for the prettier formatter.</p>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h3><ol>
-<li><p>之前找了很久 atom 的自动保存插件， 没找到， 原来骑驴找驴， 在自带的核心扩展里面就有。 <a href="https://atom.io/packages/autosave" target="_blank" rel="noopener">autosave</a>， 把里面的配置 settings 里的”Enabled”勾选中， 就可以在当前编辑页面失去焦点的时候自动保存。 </p>
-</li>
-<li><p>在编辑器的核心包里有<a href="https://atom.io/packages/line-ending-selector" target="_blank" rel="noopener">line-ending-selector</a>可以定义你的换行类型。 </p>
-</li>
-<li><p>这个链接是我的配置 gist： </p>
-<p><a href="https://gist.github.com/AlenQi/e84eca296c2a5f274234e3212f8a6736" target="_blank" rel="noopener">GitHubGist</a>（包含上面所有的插件， 还有我自己的配置， 可以直接导入扩展）</p>
-</li>
-<li><p>如果你想更改 atom-beautify 里的换行符， LF or CRLF ， see:</p>
-</li>
+<h2 id="一、优化构建速度"><a href="#一、优化构建速度" class="headerlink" title="一、优化构建速度"></a>一、优化构建速度</h2><ol>
+<li>缩小文件的搜索范围</li>
 </ol>
 <ul>
-<li><p>Retrieves the default line ending based upon the Atom configuration</p>
+<li><p>利用 resolve 字段</p>
+<ol>
+<li>设置 resolve.modules:[path.resolve(__dirname, ‘node_modules’)]避免层层查找</li>
+<li>设置 resolve.mainFields:[‘main’]，设置尽量少的值可以减少入口文件的搜索步骤</li>
+<li>对庞大的第三方模块设置 resolve.alias, 使 webpack 直接使用库的 min 文件，避免库内解析</li>
+<li>合理配置 resolve.extensions，减少文件查找</li>
+</ol>
 </li>
-<li><p><code>line-ending-selector.defaultLineEnding</code> . If the Atom configuration</p>
+<li><p>module.noParse 字段告诉 Webpack 不必解析哪些文件，可以用来排除对非模块化库文件的解析</p>
 </li>
-<li><p>indicates “OS Default”, the <code>process.platform</code> is queried, returning</p>
-</li>
-<li><p>CRLF for Windows systems and LF for all other systems.</p>
-</li>
-<li><p>Code modified from atom/line-ending-selector</p>
-</li>
-<li><p>returns: The correct line-ending character sequence based upon the Atom</p>
-</li>
-<li><p>configuration, or <code>null</code> if the Atom line ending configuration was not</p>
-</li>
-<li><p>recognized.</p>
-</li>
-<li><p>see: <a href="https://github.com/atom/line-ending-selector/blob/master/lib/main.js" target="_blank" rel="noopener">line-ending</a></p>
-</li>
-<li><p>在下面的路径下修改你想要的： </p>
-</li>
-<li><p><code>packages\atom-beautify\src\beautifiers\js-beautify.coffee</code> </p>
+<li><p>配置 loader 时，通过 test、exclude、include 缩小搜索范围</p>
 </li>
 </ul>
-<figure class="highlight coffee"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getDefaultLineEnding</span>= -&gt;</span></span><br><span class="line"><span class="keyword">switch</span> atom.config.get(<span class="string">'line-ending-selector.defaultLineEnding'</span>)</span><br><span class="line">  <span class="keyword">when</span> <span class="string">'LF'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\n'</span></span><br><span class="line">  <span class="keyword">when</span> <span class="string">'CRLF'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\r\n'</span></span><br><span class="line">  <span class="keyword">when</span> <span class="string">'OS Default'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">if</span> process.platform <span class="keyword">is</span> <span class="string">'win32'</span> <span class="keyword">then</span> <span class="string">'\r\n'</span> <span class="keyword">else</span> <span class="string">'\n'</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用 DllPlugin 减少基础模块编译次数</li>
+</ol>
+<ul>
+<li>DllPlugin 动态链接库插件，其原理是把网页依赖的基础模块抽离出来打包到 dll 文件中，当需要导入的模块存在于某个 dll 中时，这个模块不再被打包，而是去 dll 中获取。<strong>为什么会提升构建速度呢？</strong>原因在于 dll 中大多包含的是常用的第三方模块，如 react、react-dom，所以只要这些模块版本不升级，就只需被编译一次。这样做和配置 resolve.alias 和 module.noParse 的效果有异曲同工的效果</li>
+</ul>
+<ol start="3">
+<li>使用 HappyPack 开启多进程 Loader 转换</li>
+</ol>
+<ul>
+<li>在整个构建流程中，最耗时的就是 Loader 对文件的转换操作了，而运行在 Node.js 之上的 Webpack 是单线程模型的，也就是只能一个一个文件进行处理，不能并行处理。HappyPack 可以将任务分解给多个子进程，最后将结果发给主进程。JS 是单线程模型，只能通过这种多进程的方式提高性能</li>
+</ul>
+<ol start="4">
+<li>使用 ParallelUglifyPlugin 开启多进程压缩 JS 文件</li>
+</ol>
+<ul>
+<li>使用 UglifyJS 插件压缩 JS 代码时，需要先将代码解析成 Object 表示的 AST（抽象语法树），再去应用各种规则去分析和处理 AST，所以这个过程计算量大耗时较多。ParallelUglifyPlugin 可以开启多个子进程，每个子进程使用 UglifyJS 压缩代码，可以并行执行，能显著缩短压缩时间</li>
+</ul>
+<h2 id="二、优化开发体验"><a href="#二、优化开发体验" class="headerlink" title="二、优化开发体验"></a>二、优化开发体验</h2><ol>
+<li>使用自动刷新</li>
+</ol>
+<ul>
+<li><p>Webpack 监听文件</p>
+</li>
+<li><p>DevServer 刷新浏览器</p>
+</li>
+</ul>
+<ol>
+<li>开启模块热替换 HMR</li>
+</ol>
+<ul>
+<li>模块热替换不刷新整个网页而只重新编译发生变化的模块，并用新模块替换老模块，所以预览反应更快，等待时间更少，同时不刷新页面能保留当前网页的运行状态。原理也是向每一个 chunk 中注入代理客户端来连接 DevServer 和网页, 开启后如果修改子模块就可以实现局部刷新</li>
+</ul>
+<h2 id="三、优化输出质量-压缩文件体积"><a href="#三、优化输出质量-压缩文件体积" class="headerlink" title="三、优化输出质量-压缩文件体积"></a>三、优化输出质量-压缩文件体积</h2><ol>
+<li><p>区分环境–减小生产环境代码体积</p>
+</li>
+<li><p>压缩代码-JS、ES、CSS</p>
+</li>
+<li><p>使用 Tree Shaking 剔除 JS 死代码</p>
+</li>
+</ol>
+<h2 id="四、优化输出质量–加速网络请求"><a href="#四、优化输出质量–加速网络请求" class="headerlink" title="四、优化输出质量–加速网络请求"></a>四、优化输出质量–加速网络请求</h2><ol>
+<li>使用 CDN 加速静态资源加载</li>
+</ol>
+<ul>
+<li><p>HTML 文件：放在自己的服务器上且关闭缓存，不接入 CDN</p>
+</li>
+<li><p>静态的 JS、CSS、图片等资源：开启 CDN 和缓存，同时文件名带上由内容计算出的 Hash 值，这样只要内容变化 hash 就会变化，文件名就会变化，就会被重新下载而不论缓存时间多长。</p>
+</li>
+<li><p>不同类型资源放在不同域名的 CDN 上</p>
+</li>
+</ul>
+<ol start="2">
+<li>多页面应用提取页面间公共代码，以利用缓存</li>
+</ol>
+<ul>
+<li><p>原理：大型网站通常由多个页面组成，每个页面都是一个独立的单页应用，多个页面间肯定会依赖同样的样式文件、技术栈等。如果不把这些公共文件提取出来，那么每个单页打包出来的 chunk 中都会包含公共代码，相当于要传输 n 份重复代码。如果把公共文件提取出一个文件，那么当用户访问了一个网页，加载了这个公共文件，再访问其他依赖公共文件的网页时，就直接使用文件在浏览器的缓存，这样公共文件就只用被传输一次。</p>
+</li>
+<li><p>应用方法：</p>
+<ol>
+<li>利用 CommonsChunkPlugin 把多个页面依赖的公共代码提取到 common.js 中</li>
+<li>找出依赖的基础库，写一个 base.js 文件，再与 common.js 提取公共代码到 base 中，common.js 就剔除了基础库代码，而 base.js 保持不变</li>
+<li>得到基础库代码 base.js，不含基础库的公共代码 common.js，和页面各自的代码文件 xx.js</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>分割代码以按需加载</li>
+</ol>
+<ul>
+<li><p>原理：</p>
+<ol>
+<li>将网站功能按照相关程度划分成几类</li>
+<li>每一类合并成一个 Chunk，按需加载对应的 Chunk</li>
+<li>例如，只把首屏相关的功能放入执行入口所在的 Chunk，这样首次加载少量的代码，其他代码要用到的时候再去加载。最好提前预估用户接下来的操作，提前加载对应代码，让用户感知不到网络加载</li>
+</ol>
+</li>
+<li><p>做法：</p>
+<p><code>import(/_ webpackChunkName:show _/ &#39;./show&#39;).then()</code> 是实现按需加载的关键，Webpack 内置对 <code>import( \*)</code>语句的支持，Webpack 会以<code>./show.js</code> 为入口重新生成一个 Chunk。代码在浏览器上运行时只有点击了按钮才会开始加载 <code>show.js</code>，且 <code>import</code> 语句会返回一个 <code>Promise</code>，加载成功后可以在 then 方法中获取加载的内容。这要求浏览器支持 <code>Promise API</code>，对于不支持的浏览器，需要注入 <code>Promise polyfill</code>。</p>
+</li>
+</ul>
+<h2 id="五、优化输出质量–提升代码运行时的效率"><a href="#五、优化输出质量–提升代码运行时的效率" class="headerlink" title="五、优化输出质量–提升代码运行时的效率"></a>五、优化输出质量–提升代码运行时的效率</h2><ol>
+<li>使用 Prepack 提前求值</li>
+</ol>
+<ul>
+<li><p>原理：</p>
+<p>Prepack 是一个部分求值器，编译代码时提前将计算结果放到编译后的代码中，而不是在代码运行时才去求值。通过在编译阶段预先执行源码来得到执行结果，再直接将运行结果输出以提升性能。但是现在 Prepack 还不够成熟，用于线上环境还为时过早</p>
+</li>
+</ul>
+<ol start="2">
+<li>使用 Scope Hoisting</li>
+</ol>
+<ul>
+<li><p>原理：</p>
+<p>译作<code>作用域提升</code>，它分析模块间的依赖关系，尽可能将被打散的模块合并到一个函数中，但不能造成代码冗余，所以只有被引用一次的模块才能被合并。由于需要分析模块间的依赖关系，所以源码必须是采用了 ES6 模块化的，否则 Webpack 会降级处理不采用 Scope Hoisting</p>
+</li>
+</ul>
+<h2 id="六、使用输出分析工具"><a href="#六、使用输出分析工具" class="headerlink" title="六、使用输出分析工具"></a>六、使用输出分析工具</h2><ol>
+<li>webpack-bundle-analyzer</li>
+</ol>
 
 
                 <hr>
@@ -371,12 +300,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/03/29/cors/" data-toggle="tooltip" data-placement="top" title="CORS 跨域资源共享">&larr; Previous Post</a>
+                            <a href="/2019/06/27/find-addend/" data-toggle="tooltip" data-placement="top" title="算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/03/01/about/index/" data-toggle="tooltip" data-placement="top" title="About">Next Post &rarr;</a>
+                            <a href="/2019/06/20/fibonacci/" data-toggle="tooltip" data-placement="top" title="算法实现系列（4）—— 斐波那契数列">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -393,20 +322,6 @@
 
             </div>
     <!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
         
 
     <!-- Sidebar Container -->
@@ -425,11 +340,7 @@
                        
                           <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
                         
-                          <a class="tag" href="/tags/#atom" title="atom">atom</a>
-                        
-                          <a class="tag" href="/tags/#编辑器" title="编辑器">编辑器</a>
-                        
-                          <a class="tag" href="/tags/#插件" title="插件">插件</a>
+                          <a class="tag" href="/tags/#优化" title="优化">优化</a>
                         
                     </div>
                 </section>
@@ -469,8 +380,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "alenqi-github-io";
-    var disqus_identifier = "http://alenqi.site/2017/03/11/atom-edit/";
-    var disqus_url = "http://alenqi.site/2017/03/11/atom-edit/";
+    var disqus_identifier = "http://alenqi.site/2019/06/26/webapck-optimize/";
+    var disqus_url = "http://alenqi.site/2019/06/26/webapck-optimize/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -732,57 +643,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-  function generateCatalog(selector) {
-    var P = $('div.post-container'),
-      a,
-      n,
-      t,
-      l,
-      i,
-      c;
-    a = P.find('h1,h2,h3,h4,h5,h6');
-    a.each(function() {
-      n = $(this)
-        .prop('tagName')
-        .toLowerCase();
-      i = '#' + $(this).prop('id');
-      t = $(this).text();
-      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
-      l = $('<li class="' + n + '_nav"></li>').append(c);
-      $(selector).append(l);
-    });
-    return true;
-  }
-
-  generateCatalog('.catalog-body');
-
-  // toggle side catalog
-  $('.catalog-toggle').click(function(e) {
-    e.preventDefault();
-    $('.side-catalog').toggleClass('fold');
-  });
-
-  /*
-   * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-   */
-  async('/js/jquery.nav.js', function() {
-    $('.catalog-body').onePageNav({
-      currentClass: 'active',
-      changeHash: !1,
-      easing: 'swing',
-      filter: '',
-      scrollSpeed: 700,
-      scrollOffset: 0,
-      scrollThreshold: 0.2,
-      begin: null,
-      end: null,
-      scrollChange: null,
-      padding: 80
-    });
-  });
-</script>
 
 
 
