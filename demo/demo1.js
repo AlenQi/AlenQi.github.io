@@ -1,128 +1,215 @@
-function getCombBySum(array, sum, targetCount) {
-  /*
-  array： 数据源数组，必选；
-  sum： 相加的和，必选；
-  targetCount： 操作数数量，如果不指定此参数，则结果包含所有可能的情况，指定此参数可以筛选出固定数量的数相加，假如指定为3，那么结果只包含三个数相加的情况，可选；
-  返回值： 返回的是数组套数组结构，内层数组中的元素是操作数，外层数组中的元素是所有可能的结果；
-  */
-  const util = {
-    /*
-      get combination from array
-      arr: target array
-      num: combination item length
-      return: one array that contain combination arrays
-    */
-    /*获取所有的可能组合
-    如果是[1,2,3,4,5]取出3个，那么可能性就有10种 C(5,3)= C(5,2)
-    公式： 
-    全排列  P(n,m)=n!/(n-m)!
-    组合排列 P(n,m)=n!/m!/(n-m)!
-    C(5,2)=5!/2!*3!=5*4*3*2*1/[(2*1)*(3*2*1)]=10
-    这是使用了循环加递归做出了组合排序
-    */
-    getCombination: function(arr, num) {
-      //  索引数组 操作数数量
-      let r = [];
-      (function f(t, a, n) {
-        if (n == 0) return r.push(t);
-        for (let i = 0, l = a.length; i <= l - n; i++) {
-          f(t.concat(a[i]), a.slice(i + 1), n - 1);
-        }
-      })([], arr, num);
+function curry(fn) {
+  var slice = [].slice;
+  var len = fn.length;
 
-      return r;
-    },
-    // 获取数组的索引
-    getArrayIndex: function(array) {
-      let i = 0;
-      let r = [];
-      for (i = 0; i < array.length; i++) {
-        r.push(i);
-      }
-
-      return r;
+  return function curried() {
+    var args = slice.call(arguments);
+    if (args.length >= len) {
+      return fn.apply(null, args);
     }
+
+    return function() {
+      return curried.apply(null, args.concat(slice.call(arguments)));
+    };
   };
-
-  const logic = {
-    //  对数组进行排序
-    //  获取数组中比sum小的数
-    init: function(array, sum) {
-      //初始化去除不可能的元素
-      // clone array
-      let _array = array.concat();
-      let r = [];
-      // 升序排序
-      _array.sort(function(a, b) {
-        return a - b;
-      });
-      // 当它小于或等于总和时获得所有数字
-      for (let i = 0; i < _array.length; i++) {
-        if (_array[i] <= sum) {
-          r.push(_array[i]);
-        } else {
-          break;
-        }
-      }
-      console.log('初始化后的数据源:', r);
-      return r;
-    },
-    // important function
-    core: function(array, sum, arrayIndex, count, r) {
-      if (count == _returnMark) {
-        return;
-      }
-      // 获取当前的计数总和
-      // 这里排序的不是原来的数组,而是求的索引后的数组
-      let combArray = util.getCombination(arrayIndex, count);
-      // 这里获得了数组所有排列组合
-      console.log('getCombination返回的值：', combArray);
-      console.log('combArray===', combArray);
-
-      for (let i = 0; i < combArray.length; i++) {
-        let _cca = combArray[i];
-        let _sum = 0;
-        let _cache = [];
-        // calculate the sum from combination
-        for (let k = 0; k < _cca.length; k++) {
-          _sum += array[_cca[k]];
-          _cache.push(array[_cca[k]]);
-        }
-
-        if (_sum === sum) {
-          r.push(_cache);
-        }
-      }
-
-      logic.core(array, sum, arrayIndex, count - 1, r);
-    }
-  };
-
-  let r = [];
-  let _returnMark = 0;
-
-  // check data
-  const _targetCount = targetCount || 0;
-
-  const _array = logic.init(array, sum);
-
-  if (_targetCount) {
-    _returnMark = _targetCount - 1;
-  }
-  console.log('_targetCount的值:', _targetCount);
-  console.log('_returnMark的值:', _returnMark);
-
-  logic.core(
-    _array,
-    sum,
-    util.getArrayIndex(_array),
-    _targetCount || _array.length,
-    r
-  );
-
-  return r;
 }
 
-var res1 = getCombBySum([1, 2, 3, 4, 5, 6, 10, 11], 7, 3);
+var add = curry(function(a, b, c, d) {
+  return a + b + c + d;
+});
 
-console.log(res1);
+console.log(add(1)(2)(3)(4)); // 10
+console.log(add(1, 2, 3)(4)); // 10
+console.log(add(1)(2, 3)(4)); // 10
+
+// url参数解析
+const parseQuery = url => {
+  const query = /.+\?(.+)$/.exec(url)[1];
+  const paramsArr = query.split('&');
+  let result = [];
+  paramsArr.forEach(item => {
+    if (/=/.test(item)) {
+      let [key, value] = item.split('=');
+      value = decodeURIComponent(value);
+      value = /^\d+&/.test(value) ? parseFloat(value) : value;
+      if (result.hasOwnProperty(key)) {
+        result[key] = [].concat(result[key], value);
+      } else {
+        result[key] = value;
+      }
+    } else {
+      result[key] = true;
+    }
+  });
+  return result;
+};
+
+parseQuery('www.baidu.com/a?a=1&b=2');
+
+function decimalAddition() {
+  const args = [...arguments];
+  const maxLen = Math.max.apply(
+    null,
+    args.map(item => {
+      const str = String(item).split('.')[1];
+      return str ? str.length : 0;
+    })
+  );
+
+  return args.reduce((sum, cur) => sum + cur * 10 ** maxLen, 0) / 10 ** maxLen;
+}
+
+let Fibonacci_ = (curr, next, n) =>
+  Object.is(n, 0) ? curr : Fibonacci_(next.curr + next, n - 1);
+let Fibonacci = n => Fibonacci_(0, 1, n);
+
+function additionOfLargeNumbers(d1, d2) {
+  if (d1.length < d2.length) {
+    [d1, d2] = [d2, d1]
+  }
+  let [arr1, arr2] = [[...d1].reverse(), [...d2].reverse()]
+  let num = 0
+  for (let i = 0; i < arr1.length; 1++) {
+    if (arr2[i]) {
+      arr1[i] = Number.parseInt(arr1[i]) + Number.parseInt(arr2[i]) + num 
+    } else {
+      arr1[i] = Number.parseInt(arr1[i]) + num
+    }
+    if (arr1[i] >= 10) {
+      [arr1[i], num] = [arr1[i] % 10, 1]
+    } else {
+      num = 0
+    }
+  }
+  if (num === 1) {
+    arr1[arr1.length] = num
+  }
+
+  return arr1.reverse().join('')
+}
+
+const search = (arr, count, sum) => {
+  const n = num => {
+    let count = 0
+    while(num) {
+      num &= num - 1
+      count++
+    }
+     return count
+  }
+
+  let len = arr.length
+  let bit = 1 << len
+  let res = []
+
+  for(let i = 0; i < bit; i++) {
+    if (n(i) === count) {
+      let s = 0
+      let temp = []
+      
+      for (let j = 0; j < len; j++) {
+        if((i & (i << j)) !== 0) {
+          s += arr[j]
+          temp.push(arr(j))
+        }
+      }
+
+      if (s === sum) {
+        res.push(temp)
+      }
+    }
+  }
+  return res
+}
+
+function unique(array) {
+  const res = array.filter((item, index, array) => {
+    return array.indexOf(item) === index
+  })
+  return res
+}
+
+var array = [1, 2, 1, 1, '1'];
+
+function unique(array) {
+    return array.concat().sort().filter(function(item, index, array){
+      return !index || item !== array[index - 1]
+    })
+}
+
+console.log(unique(array));
+
+Promise.prototype.then = function(onResolved, onRejected) {
+  var res = new Promise(function() {})
+  var deferred = new Handler(onResolved, onRejected, res)
+
+  if (this._state === 0) {
+    this._deferreds.push(deferred)
+    return res
+  }
+
+  handleResolved(this, deferred)
+
+  return res
+}
+
+function Handler(onResolved, onRejected, promise) {
+  this.onResolved = typeof onResolved === 'function' ? onResolved : null
+  this.onRejected = typeof onRejected === 'function' ? onRejected : null
+  this.promise = promise
+}
+
+async function asyncForEach(array, callback) {
+  for(let index = 0; index < array.length; i++) {
+    await callback(array[index], index, array)
+  }
+}
+
+async function test() {
+  var nums = [1, 2, 3]
+  asyncForEach(nums, async x => {
+    var res = await multi(x)
+    console.log(res);
+  })
+}
+
+async function test() {
+  var nums = [1, 2, 3]
+  for (const x of nums) {
+    var res = await multi(x)
+    console.log(res);
+  }
+}
+
+formatJsonStr = str => {
+  if (str === null || str === '{}' || str === undefined) {
+    return str
+  }
+
+  try {
+    let json = JSON.parse(str)
+    for(let k in json) {
+      let kv = json[k]
+    }
+
+    try {
+      if (Array.isArray(kv)) {
+        try {
+          let sub = kv.toString().replace('[', '').replace(']', '').split(',')
+          for(let i = 0; i < sub.length; i++) {
+            if(typeof (JSON.parse(sub([i]))) == 'object') {
+              sub[i] = this.formatJsonStr(sub[i])
+            }
+          }
+          json[k] = sub
+        } catch (e) {}
+        continue
+      }
+      if (typeof (JSON.parse[kv]) == 'object') {
+        json[k] = this.formatJsonStr(kv)
+      }
+    } catch(e) {}
+    return json
+  } catch(e) {}
+  return json
+}
