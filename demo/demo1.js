@@ -213,3 +213,33 @@ formatJsonStr = str => {
   } catch(e) {}
   return json
 }
+
+function _parseInt(str, radix) {
+  let str_type = typeof str
+  let res = 0
+  if (str_type !== 'string' && str_type !== 'number') {
+    return NaN
+  }
+
+  str = String(str).trim().split('.')[0]
+  let length = str.length
+
+  if (!length) {
+    return NaN
+  }
+
+  if (!radix) {
+    radix = 10
+  }
+
+  if (typeof radix !== 'number' || radix < 2 || radix > 36) {
+    return NaN
+  }
+
+  for(let i =0; i < length; i++) {
+    let arr = str.split('').reverse().join('')
+    res += Math.floor(arr[i]) * Math.pow(radix, i)
+  }
+
+  return res
+}
