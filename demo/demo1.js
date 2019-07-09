@@ -1,3 +1,4 @@
+// 函数柯里化
 function curry(fn) {
   var slice = [].slice;
   var len = fn.length;
@@ -46,6 +47,8 @@ const parseQuery = url => {
 
 parseQuery('www.baidu.com/a?a=1&b=2');
 
+// 小数相加
+
 function decimalAddition() {
   const args = [...arguments];
   const maxLen = Math.max.apply(
@@ -59,9 +62,13 @@ function decimalAddition() {
   return args.reduce((sum, cur) => sum + cur * 10 ** maxLen, 0) / 10 ** maxLen;
 }
 
+// 尾调优化 斐波那契数列
+
 let Fibonacci_ = (curr, next, n) =>
   Object.is(n, 0) ? curr : Fibonacci_(next.curr + next, n - 1);
-let Fibonacci = n => Fibonacci_(0, 1, n);
+let Fibonacci = n => Fibonacci_(0, 1, n);、
+
+// 大数相加
 
 function additionOfLargeNumbers(d1, d2) {
   if (d1.length < d2.length) {
@@ -87,6 +94,8 @@ function additionOfLargeNumbers(d1, d2) {
 
   return arr1.reverse().join('')
 }
+
+// 寻找数组中n个数之和为m
 
 const search = (arr, count, sum) => {
   const n = num => {
@@ -122,6 +131,8 @@ const search = (arr, count, sum) => {
   return res
 }
 
+// 数组去重
+
 function unique(array) {
   const res = array.filter((item, index, array) => {
     return array.indexOf(item) === index
@@ -138,6 +149,8 @@ function unique(array) {
 }
 
 console.log(unique(array));
+
+// promise then 的链式调用原理
 
 Promise.prototype.then = function(onResolved, onRejected) {
   var res = new Promise(function() {})
@@ -158,6 +171,8 @@ function Handler(onResolved, onRejected, promise) {
   this.onRejected = typeof onRejected === 'function' ? onRejected : null
   this.promise = promise
 }
+
+// forEach回调里使用async函数
 
 async function asyncForEach(array, callback) {
   for(let index = 0; index < array.length; i++) {
@@ -180,6 +195,8 @@ async function test() {
     console.log(res);
   }
 }
+
+// js 解析json结构的字符串，包含多层json嵌套和数组结构
 
 formatJsonStr = str => {
   if (str === null || str === '{}' || str === undefined) {
@@ -214,6 +231,8 @@ formatJsonStr = str => {
   return json
 }
 
+// 手动实现parseInt
+
 function _parseInt(str, radix) {
   let str_type = typeof str
   let res = 0
@@ -243,3 +262,101 @@ function _parseInt(str, radix) {
 
   return res
 }
+
+// 手动实现bind函数
+
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(oThis) {
+    if (typeof this !== 'function') {
+      throw new TypeError('error')
+    }
+
+    let aArgs = Array.prototype.slice.call(arguments, 1)
+    let fToBind = this
+    let fNOP = function() {}
+    let fBound = function() {
+      return fToBind.apply(this instanceof fBound ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)))
+    }
+
+    if (this.prototype) {
+      fNOP.prototype = this.prototype
+    }
+
+    fBound.prototype = new fNOP()
+
+    return fBound
+  }
+}
+
+// 手动模拟单例模式
+
+{
+  function Singleton(name) {
+    this.name = name
+    this.instance = null
+  }
+
+  Singleton.prototype.getName = function() {
+    console.log(this.name)
+  }
+
+  Singleton.getInstance = function(name) {
+    if (!this.instance) {
+      this.instance = new Singleton(name)
+    }
+    return this.instance
+  }
+
+  const a = Singleton.getInstance('a')
+  const b = Singleton.getInstance('b')
+  console.log(a === b)
+} 
+
+// 寻找数组重复项
+
+function duplicates_1(arr) {
+  let newArr = []
+  arr.sort()
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] == arr[i+1] && (newArr.indexOf(arr[i]) == -1)) {
+      newArr.push(arr[i])
+    }
+  }
+  return newArr
+}
+
+function duplicates_2(arr) {
+  let a = []
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = i+1; j < arr.length; j++) {
+      if(arr[i] == arr[j] && a.indexOf(arr[i]) == -1) {
+        a.push(arr[i])
+      }
+    }
+  }
+  return a.sort()
+}
+
+// 数组扁平化
+let arr = [1, 2, [3, 4]]
+function flatten_1(arr) {
+  return arr.toString().split(',').map(item => {
+    return +item
+  })
+}
+
+
+function flatten_2(arr) {
+  return arr.reduce((prev, next) => {
+    return prev.concat(Array.isArray(next) ? flatten_2(next) : next)
+  }, [])
+}
+
+function flatten_3(arr) {
+  while(arr.some(item => Array.isArray(item))) {
+    arr = [].concat(...arr)
+  }
+  return arr
+}
+
+ 

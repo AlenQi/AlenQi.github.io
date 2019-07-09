@@ -45,6 +45,7 @@
 3. 防抖与节流
 4. cookies. session. sessionStorage. localStorage
 5. 浏览器内核
+6. 为什么会有同源策略
 
 # 服务端与网络
 

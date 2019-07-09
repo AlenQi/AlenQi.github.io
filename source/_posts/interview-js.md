@@ -274,19 +274,193 @@ function _parseInt(str, radix) {
 }
 ```
 
-12. 为什么会有同源策略
-13. 怎么判断两个对象是否相等
-14. 事件模型 事件委托. 代理如何让事件先冒泡后捕获
-15. window 的 onload 事件和 domcontentloaded
-16. for...in 迭代和 for...of 有什么区别
-17. 函数柯里化
-18. call apply 区别，原生实现 bind call，apply，bind 三者用法和区别：角度可为参数. 绑定规则（显示绑定和强绑定），运行效率. 运行情况。
-19. async/await
-20. 立即执行函数和使用场景
-21. 设计模式(要求说出如何实现,应用,优缺点)/单例模式实现
-22. iframe 的缺点有哪些
-23. 数组问题 数组去重数组常用方法查找数组重复项扁平化数组按数组中各项和特定值差值排序
-24. BOM 属性对象方法
+### 10. 怎么判断两个对象是否相等
+
+```js
+function equals(x, y) {
+  const f1 = x instanceof Object;
+  const f2 = y instanceof Object;
+  if (!f1 || !f2) {
+    return x === y;
+  }
+
+  if (Object.keys(x).length !== Object.keys(y).length) {
+    return false;
+  }
+
+  const newX = Object.keys(x);
+  for (let p in newX) {
+    p = newX[p];
+    const a = x[p] instanceof Object;
+    const b = y[p] instanceof Object;
+    if (a && b) {
+      equals(x[p], y[p]);
+    } else if (x[p] !== y[p]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+### 11. window 的 onload 事件和 DOMContentLoaded
+
+- DOMContentLoaded HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。并且 DOMContentLoaded 事件必须等待其所属 script 之前的样式表加载解析完成才会触发。
+
+- onload 属性是一个事件处理程序用于处理 Window, XMLHttpRequest, <img> 等元素的加载事件，当资源已加载时被触发。在文档装载完成后会触发 load 事件。此时，在文档中的所有对象都在 DOM 中，所有图片，脚本，链接以及子框都完成了装载。
+
+### 12. for...in 迭代和 for...of 有什么区别
+
+1. for...in 遍历对象, for...of 遍历数组
+2. for...in 循环出的是 key, for...of 循环出的是 value
+3. for...in 是 ES5 引入的, for...of 是 ES6 引入的
+4. for...of 不能遍历普通对象, 需要和 Object.keys() 配合使用
+
+### 13. call、apply、bind 三者区别，原生实现 bind
+
+- call 和 apply 第一个参数都是指定函数体内的 this 对象的指向
+
+- call 参数的数量不固定，可以传递多个，apply 第二个参数是一个带下标的集合，可以是数组或者类数组
+
+- call 和 apply 改变了函数的 this 上下文后便执行该函数,而 bind 则是返回改变了上下文后的一个函数，bind 可以像 call 一样传参，也可在调用返回函数的时候传参
+
+```js
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(oThis) {
+    if (typeof this !== 'function') {
+      throw new TypeError('error');
+    }
+
+    let aArgs = Array.prototype.slice.call(arguments, 1);
+    let fToBind = this;
+    let fNOP = function() {};
+    let fBound = function() {
+      return fToBind.apply(
+        this instanceof fBound ? this : oThis,
+        aArgs.concat(Array.prototype.slice.call(arguments))
+      );
+    };
+
+    if (this.prototype) {
+      fNOP.prototype = this.prototype;
+    }
+
+    fBound.prototype = new fNOP();
+
+    return fBound;
+  };
+}
+```
+
+### 14. 单例模式实现
+
+- 定义：确保一个类仅有一个实例，并提供一个访问它的全局访问点
+
+- 应用：比如线程池、全局缓存等。我们所熟知的浏览器的 window 对象就是一个单例
+
+- 实现
+
+```js
+function Singleton(name) {
+  this.name = name;
+  this.instance = null;
+}
+
+Singleton.prototype.getName = function() {
+  console.log(this.name);
+};
+
+Singleton.getInstance = function(name) {
+  if (!this.instance) {
+    this.instance = new Singleton(name);
+  }
+  return this.instance;
+};
+
+const a = Singleton.getInstance('a');
+const b = Singleton.getInstance('b');
+console.log(a === b);
+```
+
+### 15. 数组去重
+
+```js
+function unique1(array) {
+  const res = array.filter((item, index, array) => {
+    return array.indexOf(item) === index;
+  });
+  return res;
+}
+
+function unique2(array) {
+  return array
+    .concat()
+    .sort()
+    .filter(function(item, index, array) {
+      return !index || item !== array[index - 1];
+    });
+}
+```
+
+### 16. 找出数组的重复项
+
+```js
+function duplicates_1(arr) {
+  let newArr = [];
+  arr.sort();
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == arr[i + 1] && newArr.indexOf(arr[i]) == -1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+function duplicates_2(arr) {
+  let a = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] == arr[j] && a.indexOf(arr[i]) == -1) {
+        a.push(arr[i]);
+      }
+    }
+  }
+  return a.sort();
+}
+```
+
+### 17. 数组扁平化
+
+```js
+function flatten_1(arr) {
+  return arr
+    .toString()
+    .split(',')
+    .map(item => {
+      return +item;
+    });
+}
+
+function flatten_2(arr) {
+  return arr.reduce((prev, next) => {
+    return prev.concat(Array.isArray(next) ? flatten_2(next) : next);
+  }, []);
+}
+
+function flatten_3(arr) {
+  while (arr.some(item => Array.isArray(item))) {
+    arr = [].concat(...arr);
+  }
+  return arr;
+}
+```
+
+### 18. BOM 属性对象方法
+
+- location search,hash,host,hostname,pathname,port,protocl,assign,replace(),reload()
+- history go(),back(),forward()
+- navigator userAgent,cookieEnabled
+
 25. 服务端渲染
 26. 垃圾回收机制
 27. eventloop 进程和线程任务队列
