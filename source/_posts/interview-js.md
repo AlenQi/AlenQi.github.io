@@ -333,7 +333,7 @@ function equals(x, y) {
 
 - DOMContentLoaded HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。并且 DOMContentLoaded 事件必须等待其所属 script 之前的样式表加载解析完成才会触发。
 
-- onload 属性是一个事件处理程序用于处理 Window, XMLHttpRequest, <img> 等元素的加载事件，当资源已加载时被触发。在文档装载完成后会触发 load 事件。此时，在文档中的所有对象都在 DOM 中，所有图片，脚本，链接以及子框都完成了装载。
+- onload 属性是一个事件处理程序用于处理 Window, XMLHttpRequest, `img` 等元素的加载事件，当资源已加载时被触发。在文档装载完成后会触发 load 事件。此时，在文档中的所有对象都在 DOM 中，所有图片，脚本，链接以及子框都完成了装载。
 
 ### 13-for...in 迭代和 for...of 有什么区别
 
@@ -507,7 +507,7 @@ function exchange(num) {
 }
 ```
 
-±### 22-new 运算符都做了什么
+### 22-new 运算符都做了什么
 
 ```js
 var a = new A();
