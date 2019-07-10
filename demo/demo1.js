@@ -359,4 +359,14 @@ function flatten_3(arr) {
   return arr
 }
 
+// 千位分隔
+function exchange(num) {
+  num += ''
+  if (num.length <= 3) {
+    return num    
+  }
+
+  num = num.replace(/\d{1,3}(?=(\d{1,3}))+$/g, v => v + ',')
+  return num
+} 
  
