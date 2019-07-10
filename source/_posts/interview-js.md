@@ -5,7 +5,7 @@ subtitle: interview, js
 date: 2019-07-02 11:45:24
 author: AlenQi
 catalog: true
-header-img: bg.jpg
+header-img: bg.png
 tags:
   - JavaScript
   - 面试
@@ -13,7 +13,33 @@ tags:
 
 > 前端基础面试 JS 部分，不定期更新
 
-### 1. 问： 原型/原型链/构造函数，解释
+## Catagory
+
+- [1-原型/原型链/构造函数，解释](#1-问：-原型-原型链-构造函数，解释)
+- [2-有几种方式可以实现继承](#2-有几种方式可以实现继承)
+- [3-arguments](#3-arguments)
+- [4-数据类型判断](#4-数据类型判断)
+- [5-作用域链. 闭包. 作用域](#5-作用域链. 闭包. 作用域)
+- [6-对象深拷贝. 浅拷贝](#6-对象深拷贝. 浅拷贝)
+- [7-图片懒加载. 预加载](#7-图片懒加载. 预加载)
+- [8-this 关键字](#8-this 关键字)
+- [9-函数式编程](#9. 函数式编程)
+- [10-手动实现 parseInt](#10-手动实现 parseInt)
+- [11-怎么判断两个对象是否相等](#11-怎么判断两个对象是否相等)
+- [12-window 的 onload 事件和 DOMContentLoaded](#12-window 的 onload 事件和 DOMContentLoaded)
+- [13-for...in 迭代和 for...of 有什么区别](#13-for...in 迭代和 for...of 有什么区别)
+- [14-call、apply、bind 三者区别，原生实现 bind](#14-call、apply、bind 三者区别，原生实现 bind)
+- [15-单例模式实现](#15-单例模式实现)
+- [16-数组去重](#16-数组去重)
+- [17-找出数组的重复项](#17-找出数组的重复项)
+- [18-数组扁平化](#18-数组扁平化)
+- [19-BOM 属性对象方法](#19-BOM 属性对象方法)
+- [20-垃圾回收机制](#20-垃圾回收机制)
+- [21-如何快速让字符串变成已千为精度的数字](#21-如何快速让字符串变成已千为精度的数字)
+- [22-new 运算符都做了什么](#22-new 运算符都做了什么)
+- [23-正则替换版本号](#23-正则替换版本号)
+
+### 1-原型/原型链/构造函数，解释
 
 - 原型：在 JavaScript 中，原型也是一个对象，通过原型可以实现对象的属性继承，JavaScript 的对象中都包含了一个`[[Prototype]]`内部属性，这个属性所对应的就是该对象的原型。`[[Prototype]]`作为对象的内部属性，是不能被直接访问的。所以为了方便查看一个对象的原型，`Firefox`和 C`hrome`中提供了`__proto__`这个非标准（不是所有浏览器都支持）的访问器（ECMA 引入了标准对象原型访问器`Object.getPrototype(object)`）。
 
@@ -21,7 +47,7 @@ tags:
 
 - 构造函数：js 语言中使用构造函数`constructor`作为对象的模板。所谓构造函数，就是提供一个生成对象的模板，并描述对象的基本结构的函数。一个构造函数，可以生成多个对象，每个对象都有相同的结构。
 
-### 2. 有几种方式可以实现继承
+### 2-有几种方式可以实现继承
 
 1. 原型链：
 
@@ -105,7 +131,7 @@ son2.getName();
 son2.getAge();
 ```
 
-### 3. arguments
+### 3-arguments
 
 `arguments` 对象是所有函数中可用的局部变量。你可以使用 `arguments` 对象在函数中引用函数的参数。此对象包含传递给函数的每个参数的条目，第一个条目的索引从 0 开始。
 `arguments` 对象不是一个 `Array` 。它类似于数组，但除了 长度之外没有任何数组属性。
@@ -126,7 +152,7 @@ const args3 = Array.from(arguments);
 const args4 = [...arguments];
 ```
 
-### 4. 数据类型判断
+### 4-数据类型判断
 
 在 ECMAScript 规范中，共定义了 7 种数据类型，分为 `基本类型` 和 `引用类型`
 
@@ -158,7 +184,7 @@ typeof new Function(); // function
 `toString()` 是 `Object` 的原型方法，调用该方法，默认返回当前对象的 `[[Class]]` 。这是一个内部属性，其格式为 `[object Xxx]` ，其中 `Xxx` 就是对象的类型。
 对于 `Object` 对象，直接调用 `toString()` 就能返回 `[object Object]` 。而对于其他对象，则需要通过 `call / apply` 来调用才能返回正确的类型信息。
 
-### 4. 作用域链. 闭包. 作用域
+### 5-作用域链. 闭包. 作用域
 
 - 作用域链：当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级(词法层面上的父级)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。
 
@@ -166,7 +192,7 @@ typeof new Function(); // function
 
 - 作用域：作用域是指程序源代码中定义变量的区域。作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。`JavaScript` 采用词法作用域(lexical scoping)，也就是静态作用域。函数的作用域在函数定义的时候就决定了。
 
-### 5. 对象深拷贝. 浅拷贝
+### 6-对象深拷贝. 浅拷贝
 
 - 浅拷贝
   例如使用了 `concat` 方法，克隆的并不彻底，如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。
@@ -212,7 +238,7 @@ var deepCopy = function(obj) {
 };
 ```
 
-### 6. 图片懒加载. 预加载
+### 7-图片懒加载. 预加载
 
 - 懒加载
   将页面中的 img 标签 src 指向一张小图片或者 src 为空，然后定义一个自定义属性（例如 data-src），属性指向真实的图片。src 指向一张默认的图片，否则当 src 为空时也会向服务器发送一次请求。可以指向 loading 的地址。当载入页面时，先把可视区域内的 img 标签的 data-src 属性值负给 src，然后监听滚动事件，把用户即将看到的图片加载。这样便实现了懒加载。
@@ -220,7 +246,7 @@ var deepCopy = function(obj) {
 - 预加载
   核心原理是浏览器请求过的资源会自动缓存。用 js 创建一个看不见的 Image 标签，浏览器会发出请求。到了页面上真正要显示这张图片的时候，浏览器就可以从缓存里面拿到图片，不用再去下载图片。
 
-### 7. this 关键字
+### 8-this 关键字
 
 var obj = {a: 1, b: function(){console.log(this);}}
 
@@ -229,13 +255,13 @@ var obj = {a: 1, b: function(){console.log(this);}}
 - 作为构造函数调用 `var b = new Fun()`; // this 指向当前实例对象
 - 作为 call 与 apply 调用 `obj.b.apply(object, [])`; // this 指向当前的 object
 
-### 8. 函数式编程
+### 9-函数式编程
 
 它将计算机运算视为函数运算，并且避免使用程序状态以及易变对象。其中，λ 演算（lambda calculus）为该语言最重要的基础。而且，λ 演算的函数可以接受函数当作输入（引数）和输出（传出值）。
 
 比起指令式编程，函数式编程更加强调程序执行的结果而非执行的过程，倡导利用若干简单的执行单元让计算结果不断渐进，逐层推导复杂的运算，而不是设计一个复杂的执行过程。
 
-### 9. 手动实现 parseInt
+### 10-手动实现 parseInt
 
 ```js
 function _parseInt(str, radix) {
@@ -274,7 +300,7 @@ function _parseInt(str, radix) {
 }
 ```
 
-### 10. 怎么判断两个对象是否相等
+### 11-怎么判断两个对象是否相等
 
 ```js
 function equals(x, y) {
@@ -303,20 +329,20 @@ function equals(x, y) {
 }
 ```
 
-### 11. window 的 onload 事件和 DOMContentLoaded
+### 12-window 的 onload 事件和 DOMContentLoaded
 
 - DOMContentLoaded HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。并且 DOMContentLoaded 事件必须等待其所属 script 之前的样式表加载解析完成才会触发。
 
 - onload 属性是一个事件处理程序用于处理 Window, XMLHttpRequest, <img> 等元素的加载事件，当资源已加载时被触发。在文档装载完成后会触发 load 事件。此时，在文档中的所有对象都在 DOM 中，所有图片，脚本，链接以及子框都完成了装载。
 
-### 12. for...in 迭代和 for...of 有什么区别
+### 13-for...in 迭代和 for...of 有什么区别
 
 1. for...in 遍历对象, for...of 遍历数组
 2. for...in 循环出的是 key, for...of 循环出的是 value
 3. for...in 是 ES5 引入的, for...of 是 ES6 引入的
 4. for...of 不能遍历普通对象, 需要和 Object.keys() 配合使用
 
-### 13. call、apply、bind 三者区别，原生实现 bind
+### 14-call、apply、bind 三者区别，原生实现 bind
 
 - call 和 apply 第一个参数都是指定函数体内的 this 对象的指向
 
@@ -352,7 +378,7 @@ if (!Function.prototype.bind) {
 }
 ```
 
-### 14. 单例模式实现
+### 15-单例模式实现
 
 - 定义：确保一个类仅有一个实例，并提供一个访问它的全局访问点
 
@@ -382,7 +408,7 @@ const b = Singleton.getInstance('b');
 console.log(a === b);
 ```
 
-### 15. 数组去重
+### 16-数组去重
 
 ```js
 function unique1(array) {
@@ -402,7 +428,7 @@ function unique2(array) {
 }
 ```
 
-### 16. 找出数组的重复项
+### 17-找出数组的重复项
 
 ```js
 function duplicates_1(arr) {
@@ -429,7 +455,7 @@ function duplicates_2(arr) {
 }
 ```
 
-### 17. 数组扁平化
+### 18-数组扁平化
 
 ```js
 function flatten_1(arr) {
@@ -455,19 +481,19 @@ function flatten_3(arr) {
 }
 ```
 
-### 18. BOM 属性对象方法
+### 19-BOM 属性对象方法
 
 - location search,hash,host,hostname,pathname,port,protocl,assign,replace(),reload()
 - history go(),back(),forward()
 - navigator userAgent,cookieEnabled
 
-### 19. 垃圾回收机制
+### 20-垃圾回收机制
 
 - 标记清除：当变量进入执行环境时标记为`进入环境`，当变量离开执行环境时则标记为`离开环境`，被标记为`进入环境`的变量是不能被回收的，因为它们正在被使用，而标记为`离开环境`的变量则可以被回收
 
 - 引用计数：统计引用类型变量声明后被引用的次数，当次数为 0 时，该变量被回收，但是引用计数的方式，有一个相对明显的缺点——循环引用，需要手动将变量的内存释放
 
-### 20. 如何快速让字符串变成已千为精度的数字
+### 21-如何快速让字符串变成已千为精度的数字
 
 ```js
 function exchange(num) {
@@ -481,7 +507,7 @@ function exchange(num) {
 }
 ```
 
-### 21. new 运算符都做了什么
+±### 22-new 运算符都做了什么
 
 ```js
 var a = new A();
@@ -494,7 +520,7 @@ A.call(o);
 return o;
 ```
 
-### 22. 正则替换版本号
+### 23-正则替换版本号
 
 ```js
 const version = '1.1.1';

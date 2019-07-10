@@ -2,6 +2,10 @@
 
 ## Catalogue
 
+- [前端面试系列 -- JS](http://www.alenqi.site/2019/07/02/interview-js/)
+- [算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值](http://www.alenqi.site/2019/06/27/find-addend/)
+- [算法实现系列（4）—— 斐波那契数列](http://www.alenqi.site/2019/06/20/fibonacci/)
+- [算法实现系列（3）—— 0.1+0.2](http://www.alenqi.site/2019/06/19/decimal-addition/)
 - [算法实现系列（2）——大数求和](http://www.alenqi.site/2019/06/17/addition-of-large-numbers/)
 - [算法实现系列（1）——算法排序算法](http://www.alenqi.site/2018/03/11/sort-algorithm/)
 - [我们为什么需要 Node 中间层](http://www.alenqi.site/2018/11/16/node-interlayer/)
@@ -36,7 +40,7 @@ npm run build
 
 #### 1. Init
 
-``` bash
+```bash
 git clone https://github.com/AlenQi/AlenQi.github.io.git
     cd AlenQi.github.io
 npm install
@@ -47,7 +51,7 @@ npm install
 Modify `_config.yml` file with your own info.
 Especially the section:
 
-``` bash
+```bash
 deploy:
     type: git
 repo: https://github.com/AlenQi/AlenQi.github.io.git
@@ -58,11 +62,10 @@ Replace with your own repo!
 
 #### 3. Writting/Serve/Deploy
 
-``` bash
+```bash
 hexo new post "IMAPOST"
-hexo serve 
+hexo serve
 # run hexo in local environment
-hexo clean && hexo deploy 
+hexo clean && hexo deploy
 # hexo will push the static files automatically into the specific branch(master) of your repo!
 ```
-
