@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alenqi的个人博客，一些拙见和总结。">
+    <meta name="keyword"  content="alenqi,blog,前端,程序员,http,javascript">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          前端面试系列 -- JS - AlenQi的博客 | AlenQi&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://alenqi.site/2019/07/02/interview-js/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/alenqi.css">
+
+    <!-- Extend CSS -->
+    <!-- <link rel="stylesheet" href="/css/extend.css"> -->
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AlenQi&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="alenqiblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                          github
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                    <h1>前端面试系列 -- JS</h1>
+                    <h2 class="subheading">interview, js</h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2019-07-02
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>前端基础面试 JS 部分，不定期更新</p>
+</blockquote>
+<h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ul>
+<li><a href="#1-问：-原型-原型链-构造函数，解释">1-原型/原型链/构造函数，解释</a></li>
+<li><a href="#2-有几种方式可以实现继承">2-有几种方式可以实现继承</a></li>
+<li><a href="#3-arguments">3-arguments</a></li>
+<li><a href="#4-数据类型判断">4-数据类型判断</a></li>
+<li><a href="#5-作用域链. 闭包. 作用域">5-作用域链. 闭包. 作用域</a></li>
+<li><a href="#6-对象深拷贝. 浅拷贝">6-对象深拷贝. 浅拷贝</a></li>
+<li><a href="#7-图片懒加载. 预加载">7-图片懒加载. 预加载</a></li>
+<li><a href="#8-this 关键字">8-this 关键字</a></li>
+<li><a href="#9. 函数式编程">9-函数式编程</a></li>
+<li><a href="#10-手动实现 parseInt">10-手动实现 parseInt</a></li>
+<li><a href="#11-怎么判断两个对象是否相等">11-怎么判断两个对象是否相等</a></li>
+<li><a href="#12-window 的 onload 事件和 DOMContentLoaded">12-window 的 onload 事件和 DOMContentLoaded</a></li>
+<li><a href="#13-for...in 迭代和 for...of 有什么区别">13-for…in 迭代和 for…of 有什么区别</a></li>
+<li><a href="#14-call、apply、bind 三者区别，原生实现 bind">14-call、apply、bind 三者区别，原生实现 bind</a></li>
+<li><a href="#15-单例模式实现">15-单例模式实现</a></li>
+<li><a href="#16-数组去重">16-数组去重</a></li>
+<li><a href="#17-找出数组的重复项">17-找出数组的重复项</a></li>
+<li><a href="#18-数组扁平化">18-数组扁平化</a></li>
+<li><a href="#19-BOM 属性对象方法">19-BOM 属性对象方法</a></li>
+<li><a href="#20-垃圾回收机制">20-垃圾回收机制</a></li>
+<li><a href="#21-如何快速让字符串变成已千为精度的数字">21-如何快速让字符串变成已千为精度的数字</a></li>
+<li><a href="#22-new 运算符都做了什么">22-new 运算符都做了什么</a></li>
+<li><a href="#23-正则替换版本号">23-正则替换版本号</a></li>
+</ul>
+<h3 id="1-原型-原型链-构造函数，解释"><a href="#1-原型-原型链-构造函数，解释" class="headerlink" title="1-原型/原型链/构造函数，解释"></a>1-原型/原型链/构造函数，解释</h3><ul>
+<li><p>原型：在 JavaScript 中，原型也是一个对象，通过原型可以实现对象的属性继承，JavaScript 的对象中都包含了一个<code>[[Prototype]]</code>内部属性，这个属性所对应的就是该对象的原型。<code>[[Prototype]]</code>作为对象的内部属性，是不能被直接访问的。所以为了方便查看一个对象的原型，<code>Firefox</code>和 C<code>hrome</code>中提供了<code>__proto__</code>这个非标准（不是所有浏览器都支持）的访问器（ECMA 引入了标准对象原型访问器<code>Object.getPrototype(object)</code>）。</p>
+</li>
+<li><p>原型链：因为每个对象和原型都有原型，对象的原型指向对象的父，而父的原型又指向父的父，这种原型层层连接起来的就构成了原型链。当查找一个对象的属性时，JavaScript 会向上遍历原型链，直到找到给定名称的属性为止，到查找到达原型链的顶部（也就是 <code>Object.prototype</code>）， 如果仍然没有找到指定的属性，就会返回<code>undefined</code>。</p>
+</li>
+<li><p>构造函数：js 语言中使用构造函数<code>constructor</code>作为对象的模板。所谓构造函数，就是提供一个生成对象的模板，并描述对象的基本结构的函数。一个构造函数，可以生成多个对象，每个对象都有相同的结构。</p>
+</li>
+</ul>
+<h3 id="2-有几种方式可以实现继承"><a href="#2-有几种方式可以实现继承" class="headerlink" title="2-有几种方式可以实现继承"></a>2-有几种方式可以实现继承</h3><ol>
+<li>原型链：</li>
+</ol>
+<blockquote>
+<p>原型链是实现继承最原始的模式，即通过 prototype 属性实现继承。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.fatherProp = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Father.prototype.getFatherValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.fatherProp;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.sonProp = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father();</span><br><span class="line"></span><br><span class="line">Son.prototype.getSonValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.sonProp;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> son = <span class="keyword">new</span> Son();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(son.getFatherValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>借用构造函数：</li>
+</ol>
+<blockquote>
+<p>方式一中引用类型带来的问题可借用构造函数的方式解决。其核心思想是：在子级构造函数中调用父级构造函数</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  Father.call(<span class="keyword">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> son1 = <span class="keyword">new</span> Son(<span class="string">'tom'</span>);</span><br><span class="line"><span class="keyword">const</span> son2 = <span class="keyword">new</span> Son(<span class="string">'jerry'</span>);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>组合继承</li>
+</ol>
+<blockquote>
+<p>组合继承 = 原型链 + 借用构造函数。取其长避其短：共享的用原型链，各自的借用构造函数</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Father.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  Father.call(<span class="keyword">this</span>, name);</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father();</span><br><span class="line">Son.prototype.construcor = Son;</span><br><span class="line">Son.prototype.getAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> son1 = <span class="keyword">new</span> Son(<span class="string">'tom'</span>, <span class="number">23</span>);</span><br><span class="line">son1.arr.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(son1.arr);</span><br><span class="line">son1.getName();</span><br><span class="line">son1.getAge();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> son2 = <span class="keyword">new</span> Son(<span class="string">'jerry'</span>, <span class="number">21</span>);</span><br><span class="line"><span class="built_in">console</span>.log(son2.arr);</span><br><span class="line">son2.getName();</span><br><span class="line">son2.getAge();</span><br></pre></td></tr></table></figure>
+<h3 id="3-arguments"><a href="#3-arguments" class="headerlink" title="3-arguments"></a>3-arguments</h3><p><code>arguments</code> 对象是所有函数中可用的局部变量。你可以使用 <code>arguments</code> 对象在函数中引用函数的参数。此对象包含传递给函数的每个参数的条目，第一个条目的索引从 0 开始。<br><code>arguments</code> 对象不是一个 <code>Array</code> 。它类似于数组，但除了 长度之外没有任何数组属性。</p>
+<p>将<code>arguments</code>转换成一个数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">const</span> args1 = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">const</span> args2 = [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">const</span> args3 = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">const</span> args4 = [...arguments];</span><br></pre></td></tr></table></figure>
+<h3 id="4-数据类型判断"><a href="#4-数据类型判断" class="headerlink" title="4-数据类型判断"></a>4-数据类型判断</h3><p>在 ECMAScript 规范中，共定义了 7 种数据类型，分为 <code>基本类型</code> 和 <code>引用类型</code></p>
+<blockquote>
+<p>基本类型：String、Number、Boolean、Undefined、Null、Symbol<br>引用类型：Object</p>
+</blockquote>
+<ol>
+<li>typeof</li>
+</ol>
+<p>操作符右侧跟一个一元表达式，并返回这个表达式的数据类型，返回的结果用该类型的字符串(全小写字母)形式表示。<br>对于基本类型，除 <code>null</code> 以外，均可以返回正确的结果。<br>对于引用类型，除 <code>function</code> 以外，一律返回 object 类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>; <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">Function</span>(); <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>instanceof</li>
+</ol>
+<p><code>instanceof</code> 是用来判断 A 是否为 B 的实例，表达式为：A instanceof B，如果 A 是 B 的实例，则返回 <code>true</code>,否则返回 <code>false</code>。 在这里需要特别注意的是：<code>instanceof</code> 检测的是原型。<br><code>instanceof</code> 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型。</p>
+<ol start="3">
+<li>constructor</li>
+</ol>
+<p>当一个函数 F 被定义时，JS 引擎会为 F 添加 <code>prototype</code> 原型，然后再在 <code>prototype</code> 上添加一个 <code>constructor</code> 属性，并让其指向 F 的引用。F 利用原型对象上的 <code>constructor</code> 引用了自身，当 F 作为构造函数来创建对象时，原型上的 <code>constructor</code> 就被遗传到了新创建的对象上， 从原型链角度讲，构造函数 F 就是新对象的类型。这样做的意义是，让新对象在诞生以后，就具有可追溯的数据类型。</p>
+<ol start="4">
+<li>toString</li>
+</ol>
+<p><code>toString()</code> 是 <code>Object</code> 的原型方法，调用该方法，默认返回当前对象的 <code>[[Class]]</code> 。这是一个内部属性，其格式为 <code>[object Xxx]</code> ，其中 <code>Xxx</code> 就是对象的类型。<br>对于 <code>Object</code> 对象，直接调用 <code>toString()</code> 就能返回 <code>[object Object]</code> 。而对于其他对象，则需要通过 <code>call / apply</code> 来调用才能返回正确的类型信息。</p>
+<h3 id="5-作用域链-闭包-作用域"><a href="#5-作用域链-闭包-作用域" class="headerlink" title="5-作用域链. 闭包. 作用域"></a>5-作用域链. 闭包. 作用域</h3><ul>
+<li><p>作用域链：当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级(词法层面上的父级)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。</p>
+</li>
+<li><p>闭包：闭包是指那些能够访问自由变量的函数。自由变量也就是指在函数中使用的，但既不是函数参数也不是函数的局部变量的变量。在谷歌浏览器中，将自由变量所在的作用域叫做闭包。</p>
+</li>
+<li><p>作用域：作用域是指程序源代码中定义变量的区域。作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。<code>JavaScript</code> 采用词法作用域(lexical scoping)，也就是静态作用域。函数的作用域在函数定义的时候就决定了。</p>
+</li>
+</ul>
+<h3 id="6-对象深拷贝-浅拷贝"><a href="#6-对象深拷贝-浅拷贝" class="headerlink" title="6-对象深拷贝. 浅拷贝"></a>6-对象深拷贝. 浅拷贝</h3><ul>
+<li><p>浅拷贝<br>例如使用了 <code>concat</code> 方法，克隆的并不彻底，如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。</p>
+</li>
+<li><p>浅拷贝的实现</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shallowCopy = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 只拷贝对象</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// 根据obj的类型判断是新建一个数组还是对象</span></span><br><span class="line">  <span class="keyword">var</span> newObj = obj <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">  <span class="comment">// 遍历obj，并且判断是obj的属性才拷贝</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      newObj[key] = obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>深拷贝<br>深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。</p>
+</li>
+<li><p>深拷贝的实现</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一：</span></span><br><span class="line"><span class="keyword">var</span> new_arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arr)); <span class="comment">// 有一个缺点是不能拷贝函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二：</span></span><br><span class="line"><span class="keyword">var</span> deepCopy = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">var</span> newObj = obj <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      newObj[key] =</span><br><span class="line">        <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span> ? deepCopy(obj[key]) : obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="7-图片懒加载-预加载"><a href="#7-图片懒加载-预加载" class="headerlink" title="7-图片懒加载. 预加载"></a>7-图片懒加载. 预加载</h3><ul>
+<li><p>懒加载<br>将页面中的 img 标签 src 指向一张小图片或者 src 为空，然后定义一个自定义属性（例如 data-src），属性指向真实的图片。src 指向一张默认的图片，否则当 src 为空时也会向服务器发送一次请求。可以指向 loading 的地址。当载入页面时，先把可视区域内的 img 标签的 data-src 属性值负给 src，然后监听滚动事件，把用户即将看到的图片加载。这样便实现了懒加载。</p>
+</li>
+<li><p>预加载<br>核心原理是浏览器请求过的资源会自动缓存。用 js 创建一个看不见的 Image 标签，浏览器会发出请求。到了页面上真正要显示这张图片的时候，浏览器就可以从缓存里面拿到图片，不用再去下载图片。</p>
+</li>
+</ul>
+<h3 id="8-this-关键字"><a href="#8-this-关键字" class="headerlink" title="8-this 关键字"></a>8-this 关键字</h3><p>var obj = {a: 1, b: function(){console.log(this);}}</p>
+<ul>
+<li>作为对象调用时，指向该对象 <code>obj.b()</code>; // 指向 obj</li>
+<li>作为函数调用, <code>var b = obj.b; b()</code>; // 指向全局 window</li>
+<li>作为构造函数调用 <code>var b = new Fun()</code>; // this 指向当前实例对象</li>
+<li>作为 call 与 apply 调用 <code>obj.b.apply(object, [])</code>; // this 指向当前的 object</li>
+</ul>
+<h3 id="9-函数式编程"><a href="#9-函数式编程" class="headerlink" title="9-函数式编程"></a>9-函数式编程</h3><p>它将计算机运算视为函数运算，并且避免使用程序状态以及易变对象。其中，λ 演算（lambda calculus）为该语言最重要的基础。而且，λ 演算的函数可以接受函数当作输入（引数）和输出（传出值）。</p>
+<p>比起指令式编程，函数式编程更加强调程序执行的结果而非执行的过程，倡导利用若干简单的执行单元让计算结果不断渐进，逐层推导复杂的运算，而不是设计一个复杂的执行过程。</p>
+<h3 id="10-手动实现-parseInt"><a href="#10-手动实现-parseInt" class="headerlink" title="10-手动实现 parseInt"></a>10-手动实现 parseInt</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_parseInt</span>(<span class="params">str, radix</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str_type = <span class="keyword">typeof</span> str;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (str_type !== <span class="string">'string'</span> &amp;&amp; str_type !== <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NaN</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  str = <span class="built_in">String</span>(str)</span><br><span class="line">    .trim()</span><br><span class="line">    .split(<span class="string">'.'</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">let</span> length = str.length;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NaN</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!radix) &#123;</span><br><span class="line">    radix = <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> radix !== <span class="string">'number'</span> || radix &lt; <span class="number">2</span> || radix &gt; <span class="number">36</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NaN</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> arr = str</span><br><span class="line">      .split(<span class="string">''</span>)</span><br><span class="line">      .reverse()</span><br><span class="line">      .join(<span class="string">''</span>);</span><br><span class="line">    res += <span class="built_in">Math</span>.floor(arr[i]) * <span class="built_in">Math</span>.pow(radix, i);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="11-怎么判断两个对象是否相等"><a href="#11-怎么判断两个对象是否相等" class="headerlink" title="11-怎么判断两个对象是否相等"></a>11-怎么判断两个对象是否相等</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">equals</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> f1 = x <span class="keyword">instanceof</span> <span class="built_in">Object</span>;</span><br><span class="line">  <span class="keyword">const</span> f2 = y <span class="keyword">instanceof</span> <span class="built_in">Object</span>;</span><br><span class="line">  <span class="keyword">if</span> (!f1 || !f2) &#123;</span><br><span class="line">    <span class="keyword">return</span> x === y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.keys(x).length !== <span class="built_in">Object</span>.keys(y).length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> newX = <span class="built_in">Object</span>.keys(x);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">in</span> newX) &#123;</span><br><span class="line">    p = newX[p];</span><br><span class="line">    <span class="keyword">const</span> a = x[p] <span class="keyword">instanceof</span> <span class="built_in">Object</span>;</span><br><span class="line">    <span class="keyword">const</span> b = y[p] <span class="keyword">instanceof</span> <span class="built_in">Object</span>;</span><br><span class="line">    <span class="keyword">if</span> (a &amp;&amp; b) &#123;</span><br><span class="line">      equals(x[p], y[p]);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (x[p] !== y[p]) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="12-window-的-onload-事件和-DOMContentLoaded"><a href="#12-window-的-onload-事件和-DOMContentLoaded" class="headerlink" title="12-window 的 onload 事件和 DOMContentLoaded"></a>12-window 的 onload 事件和 DOMContentLoaded</h3><ul>
+<li><p>DOMContentLoaded HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。并且 DOMContentLoaded 事件必须等待其所属 script 之前的样式表加载解析完成才会触发。</p>
+</li>
+<li><p>onload 属性是一个事件处理程序用于处理 Window, XMLHttpRequest, <img> 等元素的加载事件，当资源已加载时被触发。在文档装载完成后会触发 load 事件。此时，在文档中的所有对象都在 DOM 中，所有图片，脚本，链接以及子框都完成了装载。</p>
+</li>
+</ul>
+<h3 id="13-for…in-迭代和-for…of-有什么区别"><a href="#13-for…in-迭代和-for…of-有什么区别" class="headerlink" title="13-for…in 迭代和 for…of 有什么区别"></a>13-for…in 迭代和 for…of 有什么区别</h3><ol>
+<li>for…in 遍历对象, for…of 遍历数组</li>
+<li>for…in 循环出的是 key, for…of 循环出的是 value</li>
+<li>for…in 是 ES5 引入的, for…of 是 ES6 引入的</li>
+<li>for…of 不能遍历普通对象, 需要和 Object.keys() 配合使用</li>
+</ol>
+<h3 id="14-call、apply、bind-三者区别，原生实现-bind"><a href="#14-call、apply、bind-三者区别，原生实现-bind" class="headerlink" title="14-call、apply、bind 三者区别，原生实现 bind"></a>14-call、apply、bind 三者区别，原生实现 bind</h3><ul>
+<li><p>call 和 apply 第一个参数都是指定函数体内的 this 对象的指向</p>
+</li>
+<li><p>call 参数的数量不固定，可以传递多个，apply 第二个参数是一个带下标的集合，可以是数组或者类数组</p>
+</li>
+<li><p>call 和 apply 改变了函数的 this 上下文后便执行该函数,而 bind 则是返回改变了上下文后的一个函数，bind 可以像 call 一样传参，也可在调用返回函数的时候传参</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">oThis</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> fToBind = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> fNOP = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> fBound = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fToBind.apply(</span><br><span class="line">        <span class="keyword">this</span> <span class="keyword">instanceof</span> fBound ? <span class="keyword">this</span> : oThis,</span><br><span class="line">        aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>))</span><br><span class="line">      );</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">      fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fBound.prototype = <span class="keyword">new</span> fNOP();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fBound;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="15-单例模式实现"><a href="#15-单例模式实现" class="headerlink" title="15-单例模式实现"></a>15-单例模式实现</h3><ul>
+<li><p>定义：确保一个类仅有一个实例，并提供一个访问它的全局访问点</p>
+</li>
+<li><p>应用：比如线程池、全局缓存等。我们所熟知的浏览器的 window 对象就是一个单例</p>
+</li>
+<li><p>实现</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Singleton</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.instance = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Singleton.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Singleton.getInstance = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.instance) &#123;</span><br><span class="line">    <span class="keyword">this</span>.instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.instance;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = Singleton.getInstance(<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">const</span> b = Singleton.getInstance(<span class="string">'b'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a === b);</span><br></pre></td></tr></table></figure>
+<h3 id="16-数组去重"><a href="#16-数组去重" class="headerlink" title="16-数组去重"></a>16-数组去重</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> res = array.filter(<span class="function">(<span class="params">item, index, array</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> array.indexOf(item) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique2</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">    .concat()</span><br><span class="line">    .sort()</span><br><span class="line">    .filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> !index || item !== array[index - <span class="number">1</span>];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-找出数组的重复项"><a href="#17-找出数组的重复项" class="headerlink" title="17-找出数组的重复项"></a>17-找出数组的重复项</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates_1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> newArr = [];</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] == arr[i + <span class="number">1</span>] &amp;&amp; newArr.indexOf(arr[i]) == <span class="number">-1</span>) &#123;</span><br><span class="line">      newArr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates_2</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] == arr[j] &amp;&amp; a.indexOf(arr[i]) == <span class="number">-1</span>) &#123;</span><br><span class="line">        a.push(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a.sort();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-数组扁平化"><a href="#18-数组扁平化" class="headerlink" title="18-数组扁平化"></a>18-数组扁平化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten_1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">    .toString()</span><br><span class="line">    .split(<span class="string">','</span>)</span><br><span class="line">    .map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> +item;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten_2</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">prev, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> prev.concat(<span class="built_in">Array</span>.isArray(next) ? flatten_2(next) : next);</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten_3</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (arr.some(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Array</span>.isArray(item))) &#123;</span><br><span class="line">    arr = [].concat(...arr);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="19-BOM-属性对象方法"><a href="#19-BOM-属性对象方法" class="headerlink" title="19-BOM 属性对象方法"></a>19-BOM 属性对象方法</h3><ul>
+<li>location search,hash,host,hostname,pathname,port,protocl,assign,replace(),reload()</li>
+<li>history go(),back(),forward()</li>
+<li>navigator userAgent,cookieEnabled</li>
+</ul>
+<h3 id="20-垃圾回收机制"><a href="#20-垃圾回收机制" class="headerlink" title="20-垃圾回收机制"></a>20-垃圾回收机制</h3><ul>
+<li><p>标记清除：当变量进入执行环境时标记为<code>进入环境</code>，当变量离开执行环境时则标记为<code>离开环境</code>，被标记为<code>进入环境</code>的变量是不能被回收的，因为它们正在被使用，而标记为<code>离开环境</code>的变量则可以被回收</p>
+</li>
+<li><p>引用计数：统计引用类型变量声明后被引用的次数，当次数为 0 时，该变量被回收，但是引用计数的方式，有一个相对明显的缺点——循环引用，需要手动将变量的内存释放</p>
+</li>
+</ul>
+<h3 id="21-如何快速让字符串变成已千为精度的数字"><a href="#21-如何快速让字符串变成已千为精度的数字" class="headerlink" title="21-如何快速让字符串变成已千为精度的数字"></a>21-如何快速让字符串变成已千为精度的数字</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exchange</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  num += <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">if</span> (num.length &lt;= <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  num = num.replace(<span class="regexp">/\d&#123;1,3&#125;(?=(\d&#123;1,3&#125;))+$/g</span>, v =&gt; v + <span class="string">','</span>);</span><br><span class="line">  <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>±### 22-new 运算符都做了什么</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.__proto__ = A.prototype;</span><br><span class="line">A.call(o);</span><br><span class="line"><span class="keyword">return</span> o;</span><br></pre></td></tr></table></figure>
+<h3 id="23-正则替换版本号"><a href="#23-正则替换版本号" class="headerlink" title="23-正则替换版本号"></a>23-正则替换版本号</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> version = <span class="string">'1.1.1'</span>;</span><br><span class="line"><span class="keyword">const</span> str = <span class="string">'www.alenqi.com/reg/version-2.2.2.js'</span>;</span><br><span class="line">str.replace(<span class="regexp">/version-(?:\d\.\d\.\d)\.js/g</span>, <span class="string">`version-<span class="subst">$&#123;version&#125;</span>.js`</span>);</span><br></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/06/27/find-addend/" data-toggle="tooltip" data-placement="top" title="算法实现系列（5）—— 找到数组中几个数相加和等于一个固定值">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://zhuanlan.zhihu.com/AlenQi" target="_blank">专栏</a></li>
+                    
+                        <li><a href="" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2019/07/02/interview-js/";
+    var disqus_url = "http://alenqi.site/2019/07/02/interview-js/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+           
+          <li>
+            <a
+              target="_blank"
+              href="https://www.zhihu.com/people/alen-qi"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa  fa-stack-1x fa-inverse">知</i>
+              </span>
+            </a>
+          </li>
+           
+          <li>
+            <a
+              target="_blank"
+              href="http://weibo.com/3255406154"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+          <!--  -->
+
+          
+          <li>
+            <a
+              target="_blank"
+              href="https://github.com/AlenQi"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+          <!--  -->
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy; AlenQi&#39;s Blog 2019
+          <br />
+          <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          Ported by <a href="https://alenqi.github.io">AlenQi</a> |
+          <iframe
+            style="margin-left: 2px; margin-bottom:-5px;"
+            frameborder="0"
+            scrolling="0"
+            width="91px"
+            height="20px"
+            src="https://ghbtns.com/github-btn.html?user=alenqi&repo=AlenQi.github.io&type=star&count=true"
+          >
+          </iframe>
+          <!-- Place this tag where you want the button to render. -->
+          <!-- <a class="github-button" href="https://github.com/alenqi/AlenQi.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star alenqi/AlenQi.github.io on GitHub">Star</a> -->
+          <br />
+          <span>I love football , and you?</span>
+          <br />
+          <span id="busuanzi_container_site_pv">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <br />
+          <span>鲁ICP备 17018806号</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/lib/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/lib/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/alenqi.js"></script>
+
+<!-- async load function -->
+<script>
+  function async(u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener(
+        'load',
+        function(e) {
+          c(null, e);
+        },
+        false
+      );
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+
+<script
+  async
+  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+></script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so alenqiblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- jquery.tagcloud.js -->
+<script>
+  // only load tagcloud.js in tag.html
+  if ($('#tag_cloud').length !== 0) {
+    async('http://alenqi.site/js/jquery.tagcloud.js', function() {
+      $.fn.tagcloud.defaults = {
+        //size: {start: 1, end: 1, unit: 'em'},
+        color: { start: '#bbbbee', end: '#0085a1' }
+      };
+      $('#tag_cloud a').tagcloud();
+    });
+  }
+</script>
+
+<!--fastClick.js -->
+<script>
+  async('https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js', function() {
+    var $nav = document.querySelector('nav');
+    if ($nav) FastClick.attach($nav);
+  });
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+  // dynamic User by alenqi
+  var _gaId = 'UA-97910534-1';
+  var _gaDomain = 'alenqi.site';
+
+  // Originial
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    (i[r] =
+      i[r] ||
+      function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    'script',
+    '//www.google-analytics.com/analytics.js',
+    'ga'
+  );
+
+  ga('create', _gaId, _gaDomain);
+  ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+  // dynamic User by alenqi
+  var _baId = 'd2d1c8212f769b00df2e8fff4ff8c876';
+
+  // Originial
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement('script');
+    hm.src = '//hm.baidu.com/hm.js?' + _baId;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    var P = $('div.post-container'),
+      a,
+      n,
+      t,
+      l,
+      i,
+      c;
+    a = P.find('h1,h2,h3,h4,h5,h6');
+    a.each(function() {
+      n = $(this)
+        .prop('tagName')
+        .toLowerCase();
+      i = '#' + $(this).prop('id');
+      t = $(this).text();
+      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+      l = $('<li class="' + n + '_nav"></li>').append(c);
+      $(selector).append(l);
+    });
+    return true;
+  }
+
+  generateCatalog('.catalog-body');
+
+  // toggle side catalog
+  $('.catalog-toggle').click(function(e) {
+    e.preventDefault();
+    $('.side-catalog').toggleClass('fold');
+  });
+
+  /*
+   * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+   */
+  async('/js/jquery.nav.js', function() {
+    $('.catalog-body').onePageNav({
+      currentClass: 'active',
+      changeHash: !1,
+      easing: 'swing',
+      filter: '',
+      scrollSpeed: 700,
+      scrollOffset: 0,
+      scrollThreshold: 0.2,
+      begin: null,
+      end: null,
+      scrollChange: null,
+      padding: 80
+    });
+  });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
