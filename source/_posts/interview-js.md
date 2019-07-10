@@ -461,7 +461,43 @@ function flatten_3(arr) {
 - history go(),back(),forward()
 - navigator userAgent,cookieEnabled
 
-25. 服务端渲染
-26. 垃圾回收机制
-27. eventloop 进程和线程任务队列
-28. 如何快速让字符串变成已千为精度的数字
+### 19. 垃圾回收机制
+
+- 标记清除：当变量进入执行环境时标记为`进入环境`，当变量离开执行环境时则标记为`离开环境`，被标记为`进入环境`的变量是不能被回收的，因为它们正在被使用，而标记为`离开环境`的变量则可以被回收
+
+- 引用计数：统计引用类型变量声明后被引用的次数，当次数为 0 时，该变量被回收，但是引用计数的方式，有一个相对明显的缺点——循环引用，需要手动将变量的内存释放
+
+### 20. 如何快速让字符串变成已千为精度的数字
+
+```js
+function exchange(num) {
+  num += '';
+  if (num.length <= 3) {
+    return num;
+  }
+
+  num = num.replace(/\d{1,3}(?=(\d{1,3}))+$/g, v => v + ',');
+  return num;
+}
+```
+
+### 21. new 运算符都做了什么
+
+```js
+var a = new A();
+
+// 等价于
+
+var o = new Object();
+o.__proto__ = A.prototype;
+A.call(o);
+return o;
+```
+
+### 22. 正则替换版本号
+
+```js
+const version = '1.1.1';
+const str = 'www.alenqi.com/reg/version-2.2.2.js';
+str.replace(/version-(?:\d\.\d\.\d)\.js/g, `version-${version}.js`);
+```
