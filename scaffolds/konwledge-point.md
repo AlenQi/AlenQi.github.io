@@ -1,23 +1,3 @@
-# CSS
-
-1. 盒模型
-2. flex
-3. css 单位
-4. css 选择器
-5. bfc 清除浮动
-6. 层叠上下文
-7. 常见页面布局
-8. 响应式布局
-9. css 预处理，后处理
-10. css3 新特性 animation 和 transiton 的相关属性 animate 和 translate
-11. display 哪些取值
-12. 相邻的两个 inline-block 节点为什么会出现间隔，该如何解决
-13. meta viewport 移动端适配
-14. CSS 实现宽度自适应 100%，宽高 16:9 的比例的矩形
-15. rem 布局的优缺点
-16. 画三角形
-17. 像素边框问题
-
 # HTML
 
 1. 语义化
