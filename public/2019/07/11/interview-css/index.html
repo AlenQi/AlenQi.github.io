@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alenqi的个人博客，一些拙见和总结。">
+    <meta name="keyword"  content="alenqi,blog,前端,程序员,http,javascript">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          前端面试系列 -- CSS - AlenQi的博客 | AlenQi&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://alenqi.site/2019/07/11/interview-css/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/alenqi.css">
+
+    <!-- Extend CSS -->
+    <!-- <link rel="stylesheet" href="/css/extend.css"> -->
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AlenQi&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="alenqiblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                    <li>
+                        <a target="_blank"  href="https://github.com/AlenQi">
+                          github
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#alenqiblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                    <h1>前端面试系列 -- CSS</h1>
+                    <h2 class="subheading">interview, css</h2>
+                    <span class="meta">
+                        Posted by AlenQi on
+                        2019-07-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>前端基础面试 CSS 部分，不定期更新</p>
+</blockquote>
+<h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ul>
+<li><a href="#1-盒模型">1-盒模型</a></li>
+</ul>
+<h3 id="1-盒模型"><a href="#1-盒模型" class="headerlink" title="1-盒模型"></a>1-盒模型</h3><ul>
+<li>W3C 标准盒模型：属性<code>width</code>，<code>height</code>只包含内容<code>content</code>，不包含<code>border</code>，<code>padding</code></li>
+<li>IE 盒模型：属性<code>width</code>，<code>hegiht</code>包含<code>border</code>，<code>padding</code>，<code>content</code></li>
+</ul>
+<blockquote>
+<p>盒模型可以使用 <code>box-sizing</code> 控制，<code>content-box</code> 为标准盒模型，<code>border-box</code> 为 IE 盒模型</p>
+</blockquote>
+<h3 id="2-flex-1"><a href="#2-flex-1" class="headerlink" title="2-flex:1"></a>2-flex:1</h3><p>flex 是 <code>flex-grow</code> , <code>flex-shrink</code>, <code>flex-basis</code>的缩写</p>
+<p>flex-grow: 定义弹性盒子项的拉伸因子<br>flex-shrink: 属性指定了 flex 元素的收缩规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">flex-basis</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-css-单位"><a href="#3-css-单位" class="headerlink" title="3-css 单位"></a>3-css 单位</h3><ul>
+<li>% 百分比</li>
+<li>in 英寸</li>
+<li>cm 厘米</li>
+<li>mm 毫米</li>
+<li>em 1em 为当前字体的尺寸</li>
+<li>ex 1ex 是一个字体的 x-height</li>
+<li>pt 磅</li>
+<li>pc 12 点活字</li>
+<li>px 像素</li>
+<li>rem 和 em 以同样的方式工作，但它总是等于默认基础字体大小的尺寸；继承的字体大小将不起作用</li>
+<li>vw,vh 分别是视口宽度的 1/100 和视口高度的 1/100</li>
+</ul>
+<h3 id="4-BFC"><a href="#4-BFC" class="headerlink" title="4-BFC"></a>4-BFC</h3><p>BFC 即 Block Formatting Contexts (块级格式化上下文)，它属于上述定位方案的普通流。<br>具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。</p>
+<p>满足以下任一条件即可触发 BFC 特性：</p>
+<ul>
+<li>body 根元素</li>
+<li>浮动元素：float 除 none 以外的值</li>
+<li>绝对定位元素：position (absolute、fixed)</li>
+<li>display 为 inline-block、table-cells、flex</li>
+<li>overflow 除了 visible 以外的值 (hidden、auto、scroll)</li>
+</ul>
+<h3 id="5-相邻的两个-inline-block-节点为什么会出现间隔，该如何解决"><a href="#5-相邻的两个-inline-block-节点为什么会出现间隔，该如何解决" class="headerlink" title="5-相邻的两个 inline-block 节点为什么会出现间隔，该如何解决"></a>5-相邻的两个 inline-block 节点为什么会出现间隔，该如何解决</h3><p>空白字符压缩（white space collapse）是西文排版的必然结果。SGML、TeX 都是如此。不过对于不使用空格作为词分界的语言，比如东亚语言来说，就造成了问题。</p>
+<ul>
+<li>font-size: 0</li>
+<li>去掉源代码中的空白</li>
+<li>Skip the closing tag</li>
+</ul>
+<h3 id="6-写一个-meta-标签，宽度等于设备宽度，不允许用户缩放"><a href="#6-写一个-meta-标签，宽度等于设备宽度，不允许用户缩放" class="headerlink" title="6-写一个 meta 标签，宽度等于设备宽度，不允许用户缩放"></a>6-写一个 meta 标签，宽度等于设备宽度，不允许用户缩放</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">"viewport"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cove"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-CSS-实现宽度自适应-100-，宽高-16-9-的比例的矩形"><a href="#7-CSS-实现宽度自适应-100-，宽高-16-9-的比例的矩形" class="headerlink" title="7-CSS 实现宽度自适应 100%，宽高 16:9 的比例的矩形"></a>7-CSS 实现宽度自适应 100%，宽高 16:9 的比例的矩形</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">56.25vw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-移动端布局"><a href="#8-移动端布局" class="headerlink" title="8-移动端布局"></a>8-移动端布局</h3><ul>
+<li>响应式</li>
+</ul>
+<p>利用@media 进行断点，在每个断点中编写 css。</p>
+<p>优点：兼容性好，@media 在 ie9 以上是支持的，PC 和 MOBILE 是同一套代码的，不用分开。</p>
+<p>缺点：要写得 css 相对另外两个多很多，而且各个断点都要做好。css 样式会稍微大点，更麻烦。</p>
+<ul>
+<li>REM</li>
+</ul>
+<p>rem 根据 html 的 font-size 大小进行转换</p>
+<p>优点：能维持能整体的布局效果，移动端兼容性好，不用写多个 css 代码，而且还可以利用@media 进行优化。</p>
+<p>缺点：开头要引入一段 js 代码，单位都要改成 rem(font-size 可以用 px)，计算 rem 比较麻烦(可以引用预处理器，但是增加了编译过程，相对麻烦了点)。pc 和 mobile 要分开。</p>
+<ul>
+<li>设置 viewport 中的 width</li>
+</ul>
+<p>获取屏幕宽度，定死 viewport 中的 width 大小。</p>
+<p>优点：和 REM 相同，而且不用写 rem，直接使用 px，更加快捷。</p>
+<p>缺点：效果可能没 rem 的好，图片可能会相对模糊，而且无法使用@media 进行断点，不同 size 的手机上显示，高度间距可能会相差很大。</p>
+<h3 id="9-画三角形"><a href="#9-画三角形" class="headerlink" title="9-画三角形"></a>9-画三角形</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#demo</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">40px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">80px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-1-像素问题"><a href="#10-1-像素问题" class="headerlink" title="10-1 像素问题"></a>10-1 像素问题</h3><p>设备物理像素和设备独立像素的比例并不是 1：1</p>
+<ul>
+<li><p>伪类 + transform<br>把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  transform: scaleY(0.5); //注意兼容性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>viewport + rem(ios)<br>同时通过设置对应 viewport 的 rem 基准值<br>在 devicePixelRatio = 2 时，输出 viewport：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">"viewport"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">content</span>=<span class="string">"initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 box-shadow 模拟边框<br>利用 css 对阴影处理的方式实现 0.5px 的效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box-1px</span> &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: inset <span class="number">0px</span> -<span class="number">1px</span> <span class="number">1px</span> -<span class="number">1px</span> black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/02/interview-js/" data-toggle="tooltip" data-placement="top" title="前端面试系列 -- JS">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                          <a class="tag" href="/tags/#面试" title="面试">面试</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://zhuanlan.zhihu.com/AlenQi" target="_blank">专栏</a></li>
+                    
+                        <li><a href="" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                        <li><a href="#" target="_blank"></a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "alenqi-github-io";
+    var disqus_identifier = "http://alenqi.site/2019/07/11/interview-css/";
+    var disqus_url = "http://alenqi.site/2019/07/11/interview-css/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+           
+          <li>
+            <a
+              target="_blank"
+              href="https://www.zhihu.com/people/alen-qi"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa  fa-stack-1x fa-inverse">知</i>
+              </span>
+            </a>
+          </li>
+           
+          <li>
+            <a
+              target="_blank"
+              href="http://weibo.com/3255406154"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+          <!--  -->
+
+          
+          <li>
+            <a
+              target="_blank"
+              href="https://github.com/AlenQi"
+            >
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+          <!--  -->
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy; AlenQi&#39;s Blog 2019
+          <br />
+          <!-- Theme by <a href="http://huangxuan.me">alenqi</a> -->
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          Ported by <a href="https://alenqi.github.io">AlenQi</a> |
+          <iframe
+            style="margin-left: 2px; margin-bottom:-5px;"
+            frameborder="0"
+            scrolling="0"
+            width="91px"
+            height="20px"
+            src="https://ghbtns.com/github-btn.html?user=alenqi&repo=AlenQi.github.io&type=star&count=true"
+          >
+          </iframe>
+          <!-- Place this tag where you want the button to render. -->
+          <!-- <a class="github-button" href="https://github.com/alenqi/AlenQi.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star alenqi/AlenQi.github.io on GitHub">Star</a> -->
+          <br />
+          <span>I love football , and you?</span>
+          <br />
+          <span id="busuanzi_container_site_pv">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <br />
+          <span>鲁ICP备 17018806号</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/lib/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/lib/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/alenqi.js"></script>
+
+<!-- async load function -->
+<script>
+  function async(u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener(
+        'load',
+        function(e) {
+          c(null, e);
+        },
+        false
+      );
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+
+<script
+  async
+  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+></script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so alenqiblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- jquery.tagcloud.js -->
+<script>
+  // only load tagcloud.js in tag.html
+  if ($('#tag_cloud').length !== 0) {
+    async('http://alenqi.site/js/jquery.tagcloud.js', function() {
+      $.fn.tagcloud.defaults = {
+        //size: {start: 1, end: 1, unit: 'em'},
+        color: { start: '#bbbbee', end: '#0085a1' }
+      };
+      $('#tag_cloud a').tagcloud();
+    });
+  }
+</script>
+
+<!--fastClick.js -->
+<script>
+  async('https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js', function() {
+    var $nav = document.querySelector('nav');
+    if ($nav) FastClick.attach($nav);
+  });
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+  // dynamic User by alenqi
+  var _gaId = 'UA-97910534-1';
+  var _gaDomain = 'alenqi.site';
+
+  // Originial
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    (i[r] =
+      i[r] ||
+      function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    'script',
+    '//www.google-analytics.com/analytics.js',
+    'ga'
+  );
+
+  ga('create', _gaId, _gaDomain);
+  ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+  // dynamic User by alenqi
+  var _baId = 'd2d1c8212f769b00df2e8fff4ff8c876';
+
+  // Originial
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement('script');
+    hm.src = '//hm.baidu.com/hm.js?' + _baId;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    var P = $('div.post-container'),
+      a,
+      n,
+      t,
+      l,
+      i,
+      c;
+    a = P.find('h1,h2,h3,h4,h5,h6');
+    a.each(function() {
+      n = $(this)
+        .prop('tagName')
+        .toLowerCase();
+      i = '#' + $(this).prop('id');
+      t = $(this).text();
+      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+      l = $('<li class="' + n + '_nav"></li>').append(c);
+      $(selector).append(l);
+    });
+    return true;
+  }
+
+  generateCatalog('.catalog-body');
+
+  // toggle side catalog
+  $('.catalog-toggle').click(function(e) {
+    e.preventDefault();
+    $('.side-catalog').toggleClass('fold');
+  });
+
+  /*
+   * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+   */
+  async('/js/jquery.nav.js', function() {
+    $('.catalog-body').onePageNav({
+      currentClass: 'active',
+      changeHash: !1,
+      easing: 'swing',
+      filter: '',
+      scrollSpeed: 700,
+      scrollOffset: 0,
+      scrollThreshold: 0.2,
+      begin: null,
+      end: null,
+      scrollChange: null,
+      padding: 80
+    });
+  });
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://alenqi.site/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
