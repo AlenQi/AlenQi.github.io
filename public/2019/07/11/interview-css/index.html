@@ -176,6 +176,15 @@
 </blockquote>
 <h2 id="Catagory"><a href="#Catagory" class="headerlink" title="Catagory"></a>Catagory</h2><ul>
 <li><a href="#1-盒模型">1-盒模型</a></li>
+<li><a href="#2-flex:1">2-flex:1</a></li>
+<li><a href="#3-css 单位">3-css 单位</a></li>
+<li><a href="#4-BFC">4-BFC</a></li>
+<li><a href="#5-相邻的两个 inline-block 节点为什么会出现间隔，该如何解决">5-相邻的两个 inline-block 节点为什么会出现间隔，该如何解决</a></li>
+<li><a href="#6-写一个 meta 标签，宽度等于设备宽度，不允许用户缩放">6-写一个 meta 标签，宽度等于设备宽度，不允许用户缩放</a></li>
+<li><a href="#7-CSS 实现宽度自适应 100%，宽高 16:9 的比例的矩形">7-CSS 实现宽度自适应 100%，宽高 16:9 的比例的矩形</a></li>
+<li><a href="#8-移动端布局">8-移动端布局</a></li>
+<li><a href="#9-画三角形">9-画三角形</a></li>
+<li><a href="#10-1px 像素问题">10-1px 像素问题</a></li>
 </ul>
 <h3 id="1-盒模型"><a href="#1-盒模型" class="headerlink" title="1-盒模型"></a>1-盒模型</h3><ul>
 <li>W3C 标准盒模型：属性<code>width</code>，<code>height</code>只包含内容<code>content</code>，不包含<code>border</code>，<code>padding</code></li>
@@ -236,7 +245,7 @@
 <p>优点：和 REM 相同，而且不用写 rem，直接使用 px，更加快捷。</p>
 <p>缺点：效果可能没 rem 的好，图片可能会相对模糊，而且无法使用@media 进行断点，不同 size 的手机上显示，高度间距可能会相差很大。</p>
 <h3 id="9-画三角形"><a href="#9-画三角形" class="headerlink" title="9-画三角形"></a>9-画三角形</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#demo</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">40px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">80px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="10-1-像素问题"><a href="#10-1-像素问题" class="headerlink" title="10-1 像素问题"></a>10-1 像素问题</h3><p>设备物理像素和设备独立像素的比例并不是 1：1</p>
+<h3 id="10-1px-像素问题"><a href="#10-1px-像素问题" class="headerlink" title="10-1px 像素问题"></a>10-1px 像素问题</h3><p>设备物理像素和设备独立像素的比例并不是 1：1</p>
 <ul>
 <li><p>伪类 + transform<br>把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  transform: scaleY(0.5); //注意兼容性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
