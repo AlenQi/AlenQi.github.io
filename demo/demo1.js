@@ -369,4 +369,28 @@ function exchange(num) {
   num = num.replace(/\d{1,3}(?=(\d{1,3}))+$/g, v => v + ',')
   return num
 } 
+
+// quick sort
+
+Array.prototype.quick_sort = function() {
+  let len = this.length
+  if(len <= 1) return this.slice(0)
+  let left = []
+  let right = []
+  let mid = [this[0]]
+  for(let i = 1; i < len; i++) {
+    if(this[i] < mid[0]) {
+      left.push(this[i])
+    } else {
+      right.push(this[i])
+    }
+  }
+  return left.quick_sort().concat(mid.concat(right.quick_sort()))
+}
  
+[this[j], this[j+1]] = [this[j+1], this[j]]
+
+let Fibonacci_ = (curr, next, n) =>
+  Object.is(n, 0) ? curr : Fibonacci_(next, curr + next, n-1)
+
+let Fibonacci = n => Fibonacci_(0, 1, n)
