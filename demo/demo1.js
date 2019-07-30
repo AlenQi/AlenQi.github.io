@@ -66,8 +66,7 @@ function decimalAddition() {
 
 let Fibonacci_ = (curr, next, n) =>
   Object.is(n, 0) ? curr : Fibonacci_(next.curr + next, n - 1);
-let Fibonacci = n => Fibonacci_(0, 1, n);、
-
+let Fibonacci = n => Fibonacci_(0, 1, n);
 // 大数相加
 
 function additionOfLargeNumbers(d1, d2) {
