@@ -1,22 +1,22 @@
 ---
-layout: "about"
-title: "About"
+layout: 'about'
+title: 'About'
 date: 2017-03-01 14:48:33
-description: "Hey, this is AlenQi."
-header-img: "img/about-bg.jpg"
+description: 'Hey, this is AlenQi.'
+header-img: 'img/about-bg.jpg'
 comments: true
 ---
 
-
->hello everyone.
+> hello everyone.
 
 每个人都是一颗成长的大树，我们努力的将枝叶伸向四周，去接收甘甜露水，去触碰绚烂阳光。
 我想记录下这成长的过程，然而用文字的方式打上的印记，似乎比记忆更加清晰。
 
-
 我参加过的会议：
+
 - `杭州开发者大会` https://segmentfault.com/sfdc-2016/hz
-- `第三届中国前端开发者千人峰会` https://fdcon.topgeek.org/
+- `第三届中国前端开发者千人峰会` http://www.huodongxing.com/event/5432288306211
+- `第四届中国前端开发者千人峰会` https://www.huodongxing.com/go/fdcon2019
 
 我的翻译：
 
